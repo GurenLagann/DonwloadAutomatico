@@ -27,8 +27,10 @@ driver.execute_script("document.getElementById('calldate_day_end').value = '15/0
 
 #button = driver.execute_script("document.getElementById('confirm')")
 #button.click()
-submit_button = driver.find_elements_by_xpath('//*[@id="confirm"]')[0]
-submit_button.click()
+
+#Download Automátio 
+arq = '/var/spool/asterisk/monitor/20190515-1557958979.131891-1557958980.wav'
+driver.get('http://192.168.3.1/pbxip/core/includes/downloadaudioMp3.php?file=' + arq)
     
 
 # proximos passos:
