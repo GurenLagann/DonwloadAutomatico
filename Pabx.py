@@ -6,8 +6,6 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import Download
 
-ba = Audio()
-
 options = webdriver.ChromeOptions() 
 options.add_argument("download.default_directory=C:/Downloads")
 
@@ -31,7 +29,8 @@ driver.execute_script("document.getElementById('calldate_day_end').value = '15/0
 #button = driver.execute_script("document.getElementById('confirm')")
 #button.click()
 
-ba.Baixar()
+Download.Baixar()
+
 
 # proximos passos:
 # aprender como iniciar o download e como alterar o nome do arquivo? 
