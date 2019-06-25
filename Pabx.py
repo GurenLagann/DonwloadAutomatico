@@ -4,6 +4,9 @@ import time
 import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from Download import Audio
+
+ba = Audio()
 
 options = webdriver.ChromeOptions() 
 options.add_argument("download.default_directory=C:/Downloads")
@@ -28,10 +31,7 @@ driver.execute_script("document.getElementById('calldate_day_end').value = '15/0
 #button = driver.execute_script("document.getElementById('confirm')")
 #button.click()
 
-#Download Automátio 
-arq = '/var/spool/asterisk/monitor/20190515-1557958979.131891-1557958980.wav'
-driver.get('http://192.168.3.1/pbxip/core/includes/downloadaudioMp3.php?file=' + arq)
-    
+ba.Baixar()
 
 # proximos passos:
 # aprender como iniciar o download e como alterar o nome do arquivo? 
