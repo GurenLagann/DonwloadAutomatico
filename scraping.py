@@ -4,35 +4,7 @@ import time
 import pandas as pd
 from selenium import webdriver
 import requests
-import Pabx
 
-options = webdriver.ChromeOptions()
-options.add_argument("download.default_directory=C:/Downloads")
-
-driver = webdriver.Chrome(chrome_options=options)
-
-# Iniciando o Navegador e encaminhando para o IP da Página
-driver = webdriver.Chrome('chromedriver.exe')
-driver.get("http://192.168.3.1/pbxip/framework/")
-
-# Comandos em JavaScript para adicionar login e senha e acessar a página
-jscomand = "document.nonautenticated2.submit();"
-driver.execute_script(
-    "document.getElementById('authusername').value = 'master'")
-driver.execute_script(
-    "document.getElementById('authpassword').value = 'Agil@agg9809GG'")
-driver.execute_script(jscomand)
-
-driver.get(
-    "http://192.168.3.1/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbG%20%20xzLmRldGFpbGVk")
-driver.execute_script(
-    "document.getElementById('calldate_day_start').value = '20/06/2019'")
-driver.execute_script(
-    "document.getElementById('calldate_day_end').value = '20/06/2019'")
-
-button = driver.execute_script("document.getElementById('confirm')")
-button.click()
-# Comando para redirecionar a página indicada e alterar campos especificos
 
 def Teste1 ():
     req = requests.get(
@@ -46,4 +18,5 @@ def Teste1 ():
     table = soup.find(name='table')
 
     table_str = str(table)
-    df = pd.read_html(table_str)[0]
+    rhtml = pd.read_html(table_str)[0]
+    print(rhtml)

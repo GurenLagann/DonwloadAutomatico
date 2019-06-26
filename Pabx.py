@@ -4,6 +4,7 @@ import time
 import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+import scraping
 
     # Iniciando o Navegador e encaminhando para o IP da Página
 driver = webdriver.Chrome('chromedriver.exe')
@@ -25,9 +26,10 @@ def Search():
     driver.get(
         "http://192.168.3.1/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbG  xzLmRldGFpbGVk")
     driver.execute_script(
-        "document.getElementById('calldate_day_start').value = '20/06/2019'")
+        "document.getElementById('calldate_day_start').value = '21/06/2019'")
     driver.execute_script(
-        "document.getElementById('calldate_day_end').value = '20/06/2019'")
+        "document.getElementById('calldate_day_end').value = '21/06/2019'")
+    driver.execute_script('page_filter()')
     return
 
 def Baixar(arq):
@@ -36,10 +38,13 @@ def Baixar(arq):
         'http://192.168.3.1/pbxip/core/includes/downloadaudioMp3.php?file=' + arq)
     return
 
-#button = driver.execute_script("document.getElementById('confirm')")
-#button.click()
 
+Conection()
 
+Search()
+
+scraping.Teste1()
+    
 
 
 # proximos passos:
