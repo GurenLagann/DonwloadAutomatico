@@ -4,9 +4,10 @@ import time
 import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-import scraping
+import re
+import pandas as pd
 
-    # Iniciando o Navegador e encaminhando para o IP da Página
+# Iniciando o Navegador e encaminhando para o IP da Página
 driver = webdriver.Chrome('chromedriver.exe')
 driver.get("http://192.168.3.1/pbxip/framework/")
 
@@ -32,19 +33,12 @@ def Search():
     driver.execute_script('page_filter()')
     return
 
-def Baixar(arq):
-    #arq = '/var/spool/asterisk/monitor/20190515-1557958979.131891-1557958980.wav'
+def Baixar():
+    #arq = re.search("^20190621-173811-1409.",)
     driver.get(
-        'http://192.168.3.1/pbxip/core/includes/downloadaudioMp3.php?file=' + arq)
+        'http://192.168.3.1/pbxip/core/includes/downloadaudioMp3.php?file=/var/spool/asterisk/monitor/20190701 *')
     return
 
-
-Conection()
-
-Search()
-
-scraping.Teste1()
-    
 
 
 # proximos passos:
