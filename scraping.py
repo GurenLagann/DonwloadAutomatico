@@ -3,6 +3,8 @@ import pandas as pd
 import requests
 from bs4 import BeautifulSoup as bs
 import re
+from selenium import webdriver
+
 
 text = """
     <select id="fifochkid" name="fifochkid" size="5"></select>
@@ -2693,8 +2695,8 @@ text = """
 </style><script>doApplyConfig(0);</script>"""
 
 dx = re.findall(r'"[a-z]+[:.].*wav"', text)
+print(dx)
 
-df = pd.DataFrame(dx, columns=['links'])
-df.to_csv('Links')
-print(df)
-
+driver = webdriver.Chrome('chromedriver.exe')
+driver.get("http://192.168.3.1/pbxip/framework/")
+driver.get(dx)
