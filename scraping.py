@@ -2697,17 +2697,15 @@ text = """
 
 dx = re.findall(r'"[a-z]+[:.].*wav"', text)
 
-print(dx)
+#print(dx)
 links_array = []
 for link in dx:
     links_array.append(link.split('>')[0])
 
-print(links_array)
+#print(links_array)
 
-
-async with aiohttp.ClientSession() as session:
-    async with session.get(links_array) as resp:
-        print(resp.status)
-        print(await resp.text())
-    
+session = aiohttp.ClientSession()
+async with session.get(links_array) as resp:
+    print(resp.status)
+    print(await resp.text())
 
