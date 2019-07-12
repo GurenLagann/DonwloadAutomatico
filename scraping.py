@@ -4,6 +4,7 @@ import requests
 from bs4 import BeautifulSoup as bs
 import re
 from selenium import webdriver
+import aiohttp
 
 
 text = """
@@ -2695,5 +2696,18 @@ text = """
     </style><script>doApplyConfig(0);</script>"""
 
 dx = re.findall(r'"[a-z]+[:.].*wav"', text)
-df = pd.DataFrame(dx)
-print(df)
+
+print(dx)
+links_array = []
+for link in dx:
+    links_array.append(link.split('>')[0])
+
+print(links_array)
+
+
+async with aiohttp.ClientSession() as session:
+    async with session.get(links_array) as resp:
+        print(resp.status)
+        print(await resp.text())
+    
+
