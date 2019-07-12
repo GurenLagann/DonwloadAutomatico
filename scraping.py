@@ -2673,30 +2673,27 @@ text = """
         jQuery(".divs_audio").not("." + nome).hide();
         var audio = jQuery("." + nome + ".aux_audio");
 
-//                console.log(audio);
-//
-//                audio.attr('src', 'http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=' + nome);
+    //                console.log(audio);
+    //
+    //                audio.attr('src', 'http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=' + nome);
 
-        jQuery("." + nome).toggle();
-    }
-</script>
-<style>
-    .divs_audio {
-        position: absolute;
-        border: 1px solid #ccc;
-        padding: 3px;
-        background: #fff;
-        margin-left: -120px;
-    }
+            jQuery("." + nome).toggle();
+        }
+    </script>
+    <style>
+        .divs_audio {
+            position: absolute;
+            border: 1px solid #ccc;
+            padding: 3px;
+            background: #fff;
+            margin-left: -120px;
+        }
 
-    audio {
-        width: 50px
-    }
-</style><script>doApplyConfig(0);</script>"""
+        audio {
+            width: 50px
+        }
+    </style><script>doApplyConfig(0);</script>"""
 
 dx = re.findall(r'"[a-z]+[:.].*wav"', text)
-print(dx)
-
-driver = webdriver.Chrome('chromedriver.exe')
-driver.get("http://192.168.3.1/pbxip/framework/")
-driver.get(dx)
+df = pd.DataFrame(dx)
+print(df)
