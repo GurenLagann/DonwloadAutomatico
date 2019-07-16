@@ -1,4 +1,4 @@
-
+import asyncio
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup as bs
@@ -2700,12 +2700,22 @@ dx = re.findall(r'"[a-z]+[:.].*wav"', text)
 #print(dx)
 links_array = []
 for link in dx:
-    links_array.append(link.split('>')[0])
+    links_array.append(link.split('>')[0].replace('"',''))
+    #links_array.append()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
 
-#print(links_array)
 
-session = aiohttp.ClientSession()
-async with session.get(links_array) as resp:
-    print(resp.status)
-    print(await resp.text())
+print(links_array)
+ 
+
+asession = aiohttp.ClientSession()
+async def fetch(url_list):
+    r = await asession.get(*url_list)
+    return r.read()
+
+
+#
+#async with asession.get(links_array) as resp:
+##    print(resp.status)
+ #   print(await resp.text())
 
