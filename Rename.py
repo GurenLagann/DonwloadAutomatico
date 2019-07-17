@@ -52,14 +52,23 @@ for filename in os.listdir(path):
     filename_without_ext = os.path.splitext(filename)[0]
     n = filename.split('-')
     extension = os.path.splitext(filename)[1]
-    print(n)
+    inList = False
     for ramal in name_array:
-        new_file_name = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+ein
-        print(new_file_name)
-    for ramal in name_array:
-        new_file_name = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+eout
-        print(new_file_name)
+        if n[2] == ramal :
+            new_file_name = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+ein+".wav"
+            inList = True
+            break
+     #for ramal in name_array:
+        elif n[3] == ramal:
+            new_file_name = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+eout+".wav"
+            inList = True
+            break
+    if inList == False :
+        new_file_name = filename  
+
+    print(new_file_name)
+        
        
     
-    #os.rename(os.path.join(path, filename),
-    #          os.path.join(path, new_file_name_with_ext))
+    os.rename(os.path.join(path, filename),
+              os.path.join(path, new_file_name))
