@@ -6,22 +6,20 @@ import re
 from selenium import webdriver
 from aiohttp import ClientSession
 
-
-text = """
-    <select id="fifochkid" name="fifochkid" size="5"></select>
+text = '''    <select id="fifochkid" name="fifochkid" size="5"></select>
     <table align="center" id="list-view" cellpadding="0" cellspacing="0">
         <thead>
         <td style="display: none;"><input type="checkbox" class="checkbox" name="chkall" id="chkall"
                                           onclick="toggle_all_checkbox('fifochkid', 'text');"/></td>
-        <td title="Data" style="width: 75px;" nowrap><a href="javascript:void(0);" style="width: 100%; display: block;" onclick="set_order_by('calldate', 'asc')" title="Ordernar data por ordem crescente"><img src="/pbxip/themes/phone2b/images/bullet_arrow_down_small.gif?1562783368" title="Ordernar data por ordem crescente" align="absmiddle" style="float: right; padding: 2px; padding-top: 4px; : pointer; font-weight:bolder;">Data </a></td>
-        <td title="Duração" style="width: 60px;" nowrap><a href="javascript:void(0);" style="width: 100%; display: block;" onclick="set_order_by('billsec', 'asc')" title="Ordernar duração"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" title="Ordernar duração" align="absmiddle" style="float: right; padding: 2px; padding-top: 4px; : pointer; font-weight:bolder;">Duração </a></td>
+        <td title="Data" style="width: 75px;" nowrap><a href="javascript:void(0);" style="width: 100%; display: block;" onclick="set_order_by('calldate', 'asc')" title="Ordernar data por ordem crescente"><img src="/pbxip/themes/phone2b/images/bullet_arrow_down_small.gif?1563378738" title="Ordernar data por ordem crescente" align="absmiddle" style="float: right; padding: 2px; padding-top: 4px; : pointer; font-weight:bolder;">Data </a></td>
+        <td title="Duração" style="width: 60px;" nowrap><a href="javascript:void(0);" style="width: 100%; display: block;" onclick="set_order_by('billsec', 'asc')" title="Ordernar duração"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378738" title="Ordernar duração" align="absmiddle" style="float: right; padding: 2px; padding-top: 4px; : pointer; font-weight:bolder;">Duração </a></td>
 
-                <td title="Nº Origem" style="width: 20%;" nowrap><a href="javascript:void(0);" style="width: 100%; display: block;" onclick="set_order_by('src', 'asc')" title="Ordernar nº origem"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" title="Ordernar nº origem" align="absmiddle" style="float: right; padding: 2px; padding-top: 4px; : pointer; font-weight:bolder;">Nº Origem </a></td>
-        <td title="Nº Destino" style="width: 35%;" nowrap><a href="javascript:void(0);" style="width: 100%; display: block;" onclick="set_order_by('dst', 'asc')" title="Ordernar nº destino"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" title="Ordernar nº destino" align="absmiddle" style="float: right; padding: 2px; padding-top: 4px; : pointer; font-weight:bolder;">Nº Destino </a></td>
-        <td title="Status" style="width: 75px;" nowrap><a href="javascript:void(0);" style="width: 100%; display: block;" onclick="set_order_by('status', 'asc')" title="Ordernar status"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" title="Ordernar status" align="absmiddle" style="float: right; padding: 2px; padding-top: 4px; : pointer; font-weight:bolder;">Status </a></td>
-        <td title="Tronco" style="width: 15%;" nowrap><a href="javascript:void(0);" style="width: 100%; display: block;" onclick="set_order_by('trunk', 'asc')" title="Ordernar tronco"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" title="Ordernar tronco" align="absmiddle" style="float: right; padding: 2px; padding-top: 4px; : pointer; font-weight:bolder;">Tronco </a></td>
-        <td title="Tipo" style="width: 28%;" nowrap><a href="javascript:void(0);" style="width: 100%; display: block;" onclick="set_order_by('type', 'asc')" title="Ordernar tipo"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" title="Ordernar tipo" align="absmiddle" style="float: right; padding: 2px; padding-top: 4px; : pointer; font-weight:bolder;">Tipo </a></td>
-        <td title="Custo (R$)" style="width: 75px;" align="right" nowrap><a href="javascript:void(0);" style="width: 100%; display: block;" onclick="set_order_by('cost', 'asc')" title="Ordernar custo (r$)"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" title="Ordernar custo (r$)" align="absmiddle" style="float: right; padding: 2px; padding-top: 4px; : pointer; font-weight:bolder;">Custo (R$) </a></td>
+                <td title="Nº Origem" style="width: 20%;" nowrap><a href="javascript:void(0);" style="width: 100%; display: block;" onclick="set_order_by('src', 'asc')" title="Ordernar nº origem"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378738" title="Ordernar nº origem" align="absmiddle" style="float: right; padding: 2px; padding-top: 4px; : pointer; font-weight:bolder;">Nº Origem </a></td>
+        <td title="Nº Destino" style="width: 35%;" nowrap><a href="javascript:void(0);" style="width: 100%; display: block;" onclick="set_order_by('dst', 'asc')" title="Ordernar nº destino"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378738" title="Ordernar nº destino" align="absmiddle" style="float: right; padding: 2px; padding-top: 4px; : pointer; font-weight:bolder;">Nº Destino </a></td>
+        <td title="Status" style="width: 75px;" nowrap><a href="javascript:void(0);" style="width: 100%; display: block;" onclick="set_order_by('status', 'asc')" title="Ordernar status"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378738" title="Ordernar status" align="absmiddle" style="float: right; padding: 2px; padding-top: 4px; : pointer; font-weight:bolder;">Status </a></td>
+        <td title="Tronco" style="width: 15%;" nowrap><a href="javascript:void(0);" style="width: 100%; display: block;" onclick="set_order_by('trunk', 'asc')" title="Ordernar tronco"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378738" title="Ordernar tronco" align="absmiddle" style="float: right; padding: 2px; padding-top: 4px; : pointer; font-weight:bolder;">Tronco </a></td>
+        <td title="Tipo" style="width: 28%;" nowrap><a href="javascript:void(0);" style="width: 100%; display: block;" onclick="set_order_by('type', 'asc')" title="Ordernar tipo"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378738" title="Ordernar tipo" align="absmiddle" style="float: right; padding: 2px; padding-top: 4px; : pointer; font-weight:bolder;">Tipo </a></td>
+        <td title="Custo (R$)" style="width: 75px;" align="right" nowrap><a href="javascript:void(0);" style="width: 100%; display: block;" onclick="set_order_by('cost', 'asc')" title="Ordernar custo (r$)"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378738" title="Ordernar custo (r$)" align="absmiddle" style="float: right; padding: 2px; padding-top: 4px; : pointer; font-weight:bolder;">Custo (R$) </a></td>
                     <td style="width: 30px;">&nbsp;</td>
                 </thead>
                             <tbody id="tr_1" class="malhado" onmouseover="on_hover_row(jQuery(this));">
@@ -29,229 +27,230 @@ text = """
                                                       id="chk_1" value="MQ.."
                                                       onclick="toggle_checkbox('1', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style="color: #cc6600;;"
+                    <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91334'">10/07 15:28</td>
-                    <td style="color: #cc6600;" title="00:00:00" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91334'">00:00:00</td>
-                                        <td style="color: #cc6600;" title="Ramal: Ramal 9005" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91334'">9005</td>
-                    <td style="color: #cc6600;" title="5511993555262" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91334'">5511993555262</td>
-                    <td style="color: #cc6600;" title="Não Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91334'">Não Atendida</td>
-                    <td style="color: #cc6600;" title="1131000441LifeSP5656" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91334'">1131000441LifeSP5656</td>
-                    <td style="color: #cc6600;" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91334'">Celular Local</td>
-                    <td style="color: #cc6600;" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91334'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92577'">16/07 21:11</td>
+                    <td style="" title="00:03:25" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92577'">00:03:25</td>
+                                        <td style="" title="Ramal: Ramal 2815" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92577'">2815</td>
+                    <td style="" title="5581999740168" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92577'">5581999740168</td>
+                    <td style="" title="Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92577'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5642" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92577'">1131000441LifeSP5642</td>
+                    <td style="" title="Celular Nacional" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92577'">Celular Nacional</td>
+                    <td style="" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92577'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907162111302815558199974016815633222902424681563322290wav5d2f44330819f');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378739" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907162111302815558199974016815633222902424681563322290wav5d2f44330819f divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907162111302815558199974016815633222902424681563322290wav5d2f44330819f">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-211130-2815-5581999740168-1563322290.242468-1563322290.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-211130-2815-5581999740168-1563322290.242468-1563322290.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907162111302815558199974016815633222902424681563322290wav5d2f44330819f" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-211130-2815-5581999740168-1563322290.242468-1563322290.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378739" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-211130-2815-5581999740168-1563322290.242468-1563322290.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378739" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_2" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_2" value="Mg.."
                                                       onclick="toggle_checkbox('2', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style=";"
+                    <td style="color: #cc6600;;"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91333'">10/07 15:28</td>
-                    <td style="" title="00:00:32" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91333'">00:00:32</td>
-                                        <td style="" title="5513974198393" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91333'">5513974198393</td>
-                    <td style="" title="Grupo: GP - Lifetime - 5653 » Ramal: ramal 2601 (2601)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91333'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_group.gif?1562783368" title="Grupo: GP - Lifetime - 5653" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1562783368" title="Encaminhado" align="absmiddle"> 2601</td>
-                    <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91333'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5648" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91333'">1131000441LifeSP5648</td>
-                    <td style="" title="Entrante" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91333'">Entrante</td>
-                    <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91333'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_2019071015627833062118201562783307wav5d262e887fbdd');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_2019071015627833062118201562783307wav5d262e887fbdd divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_2019071015627833062118201562783307wav5d262e887fbdd">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-1562783306.211820-1562783307.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-1562783306.211820-1562783307.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_2019071015627833062118201562783307wav5d262e887fbdd" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-1562783306.211820-1562783307.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-1562783306.211820-1562783307.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92576'">16/07 20:11</td>
+                    <td style="color: #cc6600;" title="00:00:00" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92576'">00:00:00</td>
+                                        <td style="color: #cc6600;" title="Ramal: Ramal 2807" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92576'">2807</td>
+                    <td style="color: #cc6600;" title="Ramal: ramal 1603 (1603)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92576'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378739" title="Ramal: ramal 1603 (1603)" align="absmiddle" style="cursor: pointer;"> 1603</td>
+                    <td style="color: #cc6600;" title="Não Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92576'">Não Atendida</td>
+                    <td style="color: #cc6600;" title="" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92576'"></td>
+                    <td style="color: #cc6600;" title="Interno" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92576'">Interno</td>
+                    <td style="color: #cc6600;" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92576'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_3" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_3" value="Mw.."
                                                       onclick="toggle_checkbox('3', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style="color: #cc6600;;"
+                    <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91332'">10/07 15:28</td>
-                    <td style="color: #cc6600;" title="00:00:00" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91332'">00:00:00</td>
-                                        <td style="color: #cc6600;" title="Ramal: Ramal 9005" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91332'">9005</td>
-                    <td style="color: #cc6600;" title="5511991768898" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91332'">5511991768898</td>
-                    <td style="color: #cc6600;" title="Não Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91332'">Não Atendida</td>
-                    <td style="color: #cc6600;" title="1131000441LifeSP5656" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91332'">1131000441LifeSP5656</td>
-                    <td style="color: #cc6600;" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91332'">Celular Local</td>
-                    <td style="color: #cc6600;" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91332'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92575'">16/07 19:48</td>
+                    <td style="" title="00:03:07" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92575'">00:03:07</td>
+                                        <td style="" title="Ramal: Ramal 2807" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92575'">2807</td>
+                    <td style="" title="Ramal: ramal 1603 (1603)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92575'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378739" title="Ramal: ramal 1603 (1603)" align="absmiddle" style="cursor: pointer;"> 1603</td>
+                    <td style="" title="Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92575'">Atendida</td>
+                    <td style="" title="" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92575'"></td>
+                    <td style="" title="Interno" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92575'">Interno</td>
+                    <td style="" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92575'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161948472807160315633173262409381563317327wav5d2f4433144f6');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378739" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161948472807160315633173262409381563317327wav5d2f4433144f6 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161948472807160315633173262409381563317327wav5d2f4433144f6">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-194847-2807-1603-1563317326.240938-1563317327.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-194847-2807-1603-1563317326.240938-1563317327.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161948472807160315633173262409381563317327wav5d2f4433144f6" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-194847-2807-1603-1563317326.240938-1563317327.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378739" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-194847-2807-1603-1563317326.240938-1563317327.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378739" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_4" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_4" value="NA.."
                                                       onclick="toggle_checkbox('4', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style=";"
+                    <td style="color: #990000;;"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91331'">10/07 15:27</td>
-                    <td style="" title="00:00:24" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91331'">00:00:24</td>
-                                        <td style="" title="Ramal: Ramal 9005" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91331'">9005</td>
-                    <td style="" title="5511992190590" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91331'">5511992190590</td>
-                    <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91331'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5656" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91331'">1131000441LifeSP5656</td>
-                    <td style="" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91331'">Celular Local</td>
-                    <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91331'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190710152727900599219059015627832462118041562783247wav5d262e888328a');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190710152727900599219059015627832462118041562783247wav5d262e888328a divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190710152727900599219059015627832462118041562783247wav5d262e888328a">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-152727-9005-992190590-1562783246.211804-1562783247.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-152727-9005-992190590-1562783246.211804-1562783247.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190710152727900599219059015627832462118041562783247wav5d262e888328a" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-152727-9005-992190590-1562783246.211804-1562783247.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-152727-9005-992190590-1562783246.211804-1562783247.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92574'">16/07 19:21</td>
+                    <td style="color: #990000;" title="00:00:00" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92574'">00:00:00</td>
+                                        <td style="color: #990000;" title="551130274014" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92574'">551130274014</td>
+                    <td style="color: #990000;" title="Ramal: ramal 2202 (2202)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92574'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378739" title="Ramal: ramal 2202 (2202)" align="absmiddle" style="cursor: pointer;"> 2202</td>
+                    <td style="color: #990000;" title="Falhou" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92574'">Falhou</td>
+                    <td style="color: #990000;" title="1131000441LifeSP5648" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92574'">1131000441LifeSP5648</td>
+                    <td style="color: #990000;" title="Entrante" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92574'">Entrante</td>
+                    <td style="color: #990000;" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92574'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_5" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_5" value="NQ.."
                                                       onclick="toggle_checkbox('5', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style=";"
+                    <td style="color: #990000;;"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91330'">10/07 15:27</td>
-                    <td style="" title="00:01:33" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91330'">00:01:33</td>
-                                        <td style="" title="Ramal: Ramal 2802" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91330'">2802</td>
-                    <td style="" title="Ramal: ramal 1603 (1603)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91330'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783368" title="Ramal: ramal 1603 (1603)" align="absmiddle" style="cursor: pointer;"> 1603</td>
-                    <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91330'">Atendida</td>
-                    <td style="" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91330'"></td>
-                    <td style="" title="Interno" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91330'">Interno</td>
-                    <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91330'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907101527242802160315627832432118011562783244wav5d262e88851ca');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907101527242802160315627832432118011562783244wav5d262e88851ca divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907101527242802160315627832432118011562783244wav5d262e88851ca">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-152724-2802-1603-1562783243.211801-1562783244.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-152724-2802-1603-1562783243.211801-1562783244.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907101527242802160315627832432118011562783244wav5d262e88851ca" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-152724-2802-1603-1562783243.211801-1562783244.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-152724-2802-1603-1562783243.211801-1562783244.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92573'">16/07 19:20</td>
+                    <td style="color: #990000;" title="00:00:00" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92573'">00:00:00</td>
+                                        <td style="color: #990000;" title="551130274014" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92573'">551130274014</td>
+                    <td style="color: #990000;" title="Ramal: ramal 2202 (2202)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92573'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378739" title="Ramal: ramal 2202 (2202)" align="absmiddle" style="cursor: pointer;"> 2202</td>
+                    <td style="color: #990000;" title="Falhou" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92573'">Falhou</td>
+                    <td style="color: #990000;" title="1131000441LifeSP5648" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92573'">1131000441LifeSP5648</td>
+                    <td style="color: #990000;" title="Entrante" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92573'">Entrante</td>
+                    <td style="color: #990000;" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92573'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_6" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_6" value="Ng.."
                                                       onclick="toggle_checkbox('6', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style=";"
+                    <td style="color: #cc6600;;"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91329'">10/07 15:26</td>
-                    <td style="" title="00:00:02" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91329'">00:00:02</td>
-                                        <td style="" title="Ramal: Ramal 9005" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91329'">9005</td>
-                    <td style="" title="5511991467942" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91329'">5511991467942</td>
-                    <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91329'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5656" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91329'">1131000441LifeSP5656</td>
-                    <td style="" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91329'">Celular Local</td>
-                    <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91329'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190710152633900599146794215627831932117961562783193wav5d262e8886d24');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190710152633900599146794215627831932117961562783193wav5d262e8886d24 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190710152633900599146794215627831932117961562783193wav5d262e8886d24">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-152633-9005-991467942-1562783193.211796-1562783193.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-152633-9005-991467942-1562783193.211796-1562783193.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190710152633900599146794215627831932117961562783193wav5d262e8886d24" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-152633-9005-991467942-1562783193.211796-1562783193.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-152633-9005-991467942-1562783193.211796-1562783193.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92572'">16/07 19:00</td>
+                    <td style="color: #cc6600;" title="00:00:00" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92572'">00:00:00</td>
+                                        <td style="color: #cc6600;" title="Ramal: ramal 1405" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92572'">1405</td>
+                    <td style="color: #cc6600;" title="558007022242" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92572'">558007022242</td>
+                    <td style="color: #cc6600;" title="Não Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92572'">Não Atendida</td>
+                    <td style="color: #cc6600;" title="1131000441LifeSP5631" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92572'">1131000441LifeSP5631</td>
+                    <td style="color: #cc6600;" title="0800" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92572'">0800</td>
+                    <td style="color: #cc6600;" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92572'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_7" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_7" value="Nw.."
                                                       onclick="toggle_checkbox('7', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style="color: #cc6600;;"
+                    <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91327'">10/07 15:25</td>
-                    <td style="color: #cc6600;" title="00:00:00" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91327'">00:00:00</td>
-                                        <td style="color: #cc6600;" title="Ramal: Ramal 9005" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91327'">9005</td>
-                    <td style="color: #cc6600;" title="5511970673902" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91327'">5511970673902</td>
-                    <td style="color: #cc6600;" title="Não Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91327'">Não Atendida</td>
-                    <td style="color: #cc6600;" title="1131000441LifeSP5656" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91327'">1131000441LifeSP5656</td>
-                    <td style="color: #cc6600;" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91327'">Celular Local</td>
-                    <td style="color: #cc6600;" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91327'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92571'">16/07 18:46</td>
+                    <td style="" title="00:01:45" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92571'">00:01:45</td>
+                                        <td style="" title="5511998100350" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92571'">5511998100350</td>
+                    <td style="" title="Grupo: GP - Lifetime - 5640 - Mesa » Ramal: ramal 1410 (1410)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92571'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_group.gif?1563378739" title="Grupo: GP - Lifetime - 5640 - Mesa" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1563378739" title="Encaminhado" align="absmiddle"> 1410</td>
+                    <td style="" title="Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92571'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5648" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92571'">1131000441LifeSP5648</td>
+                    <td style="" title="Entrante" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92571'">Entrante</td>
+                    <td style="" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92571'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_2019071615633135882402371563313589wav5d2f443329cb4');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378739" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_2019071615633135882402371563313589wav5d2f443329cb4 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_2019071615633135882402371563313589wav5d2f443329cb4">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-1563313588.240237-1563313589.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-1563313588.240237-1563313589.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_2019071615633135882402371563313589wav5d2f443329cb4" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-1563313588.240237-1563313589.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378739" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-1563313588.240237-1563313589.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378739" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_8" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_8" value="OA.."
                                                       onclick="toggle_checkbox('8', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style="color: #cc6600;;"
+                    <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91326'">10/07 15:25</td>
-                    <td style="color: #cc6600;" title="00:00:00" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91326'">00:00:00</td>
-                                        <td style="color: #cc6600;" title="Ramal: Ramal 9005" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91326'">9005</td>
-                    <td style="color: #cc6600;" title="5511976628685" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91326'">5511976628685</td>
-                    <td style="color: #cc6600;" title="Não Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91326'">Não Atendida</td>
-                    <td style="color: #cc6600;" title="1131000441LifeSP5656" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91326'">1131000441LifeSP5656</td>
-                    <td style="color: #cc6600;" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91326'">Celular Local</td>
-                    <td style="color: #cc6600;" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91326'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92569'">16/07 18:43</td>
+                    <td style="" title="00:00:25" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92569'">00:00:25</td>
+                                        <td style="" title="Ramal: Ramal 2206" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92569'">2206</td>
+                    <td style="" title="Ramal: ramal 1606 (1606) » Ramal: ramal 1602 (1602)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92569'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378739" title="Ramal: ramal 1606 (1606)" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1563378739" title="Encaminhado" align="absmiddle"> 1602</td>
+                    <td style="" title="Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92569'">Atendida</td>
+                    <td style="" title="" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92569'"></td>
+                    <td style="" title="Interno" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92569'">Interno</td>
+                    <td style="" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92569'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161843052206160615633133842402321563313385wav5d2f443331d9e');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378739" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161843052206160615633133842402321563313385wav5d2f443331d9e divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161843052206160615633133842402321563313385wav5d2f443331d9e">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-184305-2206-1606-1563313384.240232-1563313385.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-184305-2206-1606-1563313384.240232-1563313385.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161843052206160615633133842402321563313385wav5d2f443331d9e" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-184305-2206-1606-1563313384.240232-1563313385.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378739" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-184305-2206-1606-1563313384.240232-1563313385.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378739" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_9" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_9" value="OQ.."
                                                       onclick="toggle_checkbox('9', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style="color: #990000;;"
+                    <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91325'">10/07 15:25</td>
-                    <td style="color: #990000;" title="00:00:00" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91325'">00:00:00</td>
-                                        <td style="color: #990000;" title="Ramal: Ramal 9005" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91325'">9005</td>
-                    <td style="color: #990000;" title="5511989924248" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91325'">5511989924248</td>
-                    <td style="color: #990000;" title="Falhou" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91325'">Falhou</td>
-                    <td style="color: #990000;" title="1131000441LifeSP5656" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91325'">1131000441LifeSP5656</td>
-                    <td style="color: #990000;" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91325'">Celular Local</td>
-                    <td style="color: #990000;" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91325'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92570'">16/07 18:42</td>
+                    <td style="" title="00:01:38" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92570'">00:01:38</td>
+                                        <td style="" title="Ramal: Ramal 2812" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92570'">2812</td>
+                    <td style="" title="Ramal: ramal 1609 (1609)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92570'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378739" title="Ramal: ramal 1609 (1609)" align="absmiddle" style="cursor: pointer;"> 1609</td>
+                    <td style="" title="Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92570'">Atendida</td>
+                    <td style="" title="" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92570'"></td>
+                    <td style="" title="Interno" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92570'">Interno</td>
+                    <td style="" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92570'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161842492812160915633133692402291563313369wav5d2f443337b5f');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378739" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161842492812160915633133692402291563313369wav5d2f443337b5f divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161842492812160915633133692402291563313369wav5d2f443337b5f">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-184249-2812-1609-1563313369.240229-1563313369.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-184249-2812-1609-1563313369.240229-1563313369.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161842492812160915633133692402291563313369wav5d2f443337b5f" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-184249-2812-1609-1563313369.240229-1563313369.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378739" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-184249-2812-1609-1563313369.240229-1563313369.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378739" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_10" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -261,23 +260,23 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91324'">10/07 15:24</td>
-                    <td style="" title="00:00:12" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91324'">00:00:12</td>
-                                        <td style="" title="Ramal: Ramal 1605" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91324'">1605</td>
-                    <td style="" title="Ramal: ramal 1404 (1404) » Ramal: ramal 1410 (1410)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91324'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783368" title="Ramal: ramal 1404 (1404)" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1562783368" title="Encaminhado" align="absmiddle"> 1410</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92568'">16/07 18:31</td>
+                    <td style="" title="00:00:01" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92568'">00:00:01</td>
+                                        <td style="" title="5511984153191" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92568'">5511984153191</td>
+                    <td style="" title="Ramal: Ramal 1406 (1406) » Ramal: ramal 1405 (1405)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92568'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378739" title="Ramal: Ramal 1406 (1406)" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1563378739" title="Encaminhado" align="absmiddle"> 1405</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91324'">Atendida</td>
-                    <td style="" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91324'"></td>
-                    <td style="" title="Interno" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91324'">Interno</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92568'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5648" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92568'">1131000441LifeSP5648</td>
+                    <td style="" title="Entrante" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92568'">Entrante</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91324'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907101524481605140415627830872117671562783088wav5d262e888da8a');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907101524481605140415627830872117671562783088wav5d262e888da8a divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907101524481605140415627830872117671562783088wav5d262e888da8a">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-152448-1605-1404-1562783087.211767-1562783088.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-152448-1605-1404-1562783087.211767-1562783088.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907101524481605140415627830872117671562783088wav5d262e888da8a" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-152448-1605-1404-1562783087.211767-1562783088.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-152448-1605-1404-1562783087.211767-1562783088.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92568'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161831495511984153191140615633127072402201563312709wav5d2f44333eca3');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378739" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161831495511984153191140615633127072402201563312709wav5d2f44333eca3 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161831495511984153191140615633127072402201563312709wav5d2f44333eca3">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-183149-5511984153191-1406-1563312707.240220-1563312709.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-183149-5511984153191-1406-1563312707.240220-1563312709.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161831495511984153191140615633127072402201563312709wav5d2f44333eca3" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-183149-5511984153191-1406-1563312707.240220-1563312709.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378739" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-183149-5511984153191-1406-1563312707.240220-1563312709.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378739" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_11" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -287,49 +286,48 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91322'">10/07 15:24</td>
-                    <td style="" title="00:00:05" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91322'">00:00:05</td>
-                                        <td style="" title="Ramal: Ramal 2804" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91322'">2804</td>
-                    <td style="" title="Ramal: Ramal 1406 (1406)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91322'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783368" title="Ramal: Ramal 1406 (1406)" align="absmiddle" style="cursor: pointer;"> 1406</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92567'">16/07 18:26</td>
+                    <td style="" title="00:00:33" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92567'">00:00:33</td>
+                                        <td style="" title="551136405600" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92567'">551136405600</td>
+                    <td style="" title="Grupo: GP - Lifetime CG - 7480 » Ramal: Ramal 7005 (7005)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92567'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_group.gif?1563378739" title="Grupo: GP - Lifetime CG - 7480" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1563378739" title="Encaminhado" align="absmiddle"> 7005</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91322'">Atendida</td>
-                    <td style="" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91322'"></td>
-                    <td style="" title="Interno" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91322'">Interno</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92567'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5648" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92567'">1131000441LifeSP5648</td>
+                    <td style="" title="Entrante" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92567'">Entrante</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91322'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907101524462804140615627830852117641562783086wav5d262e888f9c9');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907101524462804140615627830852117641562783086wav5d262e888f9c9 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907101524462804140615627830852117641562783086wav5d262e888f9c9">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-152446-2804-1406-1562783085.211764-1562783086.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-152446-2804-1406-1562783085.211764-1562783086.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907101524462804140615627830852117641562783086wav5d262e888f9c9" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-152446-2804-1406-1562783085.211764-1562783086.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-152446-2804-1406-1562783085.211764-1562783086.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92567'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_2019071615633123992402151563312399wav5d2f443342186');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378739" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_2019071615633123992402151563312399wav5d2f443342186 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_2019071615633123992402151563312399wav5d2f443342186">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-1563312399.240215-1563312399.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-1563312399.240215-1563312399.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_2019071615633123992402151563312399wav5d2f443342186" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-1563312399.240215-1563312399.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378739" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-1563312399.240215-1563312399.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378739" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_12" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_12" value="MTI."
                                                       onclick="toggle_checkbox('12', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style=";"
+                    <td style="color: #cc6600;;"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91323'">10/07 15:24</td>
-                    <td style="" title="00:00:06" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91323'">00:00:06</td>
-                                        <td style="" title="Ramal: Ramal 9005" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91323'">9005</td>
-                    <td style="" title="5511988919559" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91323'">5511988919559</td>
-                    <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91323'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5656" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91323'">1131000441LifeSP5656</td>
-                    <td style="" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91323'">Celular Local</td>
-                    <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91323'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190710152428900598891955915627830682117601562783068wav5d262e889151e');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190710152428900598891955915627830682117601562783068wav5d262e889151e divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190710152428900598891955915627830682117601562783068wav5d262e889151e">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-152428-9005-988919559-1562783068.211760-1562783068.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-152428-9005-988919559-1562783068.211760-1562783068.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190710152428900598891955915627830682117601562783068wav5d262e889151e" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-152428-9005-988919559-1562783068.211760-1562783068.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-152428-9005-988919559-1562783068.211760-1562783068.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92565'">16/07 18:17</td>
+                    <td style="color: #cc6600;" title="00:00:00" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92565'">00:00:00</td>
+                                        <td style="color: #cc6600;" title="Ramal: Ramal 2812" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92565'">2812</td>
+                    <td style="color: #cc6600;" title="Ramal: ramal 1609 (1609)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92565'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378739" title="Ramal: ramal 1609 (1609)" align="absmiddle" style="cursor: pointer;"> 1609</td>
+                    <td style="color: #cc6600;" title="Não Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92565'">Não Atendida</td>
+                    <td style="color: #cc6600;" title="" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92565'"></td>
+                    <td style="color: #cc6600;" title="Interno" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92565'">Interno</td>
+                    <td style="color: #cc6600;" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92565'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_13" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -339,99 +337,100 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91321'">10/07 15:24</td>
-                    <td style="" title="00:00:35" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91321'">00:00:35</td>
-                                        <td style="" title="5511997612100" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91321'">5511997612100</td>
-                    <td style="" title="Grupo: GP - Lifetime - 5656 » Ramal: Ramal 2804 (2804)" nowrap
-                       ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91321'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_group.gif?1562783368" title="Grupo: GP - Lifetime - 5656" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1562783368" title="Encaminhado" align="absmiddle"> 2804</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92566'">16/07 18:07</td>
+                    <td style="" title="00:12:27" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92566'">00:12:27</td>
+                                        <td style="" title="Ramal: ramal 1405" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92566'">1405</td>
+                    <td style="" title="5511981041194" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92566'">5511981041194</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91321'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5648" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91321'">1131000441LifeSP5648</td>
-                    <td style="" title="Entrante" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91321'">Entrante</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92566'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5631" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92566'">1131000441LifeSP5631</td>
+                    <td style="" title="Celular Local" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92566'">Celular Local</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91321'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_2019071015627830522117551562783053wav5d262e889345c');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_2019071015627830522117551562783053wav5d262e889345c divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_2019071015627830522117551562783053wav5d262e889345c">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-1562783052.211755-1562783053.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-1562783052.211755-1562783053.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_2019071015627830522117551562783053wav5d262e889345c" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-1562783052.211755-1562783053.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-1562783052.211755-1562783053.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92566'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190716180755140598104119415633112752402031563311275wav5d2f44334bf98');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378739" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190716180755140598104119415633112752402031563311275wav5d2f44334bf98 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190716180755140598104119415633112752402031563311275wav5d2f44334bf98">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-180755-1405-981041194-1563311275.240203-1563311275.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-180755-1405-981041194-1563311275.240203-1563311275.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190716180755140598104119415633112752402031563311275wav5d2f44334bf98" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-180755-1405-981041194-1563311275.240203-1563311275.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378739" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-180755-1405-981041194-1563311275.240203-1563311275.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378739" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_14" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_14" value="MTQ."
                                                       onclick="toggle_checkbox('14', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style="color: #cc6600;;"
+                    <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91320'">10/07 15:24</td>
-                    <td style="color: #cc6600;" title="00:00:00" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91320'">00:00:00</td>
-                                        <td style="color: #cc6600;" title="Ramal: Ramal 9005" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91320'">9005</td>
-                    <td style="color: #cc6600;" title="5511989970485" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91320'">5511989970485</td>
-                    <td style="color: #cc6600;" title="Não Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91320'">Não Atendida</td>
-                    <td style="color: #cc6600;" title="1131000441LifeSP5656" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91320'">1131000441LifeSP5656</td>
-                    <td style="color: #cc6600;" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91320'">Celular Local</td>
-                    <td style="color: #cc6600;" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91320'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92564'">16/07 18:01</td>
+                    <td style="" title="00:00:45" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92564'">00:00:45</td>
+                                        <td style="" title="5565996763097" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92564'">5565996763097</td>
+                    <td style="" title="Grupo: GP - Lifetime CG - 7480 » Ramal: Ramal 7003 (7003)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92564'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_group.gif?1563378739" title="Grupo: GP - Lifetime CG - 7480" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1563378739" title="Encaminhado" align="absmiddle"> 7003</td>
+                    <td style="" title="Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92564'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5648" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92564'">1131000441LifeSP5648</td>
+                    <td style="" title="Entrante" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92564'">Entrante</td>
+                    <td style="" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92564'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_2019071615633108762401971563310877wav5d2f44335214a');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378739" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_2019071615633108762401971563310877wav5d2f44335214a divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_2019071615633108762401971563310877wav5d2f44335214a">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-1563310876.240197-1563310877.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-1563310876.240197-1563310877.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_2019071615633108762401971563310877wav5d2f44335214a" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-1563310876.240197-1563310877.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378739" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-1563310876.240197-1563310877.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378739" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_15" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_15" value="MTU."
                                                       onclick="toggle_checkbox('15', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style=";"
+                    <td style="color: #cc6600;;"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91317'">10/07 15:22</td>
-                    <td style="" title="00:00:19" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91317'">00:00:19</td>
-                                        <td style="" title="Ramal: Ramal 9005" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91317'">9005</td>
-                    <td style="" title="5511994538237" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91317'">5511994538237</td>
-                    <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91317'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5656" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91317'">1131000441LifeSP5656</td>
-                    <td style="" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91317'">Celular Local</td>
-                    <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91317'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190710152258900599453823715627829782117471562782978wav5d262e8896724');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190710152258900599453823715627829782117471562782978wav5d262e8896724 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190710152258900599453823715627829782117471562782978wav5d262e8896724">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-152258-9005-994538237-1562782978.211747-1562782978.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-152258-9005-994538237-1562782978.211747-1562782978.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190710152258900599453823715627829782117471562782978wav5d262e8896724" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-152258-9005-994538237-1562782978.211747-1562782978.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-152258-9005-994538237-1562782978.211747-1562782978.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92562'">16/07 17:58</td>
+                    <td style="color: #cc6600;" title="00:00:00" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92562'">00:00:00</td>
+                                        <td style="color: #cc6600;" title="Ramal: Ramal 2813" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92562'">2813</td>
+                    <td style="color: #cc6600;" title="Ramal: ramal 1609 (1609)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92562'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378739" title="Ramal: ramal 1609 (1609)" align="absmiddle" style="cursor: pointer;"> 1609</td>
+                    <td style="color: #cc6600;" title="Não Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92562'">Não Atendida</td>
+                    <td style="color: #cc6600;" title="" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92562'"></td>
+                    <td style="color: #cc6600;" title="Interno" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92562'">Interno</td>
+                    <td style="color: #cc6600;" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92562'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_16" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_16" value="MTY."
                                                       onclick="toggle_checkbox('16', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style="color: #990000;;"
+                    <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91316'">10/07 15:22</td>
-                    <td style="color: #990000;" title="00:00:00" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91316'">00:00:00</td>
-                                        <td style="color: #990000;" title="Ramal: Ramal 9005" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91316'">9005</td>
-                    <td style="color: #990000;" title="5511995129710" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91316'">5511995129710</td>
-                    <td style="color: #990000;" title="Falhou" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91316'">Falhou</td>
-                    <td style="color: #990000;" title="1131000441LifeSP5656" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91316'">1131000441LifeSP5656</td>
-                    <td style="color: #990000;" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91316'">Celular Local</td>
-                    <td style="color: #990000;" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91316'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92561'">16/07 17:58</td>
+                    <td style="" title="00:00:06" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92561'">00:00:06</td>
+                                        <td style="" title="Ramal: Ramal 2813" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92561'">2813</td>
+                    <td style="" title="Ramal: ramal 1409 (1409)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92561'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378739" title="Ramal: ramal 1409 (1409)" align="absmiddle" style="cursor: pointer;"> 1409</td>
+                    <td style="" title="Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92561'">Atendida</td>
+                    <td style="" title="" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92561'"></td>
+                    <td style="" title="Interno" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92561'">Interno</td>
+                    <td style="" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92561'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161758382813140915633107172401901563310718wav5d2f44335e499');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378739" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161758382813140915633107172401901563310718wav5d2f44335e499 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161758382813140915633107172401901563310718wav5d2f44335e499">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-175838-2813-1409-1563310717.240190-1563310718.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-175838-2813-1409-1563310717.240190-1563310718.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161758382813140915633107172401901563310718wav5d2f44335e499" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-175838-2813-1409-1563310717.240190-1563310718.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378739" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-175838-2813-1409-1563310717.240190-1563310718.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378739" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_17" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -441,23 +440,23 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91319'">10/07 15:21</td>
-                    <td style="" title="00:03:01" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91319'">00:03:01</td>
-                                        <td style="" title="Ramal: ramal 2205" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91319'">2205</td>
-                    <td style="" title="Ramal: ramal 2203 (2203)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91319'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783368" title="Ramal: ramal 2203 (2203)" align="absmiddle" style="cursor: pointer;"> 2203</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92560'">16/07 17:58</td>
+                    <td style="" title="00:00:11" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92560'">00:00:11</td>
+                                        <td style="" title="Ramal: Ramal 7001" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92560'">7001</td>
+                    <td style="" title="5567999878171" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92560'">5567999878171</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91319'">Atendida</td>
-                    <td style="" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91319'"></td>
-                    <td style="" title="Interno" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91319'">Interno</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92560'">Atendida</td>
+                    <td style="" title="1131000441_Campo" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92560'">1131000441_Campo</td>
+                    <td style="" title="Celular Local" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92560'">Celular Local</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91319'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907101521532205220315627829132117401562782913wav5d262e8899e21');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907101521532205220315627829132117401562782913wav5d262e8899e21 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907101521532205220315627829132117401562782913wav5d262e8899e21">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-152153-2205-2203-1562782913.211740-1562782913.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-152153-2205-2203-1562782913.211740-1562782913.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907101521532205220315627829132117401562782913wav5d262e8899e21" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-152153-2205-2203-1562782913.211740-1562782913.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-152153-2205-2203-1562782913.211740-1562782913.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92560'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190716175801700199987817115633106802401861563310681wav5d2f443362ecd');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378739" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190716175801700199987817115633106802401861563310681wav5d2f443362ecd divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190716175801700199987817115633106802401861563310681wav5d2f443362ecd">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-175801-7001-999878171-1563310680.240186-1563310681.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-175801-7001-999878171-1563310680.240186-1563310681.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190716175801700199987817115633106802401861563310681wav5d2f443362ecd" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-175801-7001-999878171-1563310680.240186-1563310681.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378739" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-175801-7001-999878171-1563310680.240186-1563310681.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378739" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_18" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -467,23 +466,23 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91315'">10/07 15:21</td>
-                    <td style="" title="00:00:09" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91315'">00:00:09</td>
-                                        <td style="" title="Ramal: Ramal 9005" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91315'">9005</td>
-                    <td style="" title="5511981740001" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91315'">5511981740001</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92558'">16/07 17:57</td>
+                    <td style="" title="00:00:11" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92558'">00:00:11</td>
+                                        <td style="" title="Ramal: Ramal 2812" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92558'">2812</td>
+                    <td style="" title="Ramal: ramal 1609 (1609)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92558'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378739" title="Ramal: ramal 1609 (1609)" align="absmiddle" style="cursor: pointer;"> 1609</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91315'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5656" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91315'">1131000441LifeSP5656</td>
-                    <td style="" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91315'">Celular Local</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92558'">Atendida</td>
+                    <td style="" title="" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92558'"></td>
+                    <td style="" title="Interno" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92558'">Interno</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91315'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190710152137900598174000115627828972117311562782897wav5d262e889b92e');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190710152137900598174000115627828972117311562782897wav5d262e889b92e divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190710152137900598174000115627828972117311562782897wav5d262e889b92e">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-152137-9005-981740001-1562782897.211731-1562782897.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-152137-9005-981740001-1562782897.211731-1562782897.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190710152137900598174000115627828972117311562782897wav5d262e889b92e" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-152137-9005-981740001-1562782897.211731-1562782897.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-152137-9005-981740001-1562782897.211731-1562782897.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92558'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161757142812160915633106332401821563310634wav5d2f443366c6e');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378739" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161757142812160915633106332401821563310634wav5d2f443366c6e divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161757142812160915633106332401821563310634wav5d2f443366c6e">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-175714-2812-1609-1563310633.240182-1563310634.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-175714-2812-1609-1563310633.240182-1563310634.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161757142812160915633106332401821563310634wav5d2f443366c6e" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-175714-2812-1609-1563310633.240182-1563310634.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378739" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-175714-2812-1609-1563310633.240182-1563310634.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378739" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_19" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -493,73 +492,75 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91318'">10/07 15:21</td>
-                    <td style="" title="00:03:18" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91318'">00:03:18</td>
-                                        <td style="" title="552132132350" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91318'">552132132350</td>
-                    <td style="" title="Grupo: GP - Lifetime - 5650 » Ramal: Ramal 2204 (2204)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91318'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_group.gif?1562783368" title="Grupo: GP - Lifetime - 5650" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1562783368" title="Encaminhado" align="absmiddle"> 2204</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92559'">16/07 17:57</td>
+                    <td style="" title="00:01:35" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92559'">00:01:35</td>
+                                        <td style="" title="Ramal: ramal 1414" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92559'">1414</td>
+                    <td style="" title="Ramal: ramal 1601 (1601) » Ramal: ramal 1603 (1603)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92559'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378739" title="Ramal: ramal 1601 (1601)" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1563378739" title="Encaminhado" align="absmiddle"> 1603</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91318'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5648" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91318'">1131000441LifeSP5648</td>
-                    <td style="" title="Entrante" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91318'">Entrante</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92559'">Atendida</td>
+                    <td style="" title="" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92559'"></td>
+                    <td style="" title="Interno" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92559'">Interno</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91318'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_2019071015627828922117261562782893wav5d262e889d491');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_2019071015627828922117261562782893wav5d262e889d491 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_2019071015627828922117261562782893wav5d262e889d491">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-1562782892.211726-1562782893.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-1562782892.211726-1562782893.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_2019071015627828922117261562782893wav5d262e889d491" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-1562782892.211726-1562782893.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-1562782892.211726-1562782893.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92559'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161757111414160115633106312401791563310631wav5d2f44336e287');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378739" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161757111414160115633106312401791563310631wav5d2f44336e287 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161757111414160115633106312401791563310631wav5d2f44336e287">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-175711-1414-1601-1563310631.240179-1563310631.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-175711-1414-1601-1563310631.240179-1563310631.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161757111414160115633106312401791563310631wav5d2f44336e287" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-175711-1414-1601-1563310631.240179-1563310631.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378739" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-175711-1414-1601-1563310631.240179-1563310631.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378739" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_20" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_20" value="MjA."
                                                       onclick="toggle_checkbox('20', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style="color: #cc6600;;"
+                    <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91312'">10/07 15:21</td>
-                    <td style="color: #cc6600;" title="00:00:00" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91312'">00:00:00</td>
-                                        <td style="color: #cc6600;" title="Ramal: Ramal 9005" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91312'">9005</td>
-                    <td style="color: #cc6600;" title="5511999934034" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91312'">5511999934034</td>
-                    <td style="color: #cc6600;" title="Não Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91312'">Não Atendida</td>
-                    <td style="color: #cc6600;" title="1131000441LifeSP5656" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91312'">1131000441LifeSP5656</td>
-                    <td style="color: #cc6600;" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91312'">Celular Local</td>
-                    <td style="color: #cc6600;" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91312'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92563'">16/07 17:56</td>
+                    <td style="" title="00:05:54" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92563'">00:05:54</td>
+                                        <td style="" title="5567999878171" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92563'">5567999878171</td>
+                    <td style="" title="Grupo: GP - Lifetime CG - 7480 » Ramal: Ramal 7001 (7001)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92563'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_group.gif?1563378739" title="Grupo: GP - Lifetime CG - 7480" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1563378739" title="Encaminhado" align="absmiddle"> 7001</td>
+                    <td style="" title="Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92563'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5648" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92563'">1131000441LifeSP5648</td>
+                    <td style="" title="Entrante" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92563'">Entrante</td>
+                    <td style="" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92563'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_2019071615633105712401731563310571wav5d2f443374816');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378739" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_2019071615633105712401731563310571wav5d2f443374816 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_2019071615633105712401731563310571wav5d2f443374816">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-1563310571.240173-1563310571.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-1563310571.240173-1563310571.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_2019071615633105712401731563310571wav5d2f443374816" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-1563310571.240173-1563310571.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378739" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-1563310571.240173-1563310571.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378739" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_21" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_21" value="MjE."
                                                       onclick="toggle_checkbox('21', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style="color: #cc6600;;"
+                    <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91311'">10/07 15:20</td>
-                    <td style="color: #cc6600;" title="00:00:00" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91311'">00:00:00</td>
-                                        <td style="color: #cc6600;" title="Ramal: ramal 1414" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91311'">1414</td>
-                    <td style="color: #cc6600;" title="5521979133200" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91311'">5521979133200</td>
-                    <td style="color: #cc6600;" title="Não Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91311'">Não Atendida</td>
-                    <td style="color: #cc6600;" title="1131000441LifeSP5635" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91311'">1131000441LifeSP5635</td>
-                    <td style="color: #cc6600;" title="Celular Nacional" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91311'">Celular Nacional</td>
-                    <td style="color: #cc6600;" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91311'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92557'">16/07 17:53</td>
+                    <td style="" title="00:01:34" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92557'">00:01:34</td>
+                                        <td style="" title="Ramal: ramal 1414" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92557'">1414</td>
+                    <td style="" title="Ramal: ramal 1601 (1601)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92557'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378739" title="Ramal: ramal 1601 (1601)" align="absmiddle" style="cursor: pointer;"> 1601</td>
+                    <td style="" title="Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92557'">Atendida</td>
+                    <td style="" title="" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92557'"></td>
+                    <td style="" title="Interno" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92557'">Interno</td>
+                    <td style="" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92557'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161753211414160115633104012401691563310401wav5d2f44337a9c1');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378739" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161753211414160115633104012401691563310401wav5d2f44337a9c1 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161753211414160115633104012401691563310401wav5d2f44337a9c1">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-175321-1414-1601-1563310401.240169-1563310401.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-175321-1414-1601-1563310401.240169-1563310401.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161753211414160115633104012401691563310401wav5d2f44337a9c1" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-175321-1414-1601-1563310401.240169-1563310401.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378739" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-175321-1414-1601-1563310401.240169-1563310401.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378739" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_22" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -569,22 +570,22 @@ text = """
                     <td style="color: #cc6600;;"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91310'">10/07 15:19</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92555'">16/07 17:52</td>
                     <td style="color: #cc6600;" title="00:00:00" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91310'">00:00:00</td>
-                                        <td style="color: #cc6600;" title="Ramal: ramal 1414" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91310'">1414</td>
-                    <td style="color: #cc6600;" title="5521979133200" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91310'">5521979133200</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92555'">00:00:00</td>
+                                        <td style="color: #cc6600;" title="Ramal: Ramal 2811" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92555'">2811</td>
+                    <td style="color: #cc6600;" title="Ramal: Ramal1616 (1616)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92555'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378739" title="Ramal: Ramal1616 (1616)" align="absmiddle" style="cursor: pointer;"> 1616</td>
                     <td style="color: #cc6600;" title="Não Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91310'">Não Atendida</td>
-                    <td style="color: #cc6600;" title="1131000441LifeSP5635" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91310'">1131000441LifeSP5635</td>
-                    <td style="color: #cc6600;" title="Celular Nacional" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91310'">Celular Nacional</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92555'">Não Atendida</td>
+                    <td style="color: #cc6600;" title="" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92555'"></td>
+                    <td style="color: #cc6600;" title="Interno" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92555'">Interno</td>
                     <td style="color: #cc6600;" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91310'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92555'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_23" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -594,151 +595,150 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91314'">10/07 15:19</td>
-                    <td style="" title="00:02:39" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91314'">00:02:39</td>
-                                        <td style="" title="5521964069197" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91314'">5521964069197</td>
-                    <td style="" title="Grupo: GP - Lifetime - 5640 - Mesa » Ramal: ramal 1410 (1410)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91314'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_group.gif?1562783368" title="Grupo: GP - Lifetime - 5640 - Mesa" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1562783368" title="Encaminhado" align="absmiddle"> 1410</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92556'">16/07 17:48</td>
+                    <td style="" title="00:05:08" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92556'">00:05:08</td>
+                                        <td style="" title="Ramal: ramal 2604" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92556'">2604</td>
+                    <td style="" title="551131450089" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92556'">551131450089</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91314'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5648" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91314'">1131000441LifeSP5648</td>
-                    <td style="" title="Entrante" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91314'">Entrante</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92556'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5651" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92556'">1131000441LifeSP5651</td>
+                    <td style="" title="Fixo Local" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92556'">Fixo Local</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91314'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_2019071015627827512117011562782752wav5d262e88a3630');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_2019071015627827512117011562782752wav5d262e88a3630 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_2019071015627827512117011562782752wav5d262e88a3630">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-1562782751.211701-1562782752.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-1562782751.211701-1562782752.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_2019071015627827512117011562782752wav5d262e88a3630" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-1562782751.211701-1562782752.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-1562782751.211701-1562782752.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92556'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_2019071617484326043145008915633101232401611563310123wav5d2f443385981');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378739" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_2019071617484326043145008915633101232401611563310123wav5d2f443385981 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_2019071617484326043145008915633101232401611563310123wav5d2f443385981">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-174843-2604-31450089-1563310123.240161-1563310123.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-174843-2604-31450089-1563310123.240161-1563310123.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_2019071617484326043145008915633101232401611563310123wav5d2f443385981" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-174843-2604-31450089-1563310123.240161-1563310123.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378739" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-174843-2604-31450089-1563310123.240161-1563310123.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378739" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_24" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_24" value="MjQ."
                                                       onclick="toggle_checkbox('24', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style=";"
+                    <td style="color: #cc6600;;"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91309'">10/07 15:16</td>
-                    <td style="" title="00:00:38" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91309'">00:00:38</td>
-                                        <td style="" title="Ramal: Ramal 9005" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91309'">9005</td>
-                    <td style="" title="5511956518907" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91309'">5511956518907</td>
-                    <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91309'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5656" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91309'">1131000441LifeSP5656</td>
-                    <td style="" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91309'">Celular Local</td>
-                    <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91309'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190710151653900595651890715627826122116961562782613wav5d262e88a5185');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190710151653900595651890715627826122116961562782613wav5d262e88a5185 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190710151653900595651890715627826122116961562782613wav5d262e88a5185">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-151653-9005-956518907-1562782612.211696-1562782613.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-151653-9005-956518907-1562782612.211696-1562782613.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190710151653900595651890715627826122116961562782613wav5d262e88a5185" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-151653-9005-956518907-1562782612.211696-1562782613.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-151653-9005-956518907-1562782612.211696-1562782613.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92552'">16/07 17:47</td>
+                    <td style="color: #cc6600;" title="00:00:00" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92552'">00:00:00</td>
+                                        <td style="color: #cc6600;" title="Ramal: ramal 1414" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92552'">1414</td>
+                    <td style="color: #cc6600;" title="Ramal: Ramal1616 (1616)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92552'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378739" title="Ramal: Ramal1616 (1616)" align="absmiddle" style="cursor: pointer;"> 1616</td>
+                    <td style="color: #cc6600;" title="Não Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92552'">Não Atendida</td>
+                    <td style="color: #cc6600;" title="" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92552'"></td>
+                    <td style="color: #cc6600;" title="Interno" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92552'">Interno</td>
+                    <td style="color: #cc6600;" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92552'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_25" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_25" value="MjU."
                                                       onclick="toggle_checkbox('25', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style=";"
+                    <td style="color: #cc6600;;"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91306'">10/07 15:15</td>
-                    <td style="" title="00:00:15" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91306'">00:00:15</td>
-                                        <td style="" title="Ramal: Ramal 9005" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91306'">9005</td>
-                    <td style="" title="5511982557473" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91306'">5511982557473</td>
-                    <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91306'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5656" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91306'">1131000441LifeSP5656</td>
-                    <td style="" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91306'">Celular Local</td>
-                    <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91306'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190710151559900598255747315627825582116921562782559wav5d262e88a6ce6');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190710151559900598255747315627825582116921562782559wav5d262e88a6ce6 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190710151559900598255747315627825582116921562782559wav5d262e88a6ce6">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-151559-9005-982557473-1562782558.211692-1562782559.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-151559-9005-982557473-1562782558.211692-1562782559.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190710151559900598255747315627825582116921562782559wav5d262e88a6ce6" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-151559-9005-982557473-1562782558.211692-1562782559.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-151559-9005-982557473-1562782558.211692-1562782559.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92551'">16/07 17:46</td>
+                    <td style="color: #cc6600;" title="00:00:00" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92551'">00:00:00</td>
+                                        <td style="color: #cc6600;" title="Ramal: ramal 1414" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92551'">1414</td>
+                    <td style="color: #cc6600;" title="Ramal: Ramal1616 (1616)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92551'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378739" title="Ramal: Ramal1616 (1616)" align="absmiddle" style="cursor: pointer;"> 1616</td>
+                    <td style="color: #cc6600;" title="Não Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92551'">Não Atendida</td>
+                    <td style="color: #cc6600;" title="" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92551'"></td>
+                    <td style="color: #cc6600;" title="Interno" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92551'">Interno</td>
+                    <td style="color: #cc6600;" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92551'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_26" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_26" value="MjY."
                                                       onclick="toggle_checkbox('26', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style="color: #cc6600;;"
+                    <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91305'">10/07 15:15</td>
-                    <td style="color: #cc6600;" title="00:00:00" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91305'">00:00:00</td>
-                                        <td style="color: #cc6600;" title="Ramal: ramal 1414" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91305'">1414</td>
-                    <td style="color: #cc6600;" title="5511998420088" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91305'">5511998420088</td>
-                    <td style="color: #cc6600;" title="Não Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91305'">Não Atendida</td>
-                    <td style="color: #cc6600;" title="1131000441LifeSP5635" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91305'">1131000441LifeSP5635</td>
-                    <td style="color: #cc6600;" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91305'">Celular Local</td>
-                    <td style="color: #cc6600;" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91305'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92554'">16/07 17:43</td>
+                    <td style="" title="00:04:56" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92554'">00:04:56</td>
+                                        <td style="" title="Ramal: Ramal 2206" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92554'">2206</td>
+                    <td style="" title="Ramal: Ramal 1605 (1605)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92554'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378739" title="Ramal: Ramal 1605 (1605)" align="absmiddle" style="cursor: pointer;"> 1605</td>
+                    <td style="" title="Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92554'">Atendida</td>
+                    <td style="" title="" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92554'"></td>
+                    <td style="" title="Interno" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92554'">Interno</td>
+                    <td style="" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92554'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161743182206160515633097642401491563309798wav5d2f443397e7d');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378739" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161743182206160515633097642401491563309798wav5d2f443397e7d divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161743182206160515633097642401491563309798wav5d2f443397e7d">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-174318-2206-1605-1563309764.240149-1563309798.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-174318-2206-1605-1563309764.240149-1563309798.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161743182206160515633097642401491563309798wav5d2f443397e7d" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-174318-2206-1605-1563309764.240149-1563309798.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378739" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-174318-2206-1605-1563309764.240149-1563309798.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378739" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_27" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_27" value="Mjc."
                                                       onclick="toggle_checkbox('27', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style="color: #cc6600;;"
+                    <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91304'">10/07 15:15</td>
-                    <td style="color: #cc6600;" title="00:00:00" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91304'">00:00:00</td>
-                                        <td style="color: #cc6600;" title="Ramal: Ramal 9005" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91304'">9005</td>
-                    <td style="color: #cc6600;" title="5511982557473" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91304'">5511982557473</td>
-                    <td style="color: #cc6600;" title="Não Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91304'">Não Atendida</td>
-                    <td style="color: #cc6600;" title="1131000441LifeSP5656" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91304'">1131000441LifeSP5656</td>
-                    <td style="color: #cc6600;" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91304'">Celular Local</td>
-                    <td style="color: #cc6600;" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91304'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92550'">16/07 17:42</td>
+                    <td style="" title="00:05:27" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92550'">00:05:27</td>
+                                        <td style="" title="Ramal: Ramal 2206" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92550'">2206</td>
+                    <td style="" title="Ramal: ramal 1606 (1606)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92550'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378739" title="Ramal: ramal 1606 (1606)" align="absmiddle" style="cursor: pointer;"> 1606</td>
+                    <td style="" title="Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92550'">Atendida</td>
+                    <td style="" title="" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92550'"></td>
+                    <td style="" title="Interno" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92550'">Interno</td>
+                    <td style="" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92550'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161742442206160615633097642401491563309764wav5d2f44339d853');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378739" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161742442206160615633097642401491563309764wav5d2f44339d853 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161742442206160615633097642401491563309764wav5d2f44339d853">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-174244-2206-1606-1563309764.240149-1563309764.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-174244-2206-1606-1563309764.240149-1563309764.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161742442206160615633097642401491563309764wav5d2f44339d853" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-174244-2206-1606-1563309764.240149-1563309764.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378739" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-174244-2206-1606-1563309764.240149-1563309764.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378739" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_28" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_28" value="Mjg."
                                                       onclick="toggle_checkbox('28', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style=";"
+                    <td style="color: #990000;;"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91308'">10/07 15:15</td>
-                    <td style="" title="00:01:31" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91308'">00:01:31</td>
-                                        <td style="" title="Ramal: Ramal 2804" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91308'">2804</td>
-                    <td style="" title="Ramal: ramal 1410 (1410)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91308'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783368" title="Ramal: ramal 1410 (1410)" align="absmiddle" style="cursor: pointer;"> 1410</td>
-                    <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91308'">Atendida</td>
-                    <td style="" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91308'"></td>
-                    <td style="" title="Interno" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91308'">Interno</td>
-                    <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91308'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907101515372804141015627825372116811562782537wav5d262e88abb02');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907101515372804141015627825372116811562782537wav5d262e88abb02 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907101515372804141015627825372116811562782537wav5d262e88abb02">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-151537-2804-1410-1562782537.211681-1562782537.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-151537-2804-1410-1562782537.211681-1562782537.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907101515372804141015627825372116811562782537wav5d262e88abb02" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-151537-2804-1410-1562782537.211681-1562782537.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-151537-2804-1410-1562782537.211681-1562782537.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92549'">16/07 17:41</td>
+                    <td style="color: #990000;" title="00:00:00" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92549'">00:00:00</td>
+                                        <td style="color: #990000;" title="Ramal: ramal 1410" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92549'">1410</td>
+                    <td style="color: #990000;" title="Ramal: ramal 1414 (1414)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92549'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378739" title="Ramal: ramal 1414 (1414)" align="absmiddle" style="cursor: pointer;"> 1414</td>
+                    <td style="color: #990000;" title="Falhou" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92549'">Falhou</td>
+                    <td style="color: #990000;" title="" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92549'"></td>
+                    <td style="color: #990000;" title="Interno" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92549'">Interno</td>
+                    <td style="color: #990000;" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92549'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_29" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -748,23 +748,23 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91303'">10/07 15:15</td>
-                    <td style="" title="00:00:04" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91303'">00:00:04</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92548'">16/07 17:32</td>
+                    <td style="" title="00:00:09" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92548'">00:00:09</td>
                                         <td style="" title="Ramal: ramal 1414" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91303'">1414</td>
-                    <td style="" title="5511998420088" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91303'">5511998420088</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92548'">1414</td>
+                    <td style="" title="Ramal: Ramal1616 (1616) » Ramal: ramal 1603 (1603)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92548'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378739" title="Ramal: Ramal1616 (1616)" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1563378739" title="Encaminhado" align="absmiddle"> 1603</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91303'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5635" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91303'">1131000441LifeSP5635</td>
-                    <td style="" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91303'">Celular Local</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92548'">Atendida</td>
+                    <td style="" title="" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92548'"></td>
+                    <td style="" title="Interno" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92548'">Interno</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91303'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190710151519141499842008815627825192116771562782519wav5d262e88ad686');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190710151519141499842008815627825192116771562782519wav5d262e88ad686 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190710151519141499842008815627825192116771562782519wav5d262e88ad686">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-151519-1414-998420088-1562782519.211677-1562782519.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-151519-1414-998420088-1562782519.211677-1562782519.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190710151519141499842008815627825192116771562782519wav5d262e88ad686" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-151519-1414-998420088-1562782519.211677-1562782519.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-151519-1414-998420088-1562782519.211677-1562782519.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92548'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161732321414161615633091512401401563309152wav5d2f4433ac2bb');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378739" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161732321414161615633091512401401563309152wav5d2f4433ac2bb divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161732321414161615633091512401401563309152wav5d2f4433ac2bb">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-173232-1414-1616-1563309151.240140-1563309152.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-173232-1414-1616-1563309151.240140-1563309152.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161732321414161615633091512401401563309152wav5d2f4433ac2bb" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-173232-1414-1616-1563309151.240140-1563309152.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378739" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-173232-1414-1616-1563309151.240140-1563309152.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378739" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_30" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -774,23 +774,23 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91307'">10/07 15:14</td>
-                    <td style="" title="00:02:53" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91307'">00:02:53</td>
-                                        <td style="" title="Ramal: ramal 1409" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91307'">1409</td>
-                    <td style="" title="Ramal: Ramal 2810 (2810)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91307'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783368" title="Ramal: Ramal 2810 (2810)" align="absmiddle" style="cursor: pointer;"> 2810</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92553'">16/07 17:30</td>
+                    <td style="" title="00:17:02" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92553'">00:17:02</td>
+                                        <td style="" title="5538998128812" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92553'">5538998128812</td>
+                    <td style="" title="Grupo: GP - Lifetime - 5656 » Ramal: Ramal 2813 (2813)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92553'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_group.gif?1563378739" title="Grupo: GP - Lifetime - 5656" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1563378739" title="Encaminhado" align="absmiddle"> 2813</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91307'">Atendida</td>
-                    <td style="" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91307'"></td>
-                    <td style="" title="Interno" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91307'">Interno</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92553'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5648" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92553'">1131000441LifeSP5648</td>
+                    <td style="" title="Entrante" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92553'">Entrante</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91307'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907101514471409281015627824862116741562782487wav5d262e88af59a');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907101514471409281015627824862116741562782487wav5d262e88af59a divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907101514471409281015627824862116741562782487wav5d262e88af59a">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-151447-1409-2810-1562782486.211674-1562782487.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-151447-1409-2810-1562782486.211674-1562782487.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907101514471409281015627824862116741562782487wav5d262e88af59a" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-151447-1409-2810-1562782486.211674-1562782487.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-151447-1409-2810-1562782486.211674-1562782487.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92553'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_2019071615633090572401351563309058wav5d2f4433b2851');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378739" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_2019071615633090572401351563309058wav5d2f4433b2851 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_2019071615633090572401351563309058wav5d2f4433b2851">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-1563309057.240135-1563309058.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-1563309057.240135-1563309058.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_2019071615633090572401351563309058wav5d2f4433b2851" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-1563309057.240135-1563309058.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378739" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-1563309057.240135-1563309058.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378739" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_31" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -800,99 +800,100 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91302'">10/07 15:13</td>
-                    <td style="" title="00:01:47" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91302'">00:01:47</td>
-                                        <td style="" title="Ramal: ramal 2601" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91302'">2601</td>
-                    <td style="" title="551155097151" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91302'">551155097151</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92545'">16/07 17:26</td>
+                    <td style="" title="00:00:04" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92545'">00:00:04</td>
+                                        <td style="" title="5511993417303" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92545'">5511993417303</td>
+                    <td style="" title="Grupo: GP - Lifetime - 5636 » Ramal: ramal 1611 (1611)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92545'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_group.gif?1563378739" title="Grupo: GP - Lifetime - 5636" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1563378739" title="Encaminhado" align="absmiddle"> 1611</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91302'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5653" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91302'">1131000441LifeSP5653</td>
-                    <td style="" title="Fixo Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91302'">Fixo Local</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92545'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5648" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92545'">1131000441LifeSP5648</td>
+                    <td style="" title="Entrante" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92545'">Entrante</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91302'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_2019071015135226015509715115627824322116701562782432wav5d262e88b10f0');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_2019071015135226015509715115627824322116701562782432wav5d262e88b10f0 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_2019071015135226015509715115627824322116701562782432wav5d262e88b10f0">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-151352-2601-55097151-1562782432.211670-1562782432.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-151352-2601-55097151-1562782432.211670-1562782432.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_2019071015135226015509715115627824322116701562782432wav5d262e88b10f0" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-151352-2601-55097151-1562782432.211670-1562782432.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-151352-2601-55097151-1562782432.211670-1562782432.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92545'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_2019071615633088002401261563308801wav5d2f4433b8dd7');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378739" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_2019071615633088002401261563308801wav5d2f4433b8dd7 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_2019071615633088002401261563308801wav5d2f4433b8dd7">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-1563308800.240126-1563308801.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-1563308800.240126-1563308801.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_2019071615633088002401261563308801wav5d2f4433b8dd7" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-1563308800.240126-1563308801.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378739" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-1563308800.240126-1563308801.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378739" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_32" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_32" value="MzI."
                                                       onclick="toggle_checkbox('32', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style="color: #cc6600;;"
+                    <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91301'">10/07 15:13</td>
-                    <td style="color: #cc6600;" title="00:00:00" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91301'">00:00:00</td>
-                                        <td style="color: #cc6600;" title="Ramal: ramal 1410" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91301'">1410</td>
-                    <td style="color: #cc6600;" title="Ramal: Ramal 2807 (2807)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91301'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783368" title="Ramal: Ramal 2807 (2807)" align="absmiddle" style="cursor: pointer;"> 2807</td>
-                    <td style="color: #cc6600;" title="Não Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91301'">Não Atendida</td>
-                    <td style="color: #cc6600;" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91301'"></td>
-                    <td style="color: #cc6600;" title="Interno" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91301'">Interno</td>
-                    <td style="color: #cc6600;" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91301'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92546'">16/07 17:24</td>
+                    <td style="" title="00:02:38" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92546'">00:02:38</td>
+                                        <td style="" title="Ramal: Ramal 2813" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92546'">2813</td>
+                    <td style="" title="Ramal: ramal 1609 (1609)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92546'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378739" title="Ramal: ramal 1609 (1609)" align="absmiddle" style="cursor: pointer;"> 1609</td>
+                    <td style="" title="Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92546'">Atendida</td>
+                    <td style="" title="" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92546'"></td>
+                    <td style="" title="Interno" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92546'">Interno</td>
+                    <td style="" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92546'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161724562813160915633086962401231563308696wav5d2f4433beb96');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378739" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161724562813160915633086962401231563308696wav5d2f4433beb96 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161724562813160915633086962401231563308696wav5d2f4433beb96">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-172456-2813-1609-1563308696.240123-1563308696.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-172456-2813-1609-1563308696.240123-1563308696.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161724562813160915633086962401231563308696wav5d2f4433beb96" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-172456-2813-1609-1563308696.240123-1563308696.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378739" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-172456-2813-1609-1563308696.240123-1563308696.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378739" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_33" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_33" value="MzM."
                                                       onclick="toggle_checkbox('33', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style=";"
+                    <td style="color: #990000;;"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91300'">10/07 15:11</td>
-                    <td style="" title="00:00:52" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91300'">00:00:52</td>
-                                        <td style="" title="Ramal: Ramal 9005" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91300'">9005</td>
-                    <td style="" title="Ramal: ramal 1405 (1405)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91300'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783368" title="Ramal: ramal 1405 (1405)" align="absmiddle" style="cursor: pointer;"> 1405</td>
-                    <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91300'">Atendida</td>
-                    <td style="" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91300'"></td>
-                    <td style="" title="Interno" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91300'">Interno</td>
-                    <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91300'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907101511099005140515627822682116631562782269wav5d262e88b4b89');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907101511099005140515627822682116631562782269wav5d262e88b4b89 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907101511099005140515627822682116631562782269wav5d262e88b4b89">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-151109-9005-1405-1562782268.211663-1562782269.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-151109-9005-1405-1562782268.211663-1562782269.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907101511099005140515627822682116631562782269wav5d262e88b4b89" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-151109-9005-1405-1562782268.211663-1562782269.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-151109-9005-1405-1562782268.211663-1562782269.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92544'">16/07 17:12</td>
+                    <td style="color: #990000;" title="00:00:00" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92544'">00:00:00</td>
+                                        <td style="color: #990000;" title="Ramal: ramal 1410" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92544'">1410</td>
+                    <td style="color: #990000;" title="Ramal: ramal 1414 (1414)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92544'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378739" title="Ramal: ramal 1414 (1414)" align="absmiddle" style="cursor: pointer;"> 1414</td>
+                    <td style="color: #990000;" title="Falhou" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92544'">Falhou</td>
+                    <td style="color: #990000;" title="" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92544'"></td>
+                    <td style="color: #990000;" title="Interno" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92544'">Interno</td>
+                    <td style="color: #990000;" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92544'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_34" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_34" value="MzQ."
                                                       onclick="toggle_checkbox('34', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style="color: #cc6600;;"
+                    <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91297'">10/07 15:09</td>
-                    <td style="color: #cc6600;" title="00:00:00" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91297'">00:00:00</td>
-                                        <td style="color: #cc6600;" title="Ramal: Ramal 7005" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91297'">7005</td>
-                    <td style="color: #cc6600;" title="5567984772433" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91297'">5567984772433</td>
-                    <td style="color: #cc6600;" title="Não Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91297'">Não Atendida</td>
-                    <td style="color: #cc6600;" title="1131000441_Campo" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91297'">1131000441_Campo</td>
-                    <td style="color: #cc6600;" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91297'">Celular Local</td>
-                    <td style="color: #cc6600;" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91297'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92542'">16/07 17:07</td>
+                    <td style="" title="00:00:04" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92542'">00:00:04</td>
+                                        <td style="" title="Ramal: ramal 1409" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92542'">1409</td>
+                    <td style="" title="5511981052111" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92542'">5511981052111</td>
+                    <td style="" title="Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92542'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5633" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92542'">1131000441LifeSP5633</td>
+                    <td style="" title="Celular Local" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92542'">Celular Local</td>
+                    <td style="" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92542'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190716170740140998105211115633076602401121563307660wav5d2f4433c9b61');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378739" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190716170740140998105211115633076602401121563307660wav5d2f4433c9b61 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190716170740140998105211115633076602401121563307660wav5d2f4433c9b61">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-170740-1409-981052111-1563307660.240112-1563307660.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-170740-1409-981052111-1563307660.240112-1563307660.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190716170740140998105211115633076602401121563307660wav5d2f4433c9b61" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-170740-1409-981052111-1563307660.240112-1563307660.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378739" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-170740-1409-981052111-1563307660.240112-1563307660.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378739" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_35" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -902,22 +903,22 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91296'">10/07 15:09</td>
-                    <td style="" title="00:00:08" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91296'">00:00:08</td>
-                                        <td style="" title="551136606400" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91296'">551136606400</td>
-                    <td style="" title="551133855635" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91296'">551133855635</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92541'">16/07 17:06</td>
+                    <td style="" title="00:00:21" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92541'">00:00:21</td>
+                                        <td style="" title="5519981681010" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92541'">5519981681010</td>
+                    <td style="" title="551133855642" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92541'">551133855642</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91296'">Atendida</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92541'">Atendida</td>
                     <td style="" title="1131000441LifeSP5648" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91296'">1131000441LifeSP5648</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92541'">1131000441LifeSP5648</td>
                     <td style="" title="Entrante" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91296'">Entrante</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92541'">Entrante</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91296'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92541'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_36" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -927,22 +928,23 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91295'">10/07 15:09</td>
-                    <td style="" title="00:00:01" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91295'">00:00:01</td>
-                                        <td style="" title="551136606400" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91295'">551136606400</td>
-                    <td style="" title="551133855635" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91295'">551133855635</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92547'">16/07 17:06</td>
+                    <td style="" title="00:22:41" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92547'">00:22:41</td>
+                                        <td style="" title="Ramal: ramal 1414" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92547'">1414</td>
+                    <td style="" title="5511983463660" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92547'">5511983463660</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91295'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5648" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91295'">1131000441LifeSP5648</td>
-                    <td style="" title="Entrante" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91295'">Entrante</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92547'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5635" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92547'">1131000441LifeSP5635</td>
+                    <td style="" title="Celular Local" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92547'">Celular Local</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91295'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92547'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190716170608141498346366015633075682401071563307568wav5d2f4433d1479');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378739" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190716170608141498346366015633075682401071563307568wav5d2f4433d1479 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190716170608141498346366015633075682401071563307568wav5d2f4433d1479">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-170608-1414-983463660-1563307568.240107-1563307568.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-170608-1414-983463660-1563307568.240107-1563307568.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190716170608141498346366015633075682401071563307568wav5d2f4433d1479" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-170608-1414-983463660-1563307568.240107-1563307568.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378739" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-170608-1414-983463660-1563307568.240107-1563307568.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378739" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_37" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -952,48 +954,48 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91293'">10/07 15:08</td>
-                    <td style="" title="00:00:07" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91293'">00:00:07</td>
-                                        <td style="" title="551136606400" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91293'">551136606400</td>
-                    <td style="" title="551133855635" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91293'">551133855635</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92540'">16/07 17:03</td>
+                    <td style="" title="00:01:48" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92540'">00:01:48</td>
+                                        <td style="" title="Ramal: ramal 1609" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92540'">1609</td>
+                    <td style="" title="5511999797306" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92540'">5511999797306</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91293'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5648" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91293'">1131000441LifeSP5648</td>
-                    <td style="" title="Entrante" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91293'">Entrante</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92540'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5636" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92540'">1131000441LifeSP5636</td>
+                    <td style="" title="Celular Local" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92540'">Celular Local</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91293'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92540'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161703041609551199979730615633073842401021563307384wav5d2f4433d5eb5');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378739" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161703041609551199979730615633073842401021563307384wav5d2f4433d5eb5 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161703041609551199979730615633073842401021563307384wav5d2f4433d5eb5">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-170304-1609-5511999797306-1563307384.240102-1563307384.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-170304-1609-5511999797306-1563307384.240102-1563307384.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161703041609551199979730615633073842401021563307384wav5d2f4433d5eb5" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-170304-1609-5511999797306-1563307384.240102-1563307384.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378739" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-170304-1609-5511999797306-1563307384.240102-1563307384.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378739" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_38" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_38" value="Mzg."
                                                       onclick="toggle_checkbox('38', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style=";"
+                    <td style="color: #cc6600;;"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91294'">10/07 15:07</td>
-                    <td style="" title="00:01:45" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91294'">00:01:45</td>
-                                        <td style="" title="Ramal: Ramal 2804" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91294'">2804</td>
-                    <td style="" title="Ramal: ramal 1603 (1603)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91294'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783368" title="Ramal: ramal 1603 (1603)" align="absmiddle" style="cursor: pointer;"> 1603</td>
-                    <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91294'">Atendida</td>
-                    <td style="" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91294'"></td>
-                    <td style="" title="Interno" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91294'">Interno</td>
-                    <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91294'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907101507452804160315627820642116531562782065wav5d262e88bb11b');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907101507452804160315627820642116531562782065wav5d262e88bb11b divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907101507452804160315627820642116531562782065wav5d262e88bb11b">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-150745-2804-1603-1562782064.211653-1562782065.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-150745-2804-1603-1562782064.211653-1562782065.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907101507452804160315627820642116531562782065wav5d262e88bb11b" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-150745-2804-1603-1562782064.211653-1562782065.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-150745-2804-1603-1562782064.211653-1562782065.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92539'">16/07 16:59</td>
+                    <td style="color: #cc6600;" title="00:00:00" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92539'">00:00:00</td>
+                                        <td style="color: #cc6600;" title="Ramal: Ramal 2810" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92539'">2810</td>
+                    <td style="color: #cc6600;" title="5515997797877" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92539'">5515997797877</td>
+                    <td style="color: #cc6600;" title="Não Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92539'">Não Atendida</td>
+                    <td style="color: #cc6600;" title="1131000441LifeSP5642" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92539'">1131000441LifeSP5642</td>
+                    <td style="color: #cc6600;" title="Celular Nacional" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92539'">Celular Nacional</td>
+                    <td style="color: #cc6600;" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92539'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_39" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -1003,23 +1005,23 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91299'">10/07 15:07</td>
-                    <td style="" title="00:03:37" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91299'">00:03:37</td>
-                                        <td style="" title="551126638810" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91299'">551126638810</td>
-                    <td style="" title="Grupo: GP - Lifetime - 5656 » Ramal: ramal 2202 (2202)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91299'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_group.gif?1562783368" title="Grupo: GP - Lifetime - 5656" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1562783368" title="Encaminhado" align="absmiddle">  <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783368" title="Ramal: ramal 2202 (2202)" align="absmiddle" style="cursor: pointer;"> 2202</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92543'">16/07 16:57</td>
+                    <td style="" title="00:13:35" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92543'">00:13:35</td>
+                                        <td style="" title="5511989996235" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92543'">5511989996235</td>
+                    <td style="" title="Grupo: GP - Lifetime - 5640 - Mesa » Ramal: ramal 1410 (1410)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92543'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_group.gif?1563378739" title="Grupo: GP - Lifetime - 5640 - Mesa" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1563378739" title="Encaminhado" align="absmiddle"> 1410</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91299'">Atendida</td>
-                    <td style="" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91299'"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92543'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5648" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92543'">1131000441LifeSP5648</td>
                     <td style="" title="Entrante" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91299'">Entrante</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92543'">Entrante</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91299'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190710150741551126638810220215627820322116481562782061wav5d262e88bd05a');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190710150741551126638810220215627820322116481562782061wav5d262e88bd05a divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190710150741551126638810220215627820322116481562782061wav5d262e88bd05a">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-150741-551126638810-2202-1562782032.211648-1562782061.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-150741-551126638810-2202-1562782032.211648-1562782061.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190710150741551126638810220215627820322116481562782061wav5d262e88bd05a" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-150741-551126638810-2202-1562782032.211648-1562782061.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-150741-551126638810-2202-1562782032.211648-1562782061.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92543'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_2019071615633070642400921563307065wav5d2f4433e164d');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378739" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_2019071615633070642400921563307065wav5d2f4433e164d divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_2019071615633070642400921563307065wav5d2f4433e164d">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-1563307064.240092-1563307065.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-1563307064.240092-1563307065.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_2019071615633070642400921563307065wav5d2f4433e164d" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-1563307064.240092-1563307065.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378739" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-1563307064.240092-1563307065.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378739" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_40" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -1029,74 +1031,74 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91298'">10/07 15:07</td>
-                    <td style="" title="00:04:02" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91298'">00:04:02</td>
-                                        <td style="" title="551126638810" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91298'">551126638810</td>
-                    <td style="" title="Grupo: GP - Lifetime - 5656 » Ramal: Ramal 2810 (2810)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91298'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_group.gif?1562783368" title="Grupo: GP - Lifetime - 5656" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1562783368" title="Encaminhado" align="absmiddle"> 2810</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92538'">16/07 16:56</td>
+                    <td style="" title="00:03:45" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92538'">00:03:45</td>
+                                        <td style="" title="Ramal: Ramal 7003" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92538'">7003</td>
+                    <td style="" title="5567999557770" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92538'">5567999557770</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91298'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5648" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91298'">1131000441LifeSP5648</td>
-                    <td style="" title="Entrante" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91298'">Entrante</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92538'">Atendida</td>
+                    <td style="" title="1131000441_Campo" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92538'">1131000441_Campo</td>
+                    <td style="" title="Celular Local" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92538'">Celular Local</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91298'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_2019071015627820312116461562782032wav5d262e88bef9b');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_2019071015627820312116461562782032wav5d262e88bef9b divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_2019071015627820312116461562782032wav5d262e88bef9b">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-1562782031.211646-1562782032.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-1562782031.211646-1562782032.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_2019071015627820312116461562782032wav5d262e88bef9b" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-1562782031.211646-1562782032.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-1562782031.211646-1562782032.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92538'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190716165603700399955777015633069632400761563306963wav5d2f4433e685a');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378739" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190716165603700399955777015633069632400761563306963wav5d2f4433e685a divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190716165603700399955777015633069632400761563306963wav5d2f4433e685a">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-165603-7003-999557770-1563306963.240076-1563306963.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-165603-7003-999557770-1563306963.240076-1563306963.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190716165603700399955777015633069632400761563306963wav5d2f4433e685a" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-165603-7003-999557770-1563306963.240076-1563306963.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378739" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-165603-7003-999557770-1563306963.240076-1563306963.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378739" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_41" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_41" value="NDE."
                                                       onclick="toggle_checkbox('41', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style="color: #cc6600;;"
+                    <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91292'">10/07 15:07</td>
-                    <td style="color: #cc6600;" title="00:00:00" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91292'">00:00:00</td>
-                                        <td style="color: #cc6600;" title="Ramal: ramal 1410" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91292'">1410</td>
-                    <td style="color: #cc6600;" title="Ramal: Ramal 2807 (2807)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91292'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783368" title="Ramal: Ramal 2807 (2807)" align="absmiddle" style="cursor: pointer;"> 2807</td>
-                    <td style="color: #cc6600;" title="Não Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91292'">Não Atendida</td>
-                    <td style="color: #cc6600;" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91292'"></td>
-                    <td style="color: #cc6600;" title="Interno" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91292'">Interno</td>
-                    <td style="color: #cc6600;" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91292'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92537'">16/07 16:55</td>
+                    <td style="" title="00:01:21" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92537'">00:01:21</td>
+                                        <td style="" title="5511989996235" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92537'">5511989996235</td>
+                    <td style="" title="Grupo: GP - Lifetime - 5640 - Mesa » Ramal: ramal1401 (1401)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92537'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_group.gif?1563378739" title="Grupo: GP - Lifetime - 5640 - Mesa" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1563378739" title="Encaminhado" align="absmiddle"> 1401</td>
+                    <td style="" title="Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92537'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5648" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92537'">1131000441LifeSP5648</td>
+                    <td style="" title="Entrante" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92537'">Entrante</td>
+                    <td style="" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92537'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_2019071615633069552400711563306956wav5d2f4433eca08');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378739" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_2019071615633069552400711563306956wav5d2f4433eca08 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_2019071615633069552400711563306956wav5d2f4433eca08">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-1563306955.240071-1563306956.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-1563306955.240071-1563306956.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_2019071615633069552400711563306956wav5d2f4433eca08" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-1563306955.240071-1563306956.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378739" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-1563306955.240071-1563306956.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378739" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_42" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_42" value="NDI."
                                                       onclick="toggle_checkbox('42', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style=";"
+                    <td style="color: #cc6600;;"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91290'">10/07 15:05</td>
-                    <td style="" title="00:00:23" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91290'">00:00:23</td>
-                                        <td style="" title="Ramal: ramal 2601" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91290'">2601</td>
-                    <td style="" title="5513974198393" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91290'">5513974198393</td>
-                    <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91290'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5653" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91290'">1131000441LifeSP5653</td>
-                    <td style="" title="Celular Nacional" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91290'">Celular Nacional</td>
-                    <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91290'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907101505442601551397419839315627819442116391562781944wav5d262e88c264e');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907101505442601551397419839315627819442116391562781944wav5d262e88c264e divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907101505442601551397419839315627819442116391562781944wav5d262e88c264e">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-150544-2601-5513974198393-1562781944.211639-1562781944.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-150544-2601-5513974198393-1562781944.211639-1562781944.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907101505442601551397419839315627819442116391562781944wav5d262e88c264e" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-150544-2601-5513974198393-1562781944.211639-1562781944.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-150544-2601-5513974198393-1562781944.211639-1562781944.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92536'">16/07 16:54</td>
+                    <td style="color: #cc6600;" title="00:00:00" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92536'">00:00:00</td>
+                                        <td style="color: #cc6600;" title="Ramal: Ramal 7003" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92536'">7003</td>
+                    <td style="color: #cc6600;" title="5565996763097" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92536'">5565996763097</td>
+                    <td style="color: #cc6600;" title="Não Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92536'">Não Atendida</td>
+                    <td style="color: #cc6600;" title="1131000441_Campo" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92536'">1131000441_Campo</td>
+                    <td style="color: #cc6600;" title="Celular Nacional" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92536'">Celular Nacional</td>
+                    <td style="color: #cc6600;" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92536'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378739" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_43" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -1106,23 +1108,22 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91289'">10/07 15:05</td>
-                    <td style="" title="00:00:37" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91289'">00:00:37</td>
-                                        <td style="" title="Ramal: ramal 2607" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91289'">2607</td>
-                    <td style="" title="551150547686" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91289'">551150547686</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92535'">16/07 16:54</td>
+                    <td style="" title="00:00:05" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92535'">00:00:05</td>
+                                        <td style="" title="5519981681010" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92535'">5519981681010</td>
+                    <td style="" title="551133855642" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92535'">551133855642</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91289'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5655" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91289'">1131000441LifeSP5655</td>
-                    <td style="" title="Fixo Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91289'">Fixo Local</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92535'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5648" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92535'">1131000441LifeSP5648</td>
+                    <td style="" title="Entrante" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92535'">Entrante</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91289'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_2019071015052226075054768615627819222116351562781922wav5d262e88c41a3');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_2019071015052226075054768615627819222116351562781922wav5d262e88c41a3 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_2019071015052226075054768615627819222116351562781922wav5d262e88c41a3">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-150522-2607-50547686-1562781922.211635-1562781922.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-150522-2607-50547686-1562781922.211635-1562781922.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_2019071015052226075054768615627819222116351562781922wav5d262e88c41a3" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-150522-2607-50547686-1562781922.211635-1562781922.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-150522-2607-50547686-1562781922.211635-1562781922.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92535'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_44" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -1132,23 +1133,22 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91291'">10/07 15:04</td>
-                    <td style="" title="00:02:19" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91291'">00:02:19</td>
-                                        <td style="" title="Ramal: ramal 1410" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91291'">1410</td>
-                    <td style="" title="Ramal: Ramal 2804 (2804)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91291'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783368" title="Ramal: Ramal 2804 (2804)" align="absmiddle" style="cursor: pointer;"> 2804</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92534'">16/07 16:53</td>
+                    <td style="" title="00:00:21" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92534'">00:00:21</td>
+                                        <td style="" title="5519981681010" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92534'">5519981681010</td>
+                    <td style="" title="551133855642" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92534'">551133855642</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91291'">Atendida</td>
-                    <td style="" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91291'"></td>
-                    <td style="" title="Interno" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91291'">Interno</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92534'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5648" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92534'">1131000441LifeSP5648</td>
+                    <td style="" title="Entrante" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92534'">Entrante</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91291'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907101504441410280415627818832116321562781884wav5d262e88c60e5');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907101504441410280415627818832116321562781884wav5d262e88c60e5 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907101504441410280415627818832116321562781884wav5d262e88c60e5">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-150444-1410-2804-1562781883.211632-1562781884.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-150444-1410-2804-1562781883.211632-1562781884.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907101504441410280415627818832116321562781884wav5d262e88c60e5" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-150444-1410-2804-1562781883.211632-1562781884.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-150444-1410-2804-1562781883.211632-1562781884.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92534'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_45" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -1158,47 +1158,48 @@ text = """
                     <td style="color: #cc6600;;"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91288'">10/07 15:04</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92533'">16/07 16:53</td>
                     <td style="color: #cc6600;" title="00:00:00" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91288'">00:00:00</td>
-                                        <td style="color: #cc6600;" title="Ramal: Ramal 9005" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91288'">9005</td>
-                    <td style="color: #cc6600;" title="5511995047230" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91288'">5511995047230</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92533'">00:00:00</td>
+                                        <td style="color: #cc6600;" title="Ramal: Ramal 7003" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92533'">7003</td>
+                    <td style="color: #cc6600;" title="5565996763097" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92533'">5565996763097</td>
                     <td style="color: #cc6600;" title="Não Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91288'">Não Atendida</td>
-                    <td style="color: #cc6600;" title="1131000441LifeSP5656" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91288'">1131000441LifeSP5656</td>
-                    <td style="color: #cc6600;" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91288'">Celular Local</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92533'">Não Atendida</td>
+                    <td style="color: #cc6600;" title="1131000441_Campo" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92533'">1131000441_Campo</td>
+                    <td style="color: #cc6600;" title="Celular Nacional" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92533'">Celular Nacional</td>
                     <td style="color: #cc6600;" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91288'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92533'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_46" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_46" value="NDY."
                                                       onclick="toggle_checkbox('46', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style="color: #cc6600;;"
+                    <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91287'">10/07 15:04</td>
-                    <td style="color: #cc6600;" title="00:00:00" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91287'">00:00:00</td>
-                                        <td style="color: #cc6600;" title="Ramal: Ramal 9005" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91287'">9005</td>
-                    <td style="color: #cc6600;" title="5511982735815" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91287'">5511982735815</td>
-                    <td style="color: #cc6600;" title="Não Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91287'">Não Atendida</td>
-                    <td style="color: #cc6600;" title="1131000441LifeSP5656" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91287'">1131000441LifeSP5656</td>
-                    <td style="color: #cc6600;" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91287'">Celular Local</td>
-                    <td style="color: #cc6600;" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91287'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92532'">16/07 16:47</td>
+                    <td style="" title="00:03:10" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92532'">00:03:10</td>
+                                        <td style="" title="Ramal: Ramal 2208" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92532'">2208</td>
+                    <td style="" title="Ramal: ramal 2601 (2601)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92532'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378740" title="Ramal: ramal 2601 (2601)" align="absmiddle" style="cursor: pointer;"> 2601</td>
+                    <td style="" title="Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92532'">Atendida</td>
+                    <td style="" title="" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92532'"></td>
+                    <td style="" title="Interno" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92532'">Interno</td>
+                    <td style="" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92532'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161648002208260115633064342400541563306480wav5d2f44340e36b');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161648002208260115633064342400541563306480wav5d2f44340e36b divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161648002208260115633064342400541563306480wav5d2f44340e36b">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-164800-2208-2601-1563306434.240054-1563306480.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-164800-2208-2601-1563306434.240054-1563306480.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161648002208260115633064342400541563306480wav5d2f44340e36b" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-164800-2208-2601-1563306434.240054-1563306480.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-164800-2208-2601-1563306434.240054-1563306480.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_47" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -1208,23 +1209,23 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91313'">10/07 15:02</td>
-                    <td style="" title="00:20:00" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91313'">00:20:00</td>
-                                        <td style="" title="Ramal: ramal 1416" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91313'">1416</td>
-                    <td style="" title="5511994848490" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91313'">5511994848490</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92531'">16/07 16:47</td>
+                    <td style="" title="00:03:10" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92531'">00:03:10</td>
+                                        <td style="" title="Ramal: Ramal 2208" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92531'">2208</td>
+                    <td style="" title="Ramal: ramal 2606 (2606)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92531'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378740" title="Ramal: ramal 2606 (2606)" align="absmiddle" style="cursor: pointer;"> 2606</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91313'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5648" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91313'">1131000441LifeSP5648</td>
-                    <td style="" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91313'">Celular Local</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92531'">Atendida</td>
+                    <td style="" title="" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92531'"></td>
+                    <td style="" title="Interno" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92531'">Interno</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91313'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190710150230141699484849015627817492116191562781750wav5d262e88ca737');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190710150230141699484849015627817492116191562781750wav5d262e88ca737 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190710150230141699484849015627817492116191562781750wav5d262e88ca737">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-150230-1416-994848490-1562781749.211619-1562781750.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-150230-1416-994848490-1562781749.211619-1562781750.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190710150230141699484849015627817492116191562781750wav5d262e88ca737" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-150230-1416-994848490-1562781749.211619-1562781750.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-150230-1416-994848490-1562781749.211619-1562781750.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92531'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161647142208260615633064342400541563306434wav5d2f443414515');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161647142208260615633064342400541563306434wav5d2f443414515 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161647142208260615633064342400541563306434wav5d2f443414515">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-164714-2208-2606-1563306434.240054-1563306434.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-164714-2208-2606-1563306434.240054-1563306434.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161647142208260615633064342400541563306434wav5d2f443414515" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-164714-2208-2606-1563306434.240054-1563306434.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-164714-2208-2606-1563306434.240054-1563306434.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_48" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -1234,23 +1235,23 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91286'">10/07 14:59</td>
-                    <td style="" title="00:04:18" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91286'">00:04:18</td>
-                                        <td style="" title="Ramal: Ramal 9005" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91286'">9005</td>
-                    <td style="" title="Ramal: ramal 1405 (1405) » Ramal: ramal 1404 (1404)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91286'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783368" title="Ramal: ramal 1405 (1405)" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1562783368" title="Encaminhado" align="absmiddle"> 1404</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92530'">16/07 16:36</td>
+                    <td style="" title="00:00:23" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92530'">00:00:23</td>
+                                        <td style="" title="Ramal: Ramal 2810" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92530'">2810</td>
+                    <td style="" title="5511959481823" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92530'">5511959481823</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91286'">Atendida</td>
-                    <td style="" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91286'"></td>
-                    <td style="" title="Interno" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91286'">Interno</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92530'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5642" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92530'">1131000441LifeSP5642</td>
+                    <td style="" title="Celular Local" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92530'">Celular Local</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91286'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907101458469005140515627815262116031562781526wav5d262e88cd233');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907101458469005140515627815262116031562781526wav5d262e88cd233 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907101458469005140515627815262116031562781526wav5d262e88cd233">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-145846-9005-1405-1562781526.211603-1562781526.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-145846-9005-1405-1562781526.211603-1562781526.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907101458469005140515627815262116031562781526wav5d262e88cd233" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-145846-9005-1405-1562781526.211603-1562781526.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-145846-9005-1405-1562781526.211603-1562781526.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92530'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190716163657281095948182315633058172400461563305817wav5d2f443419335');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190716163657281095948182315633058172400461563305817wav5d2f443419335 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190716163657281095948182315633058172400461563305817wav5d2f443419335">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-163657-2810-959481823-1563305817.240046-1563305817.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-163657-2810-959481823-1563305817.240046-1563305817.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190716163657281095948182315633058172400461563305817wav5d2f443419335" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-163657-2810-959481823-1563305817.240046-1563305817.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-163657-2810-959481823-1563305817.240046-1563305817.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_49" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -1260,23 +1261,23 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91285'">10/07 14:59</td>
-                    <td style="" title="00:00:00" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91285'">00:00:00</td>
-                                        <td style="" title="Ramal: ramal 1410" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91285'">1410</td>
-                    <td style="" title="Ramal: ramal 1404 (1404) » Ramal: ramal 1405 (1405)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91285'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783368" title="Ramal: ramal 1404 (1404)" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1562783368" title="Encaminhado" align="absmiddle"> 1405</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92529'">16/07 16:35</td>
+                    <td style="" title="00:00:32" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92529'">00:00:32</td>
+                                        <td style="" title="Ramal: Ramal 2802" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92529'">2802</td>
+                    <td style="" title="Ramal: ramal 1603 (1603)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92529'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378740" title="Ramal: ramal 1603 (1603)" align="absmiddle" style="cursor: pointer;"> 1603</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91285'">Atendida</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92529'">Atendida</td>
                     <td style="" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91285'"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92529'"></td>
                     <td style="" title="Interno" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91285'">Interno</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92529'">Interno</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91285'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907101459111410140415627815512116151562781551wav5d262e88cfd28');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907101459111410140415627815512116151562781551wav5d262e88cfd28 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907101459111410140415627815512116151562781551wav5d262e88cfd28">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-145911-1410-1404-1562781551.211615-1562781551.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-145911-1410-1404-1562781551.211615-1562781551.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907101459111410140415627815512116151562781551wav5d262e88cfd28" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-145911-1410-1404-1562781551.211615-1562781551.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-145911-1410-1404-1562781551.211615-1562781551.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92529'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161635372802160315633057372400431563305737wav5d2f44341ed13');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161635372802160315633057372400431563305737wav5d2f44341ed13 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161635372802160315633057372400431563305737wav5d2f44341ed13">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-163537-2802-1603-1563305737.240043-1563305737.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-163537-2802-1603-1563305737.240043-1563305737.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161635372802160315633057372400431563305737wav5d2f44341ed13" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-163537-2802-1603-1563305737.240043-1563305737.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-163537-2802-1603-1563305737.240043-1563305737.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_50" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -1286,23 +1287,23 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91283'">10/07 14:58</td>
-                    <td style="" title="00:00:00" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91283'">00:00:00</td>
-                                        <td style="" title="Ramal: Ramal 9005" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91283'">9005</td>
-                    <td style="" title="Ramal: ramal 1404 (1404) » Ramal: ramal 1410 (1410)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91283'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783368" title="Ramal: ramal 1404 (1404)" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1562783368" title="Encaminhado" align="absmiddle"> 1410</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92528'">16/07 16:34</td>
+                    <td style="" title="00:00:47" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92528'">00:00:47</td>
+                                        <td style="" title="Ramal: Ramal 2802" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92528'">2802</td>
+                    <td style="" title="Ramal: Ramal 2206 (2206) » Ramal: Ramal 2208 (2208)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92528'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378740" title="Ramal: Ramal 2206 (2206)" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1563378740" title="Encaminhado" align="absmiddle"> 2208</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91283'">Atendida</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92528'">Atendida</td>
                     <td style="" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91283'"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92528'"></td>
                     <td style="" title="Interno" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91283'">Interno</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92528'">Interno</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91283'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907101458479005140415627815262116071562781527wav5d262e88d281f');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907101458479005140415627815262116071562781527wav5d262e88d281f divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907101458479005140415627815262116071562781527wav5d262e88d281f">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-145847-9005-1404-1562781526.211607-1562781527.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-145847-9005-1404-1562781526.211607-1562781527.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907101458479005140415627815262116071562781527wav5d262e88d281f" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-145847-9005-1404-1562781526.211607-1562781527.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-145847-9005-1404-1562781526.211607-1562781527.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92528'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161634042802220615633056442400391563305644wav5d2f4434279ad');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161634042802220615633056442400391563305644wav5d2f4434279ad divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161634042802220615633056442400391563305644wav5d2f4434279ad">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-163404-2802-2206-1563305644.240039-1563305644.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-163404-2802-2206-1563305644.240039-1563305644.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161634042802220615633056442400391563305644wav5d2f4434279ad" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-163404-2802-2206-1563305644.240039-1563305644.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-163404-2802-2206-1563305644.240039-1563305644.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_51" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -1312,49 +1313,48 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91284'">10/07 14:58</td>
-                    <td style="" title="00:04:18" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91284'">00:04:18</td>
-                                        <td style="" title="Ramal: Ramal 9005" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91284'">9005</td>
-                    <td style="" title="Ramal: ramal 1405 (1405) » Ramal: ramal 1404 (1404)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91284'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783368" title="Ramal: ramal 1405 (1405)" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1562783368" title="Encaminhado" align="absmiddle"> 1404</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92527'">16/07 16:32</td>
+                    <td style="" title="00:01:49" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92527'">00:01:49</td>
+                                        <td style="" title="551140813800" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92527'">551140813800</td>
+                    <td style="" title="Grupo: GP - Lifetime - 5656 » Ramal: Ramal 2802 (2802)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92527'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_group.gif?1563378740" title="Grupo: GP - Lifetime - 5656" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1563378740" title="Encaminhado" align="absmiddle"> 2802</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91284'">Atendida</td>
-                    <td style="" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91284'"></td>
-                    <td style="" title="Interno" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91284'">Interno</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92527'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5648" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92527'">1131000441LifeSP5648</td>
+                    <td style="" title="Entrante" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92527'">Entrante</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91284'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907101458469005140515627815262116031562781526wav5d262e88d5318');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907101458469005140515627815262116031562781526wav5d262e88d5318 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907101458469005140515627815262116031562781526wav5d262e88d5318">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-145846-9005-1405-1562781526.211603-1562781526.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-145846-9005-1405-1562781526.211603-1562781526.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907101458469005140515627815262116031562781526wav5d262e88d5318" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-145846-9005-1405-1562781526.211603-1562781526.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-145846-9005-1405-1562781526.211603-1562781526.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92527'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_2019071615633055642400171563305565wav5d2f44342db6d');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_2019071615633055642400171563305565wav5d2f44342db6d divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_2019071615633055642400171563305565wav5d2f44342db6d">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-1563305564.240017-1563305565.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-1563305564.240017-1563305565.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_2019071615633055642400171563305565wav5d2f44342db6d" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-1563305564.240017-1563305565.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-1563305564.240017-1563305565.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_52" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_52" value="NTI."
                                                       onclick="toggle_checkbox('52', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style=";"
+                    <td style="color: #cc6600;;"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91282'">10/07 14:57</td>
-                    <td style="" title="00:00:01" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91282'">00:00:01</td>
-                                        <td style="" title="Ramal: Ramal 9005" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91282'">9005</td>
-                    <td style="" title="Ramal: ramal 1404 (1404) » Ramal: ramal 1405 (1405)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91282'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783368" title="Ramal: ramal 1404 (1404)" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1562783368" title="Encaminhado" align="absmiddle"> 1405</td>
-                    <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91282'">Atendida</td>
-                    <td style="" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91282'"></td>
-                    <td style="" title="Interno" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91282'">Interno</td>
-                    <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91282'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907101457589005140415627814772115961562781478wav5d262e88d7e11');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907101457589005140415627814772115961562781478wav5d262e88d7e11 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907101457589005140415627814772115961562781478wav5d262e88d7e11">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-145758-9005-1404-1562781477.211596-1562781478.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-145758-9005-1404-1562781477.211596-1562781478.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907101457589005140415627814772115961562781478wav5d262e88d7e11" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-145758-9005-1404-1562781477.211596-1562781478.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-145758-9005-1404-1562781477.211596-1562781478.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92526'">16/07 16:31</td>
+                    <td style="color: #cc6600;" title="00:00:00" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92526'">00:00:00</td>
+                                        <td style="color: #cc6600;" title="Ramal: Ramal 2810" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92526'">2810</td>
+                    <td style="color: #cc6600;" title="5511999985365" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92526'">5511999985365</td>
+                    <td style="color: #cc6600;" title="Não Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92526'">Não Atendida</td>
+                    <td style="color: #cc6600;" title="1131000441LifeSP5642" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92526'">1131000441LifeSP5642</td>
+                    <td style="color: #cc6600;" title="Celular Local" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92526'">Celular Local</td>
+                    <td style="color: #cc6600;" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92526'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_53" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -1364,23 +1364,23 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91281'">10/07 14:57</td>
-                    <td style="" title="00:00:34" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91281'">00:00:34</td>
-                                        <td style="" title="Ramal: Ramal 9005" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91281'">9005</td>
-                    <td style="" title="Ramal: ramal 1405 (1405) » Ramal: ramal 1404 (1404)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91281'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783368" title="Ramal: ramal 1405 (1405)" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1562783368" title="Encaminhado" align="absmiddle"> 1404</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92524'">16/07 16:30</td>
+                    <td style="" title="00:00:23" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92524'">00:00:23</td>
+                                        <td style="" title="Ramal: Ramal 2208" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92524'">2208</td>
+                    <td style="" title="Ramal: Ramal 1406 (1406)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92524'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378740" title="Ramal: Ramal 1406 (1406)" align="absmiddle" style="cursor: pointer;"> 1406</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91281'">Atendida</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92524'">Atendida</td>
                     <td style="" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91281'"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92524'"></td>
                     <td style="" title="Interno" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91281'">Interno</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92524'">Interno</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91281'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907101457579005140515627814772115921562781477wav5d262e88da909');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907101457579005140515627814772115921562781477wav5d262e88da909 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907101457579005140515627814772115921562781477wav5d262e88da909">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-145757-9005-1405-1562781477.211592-1562781477.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-145757-9005-1405-1562781477.211592-1562781477.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907101457579005140515627814772115921562781477wav5d262e88da909" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-145757-9005-1405-1562781477.211592-1562781477.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-145757-9005-1405-1562781477.211592-1562781477.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92524'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161630552208140615633054552400101563305455wav5d2f443438b2d');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161630552208140615633054552400101563305455wav5d2f443438b2d divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161630552208140615633054552400101563305455wav5d2f443438b2d">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-163055-2208-1406-1563305455.240010-1563305455.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-163055-2208-1406-1563305455.240010-1563305455.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161630552208140615633054552400101563305455wav5d2f443438b2d" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-163055-2208-1406-1563305455.240010-1563305455.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-163055-2208-1406-1563305455.240010-1563305455.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_54" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -1390,23 +1390,23 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91280'">10/07 14:54</td>
-                    <td style="" title="00:00:03" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91280'">00:00:03</td>
-                                        <td style="" title="Ramal: ramal 1416" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91280'">1416</td>
-                    <td style="" title="5511994848490" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91280'">5511994848490</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92525'">16/07 16:30</td>
+                    <td style="" title="00:01:12" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92525'">00:01:12</td>
+                                        <td style="" title="5521974407776" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92525'">5521974407776</td>
+                    <td style="" title="Ramal: ramal 2604 (2604)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92525'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378740" title="Ramal: ramal 2604 (2604)" align="absmiddle" style="cursor: pointer;"> 2604</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91280'">Atendida</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92525'">Atendida</td>
                     <td style="" title="1131000441LifeSP5648" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91280'">1131000441LifeSP5648</td>
-                    <td style="" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91280'">Celular Local</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92525'">1131000441LifeSP5648</td>
+                    <td style="" title="Entrante" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92525'">Entrante</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91280'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190710145451141699484849015627812902115881562781291wav5d262e88dc463');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190710145451141699484849015627812902115881562781291wav5d262e88dc463 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190710145451141699484849015627812902115881562781291wav5d262e88dc463">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-145451-1416-994848490-1562781290.211588-1562781291.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-145451-1416-994848490-1562781290.211588-1562781291.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190710145451141699484849015627812902115881562781291wav5d262e88dc463" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-145451-1416-994848490-1562781290.211588-1562781291.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-145451-1416-994848490-1562781290.211588-1562781291.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92525'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161630495521974407776260415633054472400071563305449wav5d2f44343d94f');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161630495521974407776260415633054472400071563305449wav5d2f44343d94f divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161630495521974407776260415633054472400071563305449wav5d2f44343d94f">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-163049-5521974407776-2604-1563305447.240007-1563305449.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-163049-5521974407776-2604-1563305447.240007-1563305449.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161630495521974407776260415633054472400071563305449wav5d2f44343d94f" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-163049-5521974407776-2604-1563305447.240007-1563305449.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-163049-5521974407776-2604-1563305447.240007-1563305449.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_55" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -1416,49 +1416,48 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91279'">10/07 14:53</td>
-                    <td style="" title="00:01:43" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91279'">00:01:43</td>
-                                        <td style="" title="Ramal: ramal 1410" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91279'">1410</td>
-                    <td style="" title="5511989890407" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91279'">5511989890407</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92523'">16/07 16:27</td>
+                    <td style="" title="00:00:29" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92523'">00:00:29</td>
+                                        <td style="" title="5511993813435" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92523'">5511993813435</td>
+                    <td style="" title="Ramal: ramal 2604 (2604)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92523'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378740" title="Ramal: ramal 2604 (2604)" align="absmiddle" style="cursor: pointer;"> 2604</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91279'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5640" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91279'">1131000441LifeSP5640</td>
-                    <td style="" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91279'">Celular Local</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92523'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5648" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92523'">1131000441LifeSP5648</td>
+                    <td style="" title="Entrante" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92523'">Entrante</td>
                     <td style="" title="" nowrap align="right"
-                       ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91279'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190710145354141098989040715627812332115841562781234wav5d262e88ddfbf');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190710145354141098989040715627812332115841562781234wav5d262e88ddfbf divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190710145354141098989040715627812332115841562781234wav5d262e88ddfbf">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-145354-1410-989890407-1562781233.211584-1562781234.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-145354-1410-989890407-1562781233.211584-1562781234.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190710145354141098989040715627812332115841562781234wav5d262e88ddfbf" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-145354-1410-989890407-1562781233.211584-1562781234.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-145354-1410-989890407-1562781233.211584-1562781234.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92523'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161627295511993813435260415633052482400031563305249wav5d2f44344276c');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161627295511993813435260415633052482400031563305249wav5d2f44344276c divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161627295511993813435260415633052482400031563305249wav5d2f44344276c">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-162729-5511993813435-2604-1563305248.240003-1563305249.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-162729-5511993813435-2604-1563305248.240003-1563305249.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161627295511993813435260415633052482400031563305249wav5d2f44344276c" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-162729-5511993813435-2604-1563305248.240003-1563305249.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-162729-5511993813435-2604-1563305248.240003-1563305249.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_56" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_56" value="NTY."
                                                       onclick="toggle_checkbox('56', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style=";"
+                    <td style="color: #990000;;"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91278'">10/07 14:52</td>
-                    <td style="" title="00:00:03" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91278'">00:00:03</td>
-                                        <td style="" title="Ramal: ramal 1416" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91278'">1416</td>
-                    <td style="" title="5511997872895" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91278'">5511997872895</td>
-                    <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91278'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5648" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91278'">1131000441LifeSP5648</td>
-                    <td style="" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91278'">Celular Local</td>
-                    <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91278'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190710145240141699787289515627811602115791562781160wav5d262e88dfb13');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190710145240141699787289515627811602115791562781160wav5d262e88dfb13 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190710145240141699787289515627811602115791562781160wav5d262e88dfb13">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-145240-1416-997872895-1562781160.211579-1562781160.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-145240-1416-997872895-1562781160.211579-1562781160.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190710145240141699787289515627811602115791562781160wav5d262e88dfb13" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-145240-1416-997872895-1562781160.211579-1562781160.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-145240-1416-997872895-1562781160.211579-1562781160.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92521'">16/07 16:26</td>
+                    <td style="color: #990000;" title="00:00:00" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92521'">00:00:00</td>
+                                        <td style="color: #990000;" title="551130172140" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92521'">551130172140</td>
+                    <td style="color: #990000;" title="Ramal: ramal 2202 (2202)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92521'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378740" title="Ramal: ramal 2202 (2202)" align="absmiddle" style="cursor: pointer;"> 2202</td>
+                    <td style="color: #990000;" title="Falhou" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92521'">Falhou</td>
+                    <td style="color: #990000;" title="1131000441LifeSP5648" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92521'">1131000441LifeSP5648</td>
+                    <td style="color: #990000;" title="Entrante" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92521'">Entrante</td>
+                    <td style="color: #990000;" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92521'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_57" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -1468,48 +1467,49 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91277'">10/07 14:52</td>
-                    <td style="" title="00:00:06" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91277'">00:00:06</td>
-                                        <td style="" title="Ramal: ramal 2604" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91277'">2604</td>
-                    <td style="" title="Ramal: Ramal 2208 (2208) » Ramal: ramal 2203 (2203)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91277'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783368" title="Ramal: Ramal 2208 (2208)" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1562783368" title="Encaminhado" align="absmiddle"> 2203</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92522'">16/07 16:25</td>
+                    <td style="" title="00:02:36" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92522'">00:02:36</td>
+                                        <td style="" title="Ramal: ramal 1410" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92522'">1410</td>
+                    <td style="" title="5521998715841" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92522'">5521998715841</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91277'">Atendida</td>
-                    <td style="" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91277'"></td>
-                    <td style="" title="Interno" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91277'">Interno</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92522'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5640" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92522'">1131000441LifeSP5640</td>
+                    <td style="" title="Celular Nacional" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92522'">Celular Nacional</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91277'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907101452372604220815627811572115761562781157wav5d262e88e260c');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907101452372604220815627811572115761562781157wav5d262e88e260c divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907101452372604220815627811572115761562781157wav5d262e88e260c">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-145237-2604-2208-1562781157.211576-1562781157.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-145237-2604-2208-1562781157.211576-1562781157.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907101452372604220815627811572115761562781157wav5d262e88e260c" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-145237-2604-2208-1562781157.211576-1562781157.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-145237-2604-2208-1562781157.211576-1562781157.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92522'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161625271410552199871584115633051272399961563305127wav5d2f44344c3a5');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161625271410552199871584115633051272399961563305127wav5d2f44344c3a5 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161625271410552199871584115633051272399961563305127wav5d2f44344c3a5">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-162527-1410-5521998715841-1563305127.239996-1563305127.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-162527-1410-5521998715841-1563305127.239996-1563305127.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161625271410552199871584115633051272399961563305127wav5d2f44344c3a5" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-162527-1410-5521998715841-1563305127.239996-1563305127.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-162527-1410-5521998715841-1563305127.239996-1563305127.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_58" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_58" value="NTg."
                                                       onclick="toggle_checkbox('58', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style="color: #990000;;"
+                    <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91276'">10/07 14:52</td>
-                    <td style="color: #990000;" title="00:00:00" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91276'">00:00:00</td>
-                                        <td style="color: #990000;" title="Ramal: ramal 1405" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91276'">1405</td>
-                    <td style="color: #990000;" title="Ramal: Ramal 2812 (2812)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91276'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783368" title="Ramal: Ramal 2812 (2812)" align="absmiddle" style="cursor: pointer;"> 2812</td>
-                    <td style="color: #990000;" title="Falhou" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91276'">Falhou</td>
-                    <td style="color: #990000;" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91276'"></td>
-                    <td style="color: #990000;" title="Interno" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91276'">Interno</td>
-                    <td style="color: #990000;" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91276'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92520'">16/07 16:24</td>
+                    <td style="" title="00:02:04" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92520'">00:02:04</td>
+                                        <td style="" title="Ramal: Ramal 2804" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92520'">2804</td>
+                    <td style="" title="Ramal: ramal 1603 (1603)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92520'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378740" title="Ramal: ramal 1603 (1603)" align="absmiddle" style="cursor: pointer;"> 1603</td>
+                    <td style="" title="Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92520'">Atendida</td>
+                    <td style="" title="" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92520'"></td>
+                    <td style="" title="Interno" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92520'">Interno</td>
+                    <td style="" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92520'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161624492804160315633050892399931563305089wav5d2f443452558');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161624492804160315633050892399931563305089wav5d2f443452558 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161624492804160315633050892399931563305089wav5d2f443452558">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-162449-2804-1603-1563305089.239993-1563305089.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-162449-2804-1603-1563305089.239993-1563305089.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161624492804160315633050892399931563305089wav5d2f443452558" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-162449-2804-1603-1563305089.239993-1563305089.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-162449-2804-1603-1563305089.239993-1563305089.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_59" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -1519,23 +1519,23 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91275'">10/07 14:50</td>
-                    <td style="" title="00:00:02" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91275'">00:00:02</td>
-                                        <td style="" title="Ramal: ramal 1416" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91275'">1416</td>
-                    <td style="" title="5511995685656" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91275'">5511995685656</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92519'">16/07 16:24</td>
+                    <td style="" title="00:02:38" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92519'">00:02:38</td>
+                                        <td style="" title="551155723178" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92519'">551155723178</td>
+                    <td style="" title="Grupo: GP - Lifetime - 5656 » Ramal: Ramal 2804 (2804)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92519'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_group.gif?1563378740" title="Grupo: GP - Lifetime - 5656" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1563378740" title="Encaminhado" align="absmiddle"> 2804</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91275'">Atendida</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92519'">Atendida</td>
                     <td style="" title="1131000441LifeSP5648" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91275'">1131000441LifeSP5648</td>
-                    <td style="" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91275'">Celular Local</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92519'">1131000441LifeSP5648</td>
+                    <td style="" title="Entrante" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92519'">Entrante</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91275'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190710145021141699568565615627810212115681562781021wav5d262e88e5cbe');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190710145021141699568565615627810212115681562781021wav5d262e88e5cbe divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190710145021141699568565615627810212115681562781021wav5d262e88e5cbe">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-145021-1416-995685656-1562781021.211568-1562781021.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-145021-1416-995685656-1562781021.211568-1562781021.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190710145021141699568565615627810212115681562781021wav5d262e88e5cbe" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-145021-1416-995685656-1562781021.211568-1562781021.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-145021-1416-995685656-1562781021.211568-1562781021.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92519'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_2019071615633050552399881563305056wav5d2f443458ade');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_2019071615633050552399881563305056wav5d2f443458ade divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_2019071615633050552399881563305056wav5d2f443458ade">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-1563305055.239988-1563305056.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-1563305055.239988-1563305056.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_2019071615633050552399881563305056wav5d2f443458ade" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-1563305055.239988-1563305056.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-1563305055.239988-1563305056.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_60" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -1545,23 +1545,23 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91274'">10/07 14:48</td>
-                    <td style="" title="00:00:06" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91274'">00:00:06</td>
-                                        <td style="" title="Ramal: ramal 1416" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91274'">1416</td>
-                    <td style="" title="5511997649595" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91274'">5511997649595</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92517'">16/07 16:13</td>
+                    <td style="" title="00:00:25" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92517'">00:00:25</td>
+                                        <td style="" title="Ramal: Ramal 2208" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92517'">2208</td>
+                    <td style="" title="Ramal: ramal 1609 (1609)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92517'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378740" title="Ramal: ramal 1609 (1609)" align="absmiddle" style="cursor: pointer;"> 1609</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91274'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5648" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91274'">1131000441LifeSP5648</td>
-                    <td style="" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91274'">Celular Local</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92517'">Atendida</td>
+                    <td style="" title="" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92517'"></td>
+                    <td style="" title="Interno" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92517'">Interno</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91274'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190710144808141699764959515627808882115641562780888wav5d262e88e781b');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190710144808141699764959515627808882115641562780888wav5d262e88e781b divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190710144808141699764959515627808882115641562780888wav5d262e88e781b">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-144808-1416-997649595-1562780888.211564-1562780888.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-144808-1416-997649595-1562780888.211564-1562780888.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190710144808141699764959515627808882115641562780888wav5d262e88e781b" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-144808-1416-997649595-1562780888.211564-1562780888.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-144808-1416-997649595-1562780888.211564-1562780888.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92517'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161613552208160915633044352399821563304435wav5d2f44345e89f');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161613552208160915633044352399821563304435wav5d2f44345e89f divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161613552208160915633044352399821563304435wav5d2f44345e89f">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-161355-2208-1609-1563304435.239982-1563304435.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-161355-2208-1609-1563304435.239982-1563304435.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161613552208160915633044352399821563304435wav5d2f44345e89f" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-161355-2208-1609-1563304435.239982-1563304435.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-161355-2208-1609-1563304435.239982-1563304435.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_61" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -1571,48 +1571,49 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91273'">10/07 14:47</td>
-                    <td style="" title="00:00:04" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91273'">00:00:04</td>
-                                        <td style="" title="Ramal: ramal 1416" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91273'">1416</td>
-                    <td style="" title="5511997649595" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91273'">5511997649595</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92518'">16/07 16:12</td>
+                    <td style="" title="00:12:10" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92518'">00:12:10</td>
+                                        <td style="" title="5513997141313" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92518'">5513997141313</td>
+                    <td style="" title="Grupo: GP - Lifetime - 5640 - Mesa » Ramal: ramal 1410 (1410)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92518'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_group.gif?1563378740" title="Grupo: GP - Lifetime - 5640 - Mesa" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1563378740" title="Encaminhado" align="absmiddle"> 1410</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91273'">Atendida</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92518'">Atendida</td>
                     <td style="" title="1131000441LifeSP5648" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91273'">1131000441LifeSP5648</td>
-                    <td style="" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91273'">Celular Local</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92518'">1131000441LifeSP5648</td>
+                    <td style="" title="Entrante" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92518'">Entrante</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91273'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190710144745141699764959515627808652115601562780865wav5d262e88e9374');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190710144745141699764959515627808652115601562780865wav5d262e88e9374 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190710144745141699764959515627808652115601562780865wav5d262e88e9374">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-144745-1416-997649595-1562780865.211560-1562780865.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-144745-1416-997649595-1562780865.211560-1562780865.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190710144745141699764959515627808652115601562780865wav5d262e88e9374" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-144745-1416-997649595-1562780865.211560-1562780865.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-144745-1416-997649595-1562780865.211560-1562780865.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92518'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_2019071615633043532399761563304354wav5d2f443464e32');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_2019071615633043532399761563304354wav5d2f443464e32 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_2019071615633043532399761563304354wav5d2f443464e32">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-1563304353.239976-1563304354.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-1563304353.239976-1563304354.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_2019071615633043532399761563304354wav5d2f443464e32" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-1563304353.239976-1563304354.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-1563304353.239976-1563304354.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_62" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_62" value="NjI."
                                                       onclick="toggle_checkbox('62', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style="color: #990000;;"
+                    <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91272'">10/07 14:46</td>
-                    <td style="color: #990000;" title="00:00:00" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91272'">00:00:00</td>
-                                        <td style="color: #990000;" title="Ramal: Ramal 9005" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91272'">9005</td>
-                    <td style="color: #990000;" title="5511996122063" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91272'">5511996122063</td>
-                    <td style="color: #990000;" title="Falhou" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91272'">Falhou</td>
-                    <td style="color: #990000;" title="1131000441LifeSP5656" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91272'">1131000441LifeSP5656</td>
-                    <td style="color: #990000;" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91272'">Celular Local</td>
-                    <td style="color: #990000;" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91272'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92515'">16/07 16:09</td>
+                    <td style="" title="00:00:04" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92515'">00:00:04</td>
+                                        <td style="" title="Ramal: Ramal 2810" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92515'">2810</td>
+                    <td style="" title="5511994568497" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92515'">5511994568497</td>
+                    <td style="" title="Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92515'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5642" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92515'">1131000441LifeSP5642</td>
+                    <td style="" title="Celular Local" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92515'">Celular Local</td>
+                    <td style="" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92515'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190716160904281099456849715633041442399721563304144wav5d2f443469c5a');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190716160904281099456849715633041442399721563304144wav5d2f443469c5a divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190716160904281099456849715633041442399721563304144wav5d2f443469c5a">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-160904-2810-994568497-1563304144.239972-1563304144.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-160904-2810-994568497-1563304144.239972-1563304144.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190716160904281099456849715633041442399721563304144wav5d2f443469c5a" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-160904-2810-994568497-1563304144.239972-1563304144.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-160904-2810-994568497-1563304144.239972-1563304144.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_63" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -1622,73 +1623,74 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91271'">10/07 14:46</td>
-                    <td style="" title="00:00:35" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91271'">00:00:35</td>
-                                        <td style="" title="551132595920" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91271'">551132595920</td>
-                    <td style="" title="Ramal: Ramal 1406 (1406) » Ramal: ramal 1415 (1415)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91271'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783368" title="Ramal: Ramal 1406 (1406)" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1562783368" title="Encaminhado" align="absmiddle"> 1415</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92513'">16/07 16:06</td>
+                    <td style="" title="00:00:01" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92513'">00:00:01</td>
+                                        <td style="" title="5561999763053" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92513'">5561999763053</td>
+                    <td style="" title="551133855642" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92513'">551133855642</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91271'">Atendida</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92513'">Atendida</td>
                     <td style="" title="1131000441LifeSP5648" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91271'">1131000441LifeSP5648</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92513'">1131000441LifeSP5648</td>
                     <td style="" title="Entrante" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91271'">Entrante</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92513'">Entrante</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91271'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190710144634551132595920140615627807932115521562780794wav5d262e88ed1ef');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190710144634551132595920140615627807932115521562780794wav5d262e88ed1ef divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190710144634551132595920140615627807932115521562780794wav5d262e88ed1ef">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-144634-551132595920-1406-1562780793.211552-1562780794.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-144634-551132595920-1406-1562780793.211552-1562780794.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190710144634551132595920140615627807932115521562780794wav5d262e88ed1ef" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-144634-551132595920-1406-1562780793.211552-1562780794.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-144634-551132595920-1406-1562780793.211552-1562780794.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92513'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_64" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_64" value="NjQ."
                                                       onclick="toggle_checkbox('64', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style="color: #cc6600;;"
+                    <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91270'">10/07 14:45</td>
-                    <td style="color: #cc6600;" title="00:00:00" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91270'">00:00:00</td>
-                                        <td style="color: #cc6600;" title="Ramal: Ramal 9005" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91270'">9005</td>
-                    <td style="color: #cc6600;" title="5511993522212" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91270'">5511993522212</td>
-                    <td style="color: #cc6600;" title="Não Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91270'">Não Atendida</td>
-                    <td style="color: #cc6600;" title="1131000441LifeSP5656" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91270'">1131000441LifeSP5656</td>
-                    <td style="color: #cc6600;" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91270'">Celular Local</td>
-                    <td style="color: #cc6600;" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91270'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92514'">16/07 16:06</td>
+                    <td style="" title="00:00:57" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92514'">00:00:57</td>
+                                        <td style="" title="Ramal: ramal 1410" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92514'">1410</td>
+                    <td style="" title="5521998715841" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92514'">5521998715841</td>
+                    <td style="" title="Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92514'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5640" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92514'">1131000441LifeSP5640</td>
+                    <td style="" title="Celular Nacional" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92514'">Celular Nacional</td>
+                    <td style="" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92514'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161606091410552199871584115633039692399651563303969wav5d2f443471578');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161606091410552199871584115633039692399651563303969wav5d2f443471578 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161606091410552199871584115633039692399651563303969wav5d2f443471578">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-160609-1410-5521998715841-1563303969.239965-1563303969.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-160609-1410-5521998715841-1563303969.239965-1563303969.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161606091410552199871584115633039692399651563303969wav5d2f443471578" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-160609-1410-5521998715841-1563303969.239965-1563303969.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-160609-1410-5521998715841-1563303969.239965-1563303969.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_65" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_65" value="NjU."
                                                       onclick="toggle_checkbox('65', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style="color: #990000;;"
+                    <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91269'">10/07 14:44</td>
-                    <td style="color: #990000;" title="00:00:00" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91269'">00:00:00</td>
-                                        <td style="color: #990000;" title="Ramal: Ramal 9005" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91269'">9005</td>
-                    <td style="color: #990000;" title="5511956102820" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91269'">5511956102820</td>
-                    <td style="color: #990000;" title="Falhou" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91269'">Falhou</td>
-                    <td style="color: #990000;" title="1131000441LifeSP5656" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91269'">1131000441LifeSP5656</td>
-                    <td style="color: #990000;" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91269'">Celular Local</td>
-                    <td style="color: #990000;" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91269'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92512'">16/07 16:03</td>
+                    <td style="" title="00:00:03" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92512'">00:00:03</td>
+                                        <td style="" title="5511984343633" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92512'">5511984343633</td>
+                    <td style="" title="Grupo: GP - Lifetime - 5633 » Ramal: ramal 1405 (1405)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92512'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_group.gif?1563378740" title="Grupo: GP - Lifetime - 5633" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1563378740" title="Encaminhado" align="absmiddle"> 1405</td>
+                    <td style="" title="Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92512'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5648" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92512'">1131000441LifeSP5648</td>
+                    <td style="" title="Entrante" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92512'">Entrante</td>
+                    <td style="" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92512'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_2019071615633037862399401563303787wav5d2f443477b07');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_2019071615633037862399401563303787wav5d2f443477b07 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_2019071615633037862399401563303787wav5d2f443477b07">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-1563303786.239940-1563303787.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-1563303786.239940-1563303787.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_2019071615633037862399401563303787wav5d2f443477b07" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-1563303786.239940-1563303787.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-1563303786.239940-1563303787.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_66" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -1698,75 +1700,73 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91268'">10/07 14:29</td>
-                    <td style="" title="00:00:03" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91268'">00:00:03</td>
-                                        <td style="" title="551421079650" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91268'">551421079650</td>
-                    <td style="" title="Grupo: GP - Lifetime CG - 7480 » Ramal: Ramal 7003 (7003)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91268'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_group.gif?1562783368" title="Grupo: GP - Lifetime CG - 7480" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1562783368" title="Encaminhado" align="absmiddle"> 7003</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92511'">16/07 16:02</td>
+                    <td style="" title="00:00:07" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92511'">00:00:07</td>
+                                        <td style="" title="Ramal: Ramal 2810" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92511'">2810</td>
+                    <td style="" title="5561999763053" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92511'">5561999763053</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91268'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5648" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91268'">1131000441LifeSP5648</td>
-                    <td style="" title="Entrante" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91268'">Entrante</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92511'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5642" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92511'">1131000441LifeSP5642</td>
+                    <td style="" title="Celular Nacional" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92511'">Celular Nacional</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91268'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_2019071015627797802115351562779781wav5d262e88f1c80');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_2019071015627797802115351562779781wav5d262e88f1c80 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_2019071015627797802115351562779781wav5d262e88f1c80">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-1562779780.211535-1562779781.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-1562779780.211535-1562779781.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_2019071015627797802115351562779781wav5d262e88f1c80" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-1562779780.211535-1562779781.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-1562779780.211535-1562779781.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92511'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161602552810556199976305315633037752399361563303775wav5d2f44347c546');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161602552810556199976305315633037752399361563303775wav5d2f44347c546 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161602552810556199976305315633037752399361563303775wav5d2f44347c546">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-160255-2810-5561999763053-1563303775.239936-1563303775.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-160255-2810-5561999763053-1563303775.239936-1563303775.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161602552810556199976305315633037752399361563303775wav5d2f44347c546" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-160255-2810-5561999763053-1563303775.239936-1563303775.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-160255-2810-5561999763053-1563303775.239936-1563303775.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_67" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_67" value="Njc."
                                                       onclick="toggle_checkbox('67', 'fifochkid', 'text', tdis.id);"/>
-                   </td>
-                    <td style=";"
+                    </td>
+                    <td style="color: #cc6600;;"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91267'">10/07 14:24</td>
-                    <td style="" title="00:00:50" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91267'">00:00:50</td>
-                                        <td style="" title="Ramal: ramal 2604" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91267'">2604</td>
-                    <td style="" title="5511975525365" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91267'">5511975525365</td>
-                    <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91267'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5651" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91267'">1131000441LifeSP5651</td>
-                    <td style="" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91267'">Celular Local</td>
-                    <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91267'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783368" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190710142402260497552536515627794412115311562779442wav5d262e88f377f');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783368" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190710142402260497552536515627794412115311562779442wav5d262e88f377f divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190710142402260497552536515627794412115311562779442wav5d262e88f377f">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-142402-2604-975525365-1562779441.211531-1562779442.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-142402-2604-975525365-1562779441.211531-1562779442.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190710142402260497552536515627794412115311562779442wav5d262e88f377f" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-142402-2604-975525365-1562779441.211531-1562779442.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783368" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-142402-2604-975525365-1562779441.211531-1562779442.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783368" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92510'">16/07 16:02</td>
+                    <td style="color: #cc6600;" title="00:00:00" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92510'">00:00:00</td>
+                                        <td style="color: #cc6600;" title="Ramal: Ramal 9003" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92510'">9003</td>
+                    <td style="color: #cc6600;" title="5511984343633" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92510'">5511984343633</td>
+                    <td style="color: #cc6600;" title="Não Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92510'">Não Atendida</td>
+                    <td style="color: #cc6600;" title="1131000441LifeSP5656" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92510'">1131000441LifeSP5656</td>
+                    <td style="color: #cc6600;" title="Celular Local" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92510'">Celular Local</td>
+                    <td style="color: #cc6600;" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92510'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_68" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_68" value="Njg."
                                                       onclick="toggle_checkbox('68', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style=";"
+                    <td style="color: #cc6600;;"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91266'">10/07 14:18</td>
-                    <td style="" title="00:00:56" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91266'">00:00:56</td>
-                                        <td style="" title="Ramal: ramal 2604" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91266'">2604</td>
-                    <td style="" title="5511983819986" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91266'">5511983819986</td>
-                    <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91266'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5651" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91266'">1131000441LifeSP5651</td>
-                    <td style="" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91266'">Celular Local</td>
-                    <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91266'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190710141900260498381998615627791392115261562779140wav5d262e8901094');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783369" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190710141900260498381998615627791392115261562779140wav5d262e8901094 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190710141900260498381998615627791392115261562779140wav5d262e8901094">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-141900-2604-983819986-1562779139.211526-1562779140.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-141900-2604-983819986-1562779139.211526-1562779140.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190710141900260498381998615627791392115261562779140wav5d262e8901094" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-141900-2604-983819986-1562779139.211526-1562779140.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783369" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-141900-2604-983819986-1562779139.211526-1562779140.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783369" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92509'">16/07 16:02</td>
+                    <td style="color: #cc6600;" title="00:00:00" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92509'">00:00:00</td>
+                                        <td style="color: #cc6600;" title="Ramal: Ramal 2810" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92509'">2810</td>
+                    <td style="color: #cc6600;" title="5519981681010" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92509'">5519981681010</td>
+                    <td style="color: #cc6600;" title="Não Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92509'">Não Atendida</td>
+                    <td style="color: #cc6600;" title="1131000441LifeSP5642" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92509'">1131000441LifeSP5642</td>
+                    <td style="color: #cc6600;" title="Celular Nacional" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92509'">Celular Nacional</td>
+                    <td style="color: #cc6600;" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92509'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_69" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -1776,99 +1776,100 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91265'">10/07 14:18</td>
-                    <td style="" title="00:00:04" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91265'">00:00:04</td>
-                                        <td style="" title="Ramal: ramal 2604" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91265'">2604</td>
-                    <td style="" title="5511986819986" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91265'">5511986819986</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92508'">16/07 16:00</td>
+                    <td style="" title="00:00:06" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92508'">00:00:06</td>
+                                        <td style="" title="551132019500" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92508'">551132019500</td>
+                    <td style="" title="Ramal: Ramal 1406 (1406) » Ramal: ramal 1410 (1410)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92508'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378740" title="Ramal: Ramal 1406 (1406)" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1563378740" title="Encaminhado" align="absmiddle"> 1410</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91265'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5651" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91265'">1131000441LifeSP5651</td>
-                    <td style="" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91265'">Celular Local</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92508'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5648" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92508'">1131000441LifeSP5648</td>
+                    <td style="" title="Entrante" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92508'">Entrante</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91265'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190710141816260498681998615627790952115211562779096wav5d262e8902bed');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783369" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190710141816260498681998615627790952115211562779096wav5d262e8902bed divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190710141816260498681998615627790952115211562779096wav5d262e8902bed">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-141816-2604-986819986-1562779095.211521-1562779096.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-141816-2604-986819986-1562779095.211521-1562779096.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190710141816260498681998615627790952115211562779096wav5d262e8902bed" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-141816-2604-986819986-1562779095.211521-1562779096.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783369" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-141816-2604-986819986-1562779095.211521-1562779096.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783369" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92508'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190716160052551132019500140615633036512399231563303652wav5d2f44348c147');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190716160052551132019500140615633036512399231563303652wav5d2f44348c147 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190716160052551132019500140615633036512399231563303652wav5d2f44348c147">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-160052-551132019500-1406-1563303651.239923-1563303652.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-160052-551132019500-1406-1563303651.239923-1563303652.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190716160052551132019500140615633036512399231563303652wav5d2f44348c147" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-160052-551132019500-1406-1563303651.239923-1563303652.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-160052-551132019500-1406-1563303651.239923-1563303652.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_70" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_70" value="NzA."
                                                       onclick="toggle_checkbox('70', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style="color: #cc6600;;"
+                    <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91264'">10/07 14:11</td>
-                    <td style="color: #cc6600;" title="00:00:00" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91264'">00:00:00</td>
-                                        <td style="color: #cc6600;" title="Ramal: Ramal 9003" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91264'">9003</td>
-                    <td style="color: #cc6600;" title="551937558660" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91264'">551937558660</td>
-                    <td style="color: #cc6600;" title="Não Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91264'">Não Atendida</td>
-                    <td style="color: #cc6600;" title="1131000441LifeSP5656" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91264'">1131000441LifeSP5656</td>
-                    <td style="color: #cc6600;" title="Fixo Nacional" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91264'">Fixo Nacional</td>
-                    <td style="color: #cc6600;" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91264'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92507'">16/07 16:00</td>
+                    <td style="" title="00:00:16" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92507'">00:00:16</td>
+                                        <td style="" title="Ramal: Ramal 2208" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92507'">2208</td>
+                    <td style="" title="Ramal: ramal 1609 (1609) » Ramal: ramal 1608 (1608)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92507'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378740" title="Ramal: ramal 1609 (1609)" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1563378740" title="Encaminhado" align="absmiddle"> 1608</td>
+                    <td style="" title="Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92507'">Atendida</td>
+                    <td style="" title="" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92507'"></td>
+                    <td style="" title="Interno" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92507'">Interno</td>
+                    <td style="" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92507'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161600292208160915633036292399191563303629wav5d2f4434949f9');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161600292208160915633036292399191563303629wav5d2f4434949f9 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161600292208160915633036292399191563303629wav5d2f4434949f9">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-160029-2208-1609-1563303629.239919-1563303629.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-160029-2208-1609-1563303629.239919-1563303629.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161600292208160915633036292399191563303629wav5d2f4434949f9" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-160029-2208-1609-1563303629.239919-1563303629.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-160029-2208-1609-1563303629.239919-1563303629.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_71" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_71" value="NzE."
                                                       onclick="toggle_checkbox('71', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style="color: #cc6600;;"
+                    <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91263'">10/07 14:11</td>
-                    <td style="color: #cc6600;" title="00:00:00" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91263'">00:00:00</td>
-                                        <td style="color: #cc6600;" title="Ramal: Ramal 9003" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91263'">9003</td>
-                    <td style="color: #cc6600;" title="551937558660" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91263'">551937558660</td>
-                    <td style="color: #cc6600;" title="Não Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91263'">Não Atendida</td>
-                    <td style="color: #cc6600;" title="1131000441LifeSP5656" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91263'">1131000441LifeSP5656</td>
-                    <td style="color: #cc6600;" title="Fixo Nacional" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91263'">Fixo Nacional</td>
-                    <td style="color: #cc6600;" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91263'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92506'">16/07 15:59</td>
+                    <td style="" title="00:00:37" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92506'">00:00:37</td>
+                                        <td style="" title="Ramal: Ramal 2810" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92506'">2810</td>
+                    <td style="" title="5511996371788" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92506'">5511996371788</td>
+                    <td style="" title="Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92506'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5642" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92506'">1131000441LifeSP5642</td>
+                    <td style="" title="Celular Local" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92506'">Celular Local</td>
+                    <td style="" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92506'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190716155951281099637178815633035902399151563303591wav5d2f443499229');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190716155951281099637178815633035902399151563303591wav5d2f443499229 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190716155951281099637178815633035902399151563303591wav5d2f443499229">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-155951-2810-996371788-1563303590.239915-1563303591.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-155951-2810-996371788-1563303590.239915-1563303591.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190716155951281099637178815633035902399151563303591wav5d2f443499229" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-155951-2810-996371788-1563303590.239915-1563303591.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-155951-2810-996371788-1563303590.239915-1563303591.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_72" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_72" value="NzI."
                                                       onclick="toggle_checkbox('72', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style=";"
+                    <td style="color: #cc6600;;"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91262'">10/07 14:07</td>
-                    <td style="" title="00:01:52" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91262'">00:01:52</td>
-                                        <td style="" title="5511975525365" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91262'">5511975525365</td>
-                    <td style="" title="Ramal: ramal 2604 (2604)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91262'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783369" title="Ramal: ramal 2604 (2604)" align="absmiddle" style="cursor: pointer;"> 2604</td>
-                    <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91262'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5648" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91262'">1131000441LifeSP5648</td>
-                    <td style="" title="Entrante" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91262'">Entrante</td>
-                    <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91262'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907101407235511975525365260415627784422115101562778443wav5d262e8907643');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783369" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907101407235511975525365260415627784422115101562778443wav5d262e8907643 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907101407235511975525365260415627784422115101562778443wav5d262e8907643">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-140723-5511975525365-2604-1562778442.211510-1562778443.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-140723-5511975525365-2604-1562778442.211510-1562778443.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907101407235511975525365260415627784422115101562778443wav5d262e8907643" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-140723-5511975525365-2604-1562778442.211510-1562778443.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783369" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-140723-5511975525365-2604-1562778442.211510-1562778443.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783369" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92504'">16/07 15:55</td>
+                    <td style="color: #cc6600;" title="00:00:00" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92504'">00:00:00</td>
+                                        <td style="color: #cc6600;" title="Ramal: Ramal 2810" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92504'">2810</td>
+                    <td style="color: #cc6600;" title="5511998822395" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92504'">5511998822395</td>
+                    <td style="color: #cc6600;" title="Não Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92504'">Não Atendida</td>
+                    <td style="color: #cc6600;" title="1131000441LifeSP5642" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92504'">1131000441LifeSP5642</td>
+                    <td style="color: #cc6600;" title="Celular Local" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92504'">Celular Local</td>
+                    <td style="color: #cc6600;" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92504'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_73" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -1878,23 +1879,23 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91261'">10/07 14:02</td>
-                    <td style="" title="00:00:03" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91261'">00:00:03</td>
-                                        <td style="" title="551125400050" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91261'">551125400050</td>
-                    <td style="" title="Grupo: GP - Lifetime - 5650 » Ramal: ramal 2202 (2202)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91261'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_group.gif?1562783369" title="Grupo: GP - Lifetime - 5650" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1562783369" title="Encaminhado" align="absmiddle"> 2202</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92505'">16/07 15:54</td>
+                    <td style="" title="00:03:34" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92505'">00:03:34</td>
+                                        <td style="" title="Ramal: Ramal 2206" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92505'">2206</td>
+                    <td style="" title="Ramal: Ramal 1605 (1605)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92505'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378740" title="Ramal: Ramal 1605 (1605)" align="absmiddle" style="cursor: pointer;"> 1605</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91261'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5648" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91261'">1131000441LifeSP5648</td>
-                    <td style="" title="Entrante" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91261'">Entrante</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92505'">Atendida</td>
+                    <td style="" title="" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92505'"></td>
+                    <td style="" title="Interno" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92505'">Interno</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91261'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_2019071015627781692115031562778170wav5d262e8909565');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783369" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_2019071015627781692115031562778170wav5d262e8909565 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_2019071015627781692115031562778170wav5d262e8909565">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-1562778169.211503-1562778170.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-1562778169.211503-1562778170.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_2019071015627781692115031562778170wav5d262e8909565" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-1562778169.211503-1562778170.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783369" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-1562778169.211503-1562778170.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783369" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92505'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161554402206160515633032052399041563303280wav5d2f4434a3846');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161554402206160515633032052399041563303280wav5d2f4434a3846 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161554402206160515633032052399041563303280wav5d2f4434a3846">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-155440-2206-1605-1563303205.239904-1563303280.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-155440-2206-1605-1563303205.239904-1563303280.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161554402206160515633032052399041563303280wav5d2f4434a3846" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-155440-2206-1605-1563303205.239904-1563303280.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-155440-2206-1605-1563303205.239904-1563303280.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_74" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -1904,23 +1905,23 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91259'">10/07 13:57</td>
-                    <td style="" title="00:00:36" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91259'">00:00:36</td>
-                                        <td style="" title="Ramal: Ramal 2802" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91259'">2802</td>
-                    <td style="" title="Ramal: ramal 1603 (1603)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91259'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783369" title="Ramal: ramal 1603 (1603)" align="absmiddle" style="cursor: pointer;"> 1603</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92503'">16/07 15:53</td>
+                    <td style="" title="00:04:48" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92503'">00:04:48</td>
+                                        <td style="" title="Ramal: Ramal 2206" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92503'">2206</td>
+                    <td style="" title="Ramal: ramal 1609 (1609) » Ramal: ramal 1603 (1603)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92503'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378740" title="Ramal: ramal 1609 (1609)" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1563378740" title="Encaminhado" align="absmiddle"> 1603</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91259'">Atendida</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92503'">Atendida</td>
                     <td style="" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91259'"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92503'"></td>
                     <td style="" title="Interno" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91259'">Interno</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92503'">Interno</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91259'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907101357142802160315627778332115001562777834wav5d262e890b4a6');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783369" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907101357142802160315627778332115001562777834wav5d262e890b4a6 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907101357142802160315627778332115001562777834wav5d262e890b4a6">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-135714-2802-1603-1562777833.211500-1562777834.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-135714-2802-1603-1562777833.211500-1562777834.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907101357142802160315627778332115001562777834wav5d262e890b4a6" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-135714-2802-1603-1562777833.211500-1562777834.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783369" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-135714-2802-1603-1562777833.211500-1562777834.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783369" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92503'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161553252206160915633032052399041563303205wav5d2f4434ac5d2');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161553252206160915633032052399041563303205wav5d2f4434ac5d2 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161553252206160915633032052399041563303205wav5d2f4434ac5d2">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-155325-2206-1609-1563303205.239904-1563303205.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-155325-2206-1609-1563303205.239904-1563303205.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161553252206160915633032052399041563303205wav5d2f4434ac5d2" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-155325-2206-1609-1563303205.239904-1563303205.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-155325-2206-1609-1563303205.239904-1563303205.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_75" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -1930,49 +1931,48 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91258'">10/07 13:53</td>
-                    <td style="" title="00:00:30" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91258'">00:00:30</td>
-                                        <td style="" title="551127234000" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91258'">551127234000</td>
-                    <td style="" title="Grupo: GP - Lifetime - 5656 » Ramal: Ramal 2206 (2206)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91258'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_group.gif?1562783369" title="Grupo: GP - Lifetime - 5656" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1562783369" title="Encaminhado" align="absmiddle">  <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783369" title="Ramal: Ramal 2206 (2206)" align="absmiddle" style="cursor: pointer;"> 2206</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92502'">16/07 15:53</td>
+                    <td style="" title="00:00:27" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92502'">00:00:27</td>
+                                        <td style="" title="551130853975" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92502'">551130853975</td>
+                    <td style="" title="Grupo: GP - Lifetime - 5640 - Mesa » Ramal: ramal1401 (1401)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92502'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_group.gif?1563378740" title="Grupo: GP - Lifetime - 5640 - Mesa" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1563378740" title="Encaminhado" align="absmiddle"> 1401</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91258'">Atendida</td>
-                    <td style="" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91258'"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92502'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5648" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92502'">1131000441LifeSP5648</td>
                     <td style="" title="Entrante" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91258'">Entrante</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92502'">Entrante</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91258'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190710135358551127234000220615627776072114951562777638wav5d262e890d3e8');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783369" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190710135358551127234000220615627776072114951562777638wav5d262e890d3e8 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190710135358551127234000220615627776072114951562777638wav5d262e890d3e8">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-135358-551127234000-2206-1562777607.211495-1562777638.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-135358-551127234000-2206-1562777607.211495-1562777638.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190710135358551127234000220615627776072114951562777638wav5d262e890d3e8" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-135358-551127234000-2206-1562777607.211495-1562777638.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783369" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-135358-551127234000-2206-1562777607.211495-1562777638.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783369" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92502'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_2019071615633031872398931563303188wav5d2f4434b2a82');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_2019071615633031872398931563303188wav5d2f4434b2a82 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_2019071615633031872398931563303188wav5d2f4434b2a82">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-1563303187.239893-1563303188.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-1563303187.239893-1563303188.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_2019071615633031872398931563303188wav5d2f4434b2a82" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-1563303187.239893-1563303188.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-1563303187.239893-1563303188.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_76" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_76" value="NzY."
                                                       onclick="toggle_checkbox('76', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style=";"
+                    <td style="color: #cc6600;;"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91257'">10/07 13:53</td>
-                    <td style="" title="00:00:55" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91257'">00:00:55</td>
-                                        <td style="" title="551127234000" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91257'">551127234000</td>
-                    <td style="" title="Grupo: GP - Lifetime - 5656 » Ramal: Ramal 2807 (2807)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91257'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_group.gif?1562783369" title="Grupo: GP - Lifetime - 5656" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1562783369" title="Encaminhado" align="absmiddle"> 2807</td>
-                    <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91257'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5648" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91257'">1131000441LifeSP5648</td>
-                    <td style="" title="Entrante" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91257'">Entrante</td>
-                    <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91257'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_2019071015627776042114891562777605wav5d262e890f33b');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783369" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_2019071015627776042114891562777605wav5d262e890f33b divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_2019071015627776042114891562777605wav5d262e890f33b">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-1562777604.211489-1562777605.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-1562777604.211489-1562777605.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_2019071015627776042114891562777605wav5d262e890f33b" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-1562777604.211489-1562777605.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783369" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-1562777604.211489-1562777605.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783369" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92501'">16/07 15:52</td>
+                    <td style="color: #cc6600;" title="00:00:00" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92501'">00:00:00</td>
+                                        <td style="color: #cc6600;" title="Ramal: Ramal 2206" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92501'">2206</td>
+                    <td style="color: #cc6600;" title="Ramal: ramal 1606 (1606)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92501'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378740" title="Ramal: ramal 1606 (1606)" align="absmiddle" style="cursor: pointer;"> 1606</td>
+                    <td style="color: #cc6600;" title="Não Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92501'">Não Atendida</td>
+                    <td style="color: #cc6600;" title="" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92501'"></td>
+                    <td style="color: #cc6600;" title="Interno" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92501'">Interno</td>
+                    <td style="color: #cc6600;" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92501'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_77" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -1982,49 +1982,49 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91256'">10/07 13:51</td>
-                    <td style="" title="00:00:49" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91256'">00:00:49</td>
-                                        <td style="" title="Ramal: Ramal 2804" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91256'">2804</td>
-                    <td style="" title="Ramal: ramal 1410 (1410) » Ramal: ramal 1409 (1409)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91256'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783369" title="Ramal: ramal 1410 (1410)" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1562783369" title="Encaminhado" align="absmiddle"> 1409</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92499'">16/07 15:51</td>
+                    <td style="" title="00:00:42" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92499'">00:00:42</td>
+                                        <td style="" title="Ramal: Ramal 2810" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92499'">2810</td>
+                    <td style="" title="5511940307282" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92499'">5511940307282</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91256'">Atendida</td>
-                    <td style="" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91256'"></td>
-                    <td style="" title="Interno" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91256'">Interno</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92499'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5642" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92499'">1131000441LifeSP5642</td>
+                    <td style="" title="Celular Local" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92499'">Celular Local</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91256'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907101351082804141015627774672114841562777468wav5d262e8911e2a');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783369" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907101351082804141015627774672114841562777468wav5d262e8911e2a divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907101351082804141015627774672114841562777468wav5d262e8911e2a">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-135108-2804-1410-1562777467.211484-1562777468.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-135108-2804-1410-1562777467.211484-1562777468.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907101351082804141015627774672114841562777468wav5d262e8911e2a" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-135108-2804-1410-1562777467.211484-1562777468.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783369" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-135108-2804-1410-1562777467.211484-1562777468.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783369" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92499'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190716155130281094030728215633030902398851563303090wav5d2f4434bde35');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190716155130281094030728215633030902398851563303090wav5d2f4434bde35 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190716155130281094030728215633030902398851563303090wav5d2f4434bde35">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-155130-2810-940307282-1563303090.239885-1563303090.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-155130-2810-940307282-1563303090.239885-1563303090.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190716155130281094030728215633030902398851563303090wav5d2f4434bde35" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-155130-2810-940307282-1563303090.239885-1563303090.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-155130-2810-940307282-1563303090.239885-1563303090.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_78" class="malhado" onmouseover="on_hover_row(jQuery(this));">
-                   <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
+                    <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_78" value="Nzg."
                                                       onclick="toggle_checkbox('78', 'fifochkid', 'text', tdis.id);"/>
                     </td>
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91255'">10/07 13:34</td>
-                    <td style="" title="00:00:17" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91255'">00:00:17</td>
-                                        <td style="" title="Ramal: Ramal 7005" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91255'">7005</td>
-                    <td style="" title="551149352777" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91255'">551149352777</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92500'">16/07 15:51</td>
+                    <td style="" title="00:01:46" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92500'">00:01:46</td>
+                                        <td style="" title="Ramal: ramal 2604" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92500'">2604</td>
+                    <td style="" title="5511945013078" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92500'">5511945013078</td>
                     <td style="" title="Atendida" nowrap
-                       ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91255'">Atendida</td>
-                    <td style="" title="1131000441_Campo" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91255'">1131000441_Campo</td>
-                    <td style="" title="Fixo Nacional" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91255'">Fixo Nacional</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92500'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5651" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92500'">1131000441LifeSP5651</td>
+                    <td style="" title="Celular Local" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92500'">Celular Local</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91255'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190710133435700555114935277715627764752114781562776475wav5d262e891397d');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783369" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190710133435700555114935277715627764752114781562776475wav5d262e891397d divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190710133435700555114935277715627764752114781562776475wav5d262e891397d">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-133435-7005-551149352777-1562776475.211478-1562776475.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-133435-7005-551149352777-1562776475.211478-1562776475.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190710133435700555114935277715627764752114781562776475wav5d262e891397d" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-133435-7005-551149352777-1562776475.211478-1562776475.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783369" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-133435-7005-551149352777-1562776475.211478-1562776475.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783369" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92500'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190716155105260494501307815633030652398811563303065wav5d2f4434c3036');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190716155105260494501307815633030652398811563303065wav5d2f4434c3036 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190716155105260494501307815633030652398811563303065wav5d2f4434c3036">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-155105-2604-945013078-1563303065.239881-1563303065.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-155105-2604-945013078-1563303065.239881-1563303065.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190716155105260494501307815633030652398811563303065wav5d2f4434c3036" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-155105-2604-945013078-1563303065.239881-1563303065.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-155105-2604-945013078-1563303065.239881-1563303065.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_79" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -2034,49 +2034,48 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91260'">10/07 13:34</td>
-                    <td style="" title="00:23:34" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91260'">00:23:34</td>
-                                        <td style="" title="551132140709" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91260'">551132140709</td>
-                    <td style="" title="Grupo: GP - Lifetime - 5640 - Mesa » Ramal: ramal 1404 (1404)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91260'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_group.gif?1562783369" title="Grupo: GP - Lifetime - 5640 - Mesa" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1562783369" title="Encaminhado" align="absmiddle"> 1404</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92498'">16/07 15:49</td>
+                    <td style="" title="00:01:40" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92498'">00:01:40</td>
+                                        <td style="" title="Ramal: ramal 2604" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92498'">2604</td>
+                    <td style="" title="5519998734429" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92498'">5519998734429</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91260'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5648" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91260'">1131000441LifeSP5648</td>
-                    <td style="" title="Entrante" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91260'">Entrante</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92498'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5651" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92498'">1131000441LifeSP5651</td>
+                    <td style="" title="Celular Nacional" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92498'">Celular Nacional</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91260'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_2019071015627764622114711562776462wav5d262e89158bb');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783369" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_2019071015627764622114711562776462wav5d262e89158bb divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_2019071015627764622114711562776462wav5d262e89158bb">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-1562776462.211471-1562776462.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-1562776462.211471-1562776462.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_2019071015627764622114711562776462wav5d262e89158bb" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-1562776462.211471-1562776462.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783369" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-1562776462.211471-1562776462.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783369" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92498'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161549062604551999873442915633029462398771563302946wav5d2f4434c7e5c');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161549062604551999873442915633029462398771563302946wav5d2f4434c7e5c divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161549062604551999873442915633029462398771563302946wav5d2f4434c7e5c">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-154906-2604-5519998734429-1563302946.239877-1563302946.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-154906-2604-5519998734429-1563302946.239877-1563302946.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161549062604551999873442915633029462398771563302946wav5d2f4434c7e5c" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-154906-2604-5519998734429-1563302946.239877-1563302946.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-154906-2604-5519998734429-1563302946.239877-1563302946.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_80" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_80" value="ODA."
                                                       onclick="toggle_checkbox('80', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style=";"
+                    <td style="color: #990000;;"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91254'">10/07 13:30</td>
-                    <td style="" title="00:00:24" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91254'">00:00:24</td>
-                                        <td style="" title="Ramal: ramal 1410" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91254'">1410</td>
-                    <td style="" title="5511999012015" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91254'">5511999012015</td>
-                    <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91254'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5640" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91254'">1131000441LifeSP5640</td>
-                    <td style="" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91254'">Celular Local</td>
-                    <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91254'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190710133018141099901201515627762172114661562776218wav5d262e8917412');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783369" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190710133018141099901201515627762172114661562776218wav5d262e8917412 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190710133018141099901201515627762172114661562776218wav5d262e8917412">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-133018-1410-999012015-1562776217.211466-1562776218.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-133018-1410-999012015-1562776217.211466-1562776218.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190710133018141099901201515627762172114661562776218wav5d262e8917412" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-133018-1410-999012015-1562776217.211466-1562776218.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783369" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-133018-1410-999012015-1562776217.211466-1562776218.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783369" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92497'">16/07 15:48</td>
+                    <td style="color: #990000;" title="00:00:00" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92497'">00:00:00</td>
+                                        <td style="color: #990000;" title="Ramal: ramal 1609" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92497'">1609</td>
+                    <td style="color: #990000;" title="Ramal: Ramal 2812 (2812)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92497'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378740" title="Ramal: Ramal 2812 (2812)" align="absmiddle" style="cursor: pointer;"> 2812</td>
+                    <td style="color: #990000;" title="Falhou" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92497'">Falhou</td>
+                    <td style="color: #990000;" title="" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92497'"></td>
+                    <td style="color: #990000;" title="Interno" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92497'">Interno</td>
+                    <td style="color: #990000;" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92497'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_81" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -2086,23 +2085,23 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91253'">10/07 13:29</td>
-                    <td style="" title="00:00:05" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91253'">00:00:05</td>
-                                        <td style="" title="551146000916" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91253'">551146000916</td>
-                    <td style="" title="Grupo: GP - Lifetime - 5653 » Ramal: ramal 2601 (2601)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91253'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_group.gif?1562783369" title="Grupo: GP - Lifetime - 5653" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1562783369" title="Encaminhado" align="absmiddle"> 2601</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92496'">16/07 15:46</td>
+                    <td style="" title="00:01:27" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92496'">00:01:27</td>
+                                        <td style="" title="Ramal: ramal 9001" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92496'">9001</td>
+                    <td style="" title="Ramal: ramal 1609 (1609)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92496'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378740" title="Ramal: ramal 1609 (1609)" align="absmiddle" style="cursor: pointer;"> 1609</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91253'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5648" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91253'">1131000441LifeSP5648</td>
-                    <td style="" title="Entrante" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91253'">Entrante</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92496'">Atendida</td>
+                    <td style="" title="" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92496'"></td>
+                    <td style="" title="Interno" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92496'">Interno</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91253'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_2019071015627761632114611562776164wav5d262e8919360');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783369" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_2019071015627761632114611562776164wav5d262e8919360 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_2019071015627761632114611562776164wav5d262e8919360">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-1562776163.211461-1562776164.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-1562776163.211461-1562776164.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_2019071015627761632114611562776164wav5d262e8919360" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-1562776163.211461-1562776164.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783369" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-1562776163.211461-1562776164.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783369" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92496'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161546519001160915633027922398641563302811wav5d2f4434d41b3');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161546519001160915633027922398641563302811wav5d2f4434d41b3 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161546519001160915633027922398641563302811wav5d2f4434d41b3">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-154651-9001-1609-1563302792.239864-1563302811.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-154651-9001-1609-1563302792.239864-1563302811.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161546519001160915633027922398641563302811wav5d2f4434d41b3" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-154651-9001-1609-1563302792.239864-1563302811.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-154651-9001-1609-1563302792.239864-1563302811.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_82" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -2112,23 +2111,23 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91252'">10/07 13:22</td>
-                    <td style="" title="00:04:42" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91252'">00:04:42</td>
-                                        <td style="" title="Ramal: Ramal 2815" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91252'">2815</td>
-                    <td style="" title="Ramal: ramal 1405 (1405) » Ramal: ramal 1404 (1404)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91252'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783369" title="Ramal: ramal 1405 (1405)" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1562783369" title="Encaminhado" align="absmiddle"> 1404</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92495'">16/07 15:46</td>
+                    <td style="" title="00:00:03" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92495'">00:00:03</td>
+                                        <td style="" title="Ramal: Ramal 2810" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92495'">2810</td>
+                    <td style="" title="5511999714780" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92495'">5511999714780</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91252'">Atendida</td>
-                    <td style="" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91252'"></td>
-                    <td style="" title="Interno" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91252'">Interno</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92495'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5642" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92495'">1131000441LifeSP5642</td>
+                    <td style="" title="Celular Local" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92495'">Celular Local</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91252'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907101321512815140915627757112114501562775711wav5d262e891be53');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783369" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907101321512815140915627757112114501562775711wav5d262e891be53 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907101321512815140915627757112114501562775711wav5d262e891be53">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-132151-2815-1409-1562775711.211450-1562775711.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-132151-2815-1409-1562775711.211450-1562775711.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907101321512815140915627757112114501562775711wav5d262e891be53" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-132151-2815-1409-1562775711.211450-1562775711.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783369" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-132151-2815-1409-1562775711.211450-1562775711.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783369" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92495'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190716154642281099971478015633028022398671563302802wav5d2f4434d94a0');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190716154642281099971478015633028022398671563302802wav5d2f4434d94a0 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190716154642281099971478015633028022398671563302802wav5d2f4434d94a0">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-154642-2810-999714780-1563302802.239867-1563302802.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-154642-2810-999714780-1563302802.239867-1563302802.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190716154642281099971478015633028022398671563302802wav5d2f4434d94a0" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-154642-2810-999714780-1563302802.239867-1563302802.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-154642-2810-999714780-1563302802.239867-1563302802.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_83" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -2138,23 +2137,23 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91251'">10/07 13:22</td>
-                    <td style="" title="00:00:00" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91251'">00:00:00</td>
-                                        <td style="" title="Ramal: ramal 1409" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91251'">1409</td>
-                    <td style="" title="Ramal: ramal 1404 (1404) » Ramal: ramal 1405 (1405)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91251'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783369" title="Ramal: ramal 1404 (1404)" align="absmiddle" style="cursor: pointer;">  <img src="/pbxip/themes/phone2b/images/bullet_go_cf.gif?1562783369" title="Encaminhado" align="absmiddle"> 1405</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92493'">16/07 15:46</td>
+                    <td style="" title="00:01:50" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92493'">00:01:50</td>
+                                        <td style="" title="Ramal: ramal 9001" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92493'">9001</td>
+                    <td style="" title="Ramal: Ramal 1605 (1605)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92493'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378740" title="Ramal: Ramal 1605 (1605)" align="absmiddle" style="cursor: pointer;"> 1605</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91251'">Atendida</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92493'">Atendida</td>
                     <td style="" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91251'"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92493'"></td>
                     <td style="" title="Interno" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91251'">Interno</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92493'">Interno</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91251'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907101322201409140415627757402114571562775740wav5d262e891e94b');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783369" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907101322201409140415627757402114571562775740wav5d262e891e94b divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907101322201409140415627757402114571562775740wav5d262e891e94b">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-132220-1409-1404-1562775740.211457-1562775740.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-132220-1409-1404-1562775740.211457-1562775740.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907101322201409140415627757402114571562775740wav5d262e891e94b" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-132220-1409-1404-1562775740.211457-1562775740.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783369" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-132220-1409-1404-1562775740.211457-1562775740.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783369" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92493'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161546329001160515633027922398641563302792wav5d2f4434df178');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161546329001160515633027922398641563302792wav5d2f4434df178 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161546329001160515633027922398641563302792wav5d2f4434df178">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-154632-9001-1605-1563302792.239864-1563302792.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-154632-9001-1605-1563302792.239864-1563302792.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161546329001160515633027922398641563302792wav5d2f4434df178" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-154632-9001-1605-1563302792.239864-1563302792.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-154632-9001-1605-1563302792.239864-1563302792.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_84" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -2164,23 +2163,23 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91250'">10/07 13:21</td>
-                    <td style="" title="00:04:42" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91250'">00:04:42</td>
-                                        <td style="" title="Ramal: Ramal 2815" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91250'">2815</td>
-                    <td style="" title="Ramal: ramal 1409 (1409)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91250'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783369" title="Ramal: ramal 1409 (1409)" align="absmiddle" style="cursor: pointer;"> 1409</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92494'">16/07 15:46</td>
+                    <td style="" title="00:01:41" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92494'">00:01:41</td>
+                                        <td style="" title="Ramal: ramal 2604" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92494'">2604</td>
+                    <td style="" title="5511992671232" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92494'">5511992671232</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91250'">Atendida</td>
-                    <td style="" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91250'"></td>
-                    <td style="" title="Interno" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91250'">Interno</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92494'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5651" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92494'">1131000441LifeSP5651</td>
+                    <td style="" title="Celular Local" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92494'">Celular Local</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91250'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907101321512815140915627757112114501562775711wav5d262e8920885');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783369" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907101321512815140915627757112114501562775711wav5d262e8920885 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907101321512815140915627757112114501562775711wav5d262e8920885">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-132151-2815-1409-1562775711.211450-1562775711.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-132151-2815-1409-1562775711.211450-1562775711.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907101321512815140915627757112114501562775711wav5d262e8920885" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-132151-2815-1409-1562775711.211450-1562775711.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783369" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-132151-2815-1409-1562775711.211450-1562775711.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783369" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92494'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190716154605260499267123215633027642398601563302765wav5d2f4434e3f8e');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190716154605260499267123215633027642398601563302765wav5d2f4434e3f8e divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190716154605260499267123215633027642398601563302765wav5d2f4434e3f8e">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-154605-2604-992671232-1563302764.239860-1563302765.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-154605-2604-992671232-1563302764.239860-1563302765.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190716154605260499267123215633027642398601563302765wav5d2f4434e3f8e" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-154605-2604-992671232-1563302764.239860-1563302765.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-154605-2604-992671232-1563302764.239860-1563302765.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_85" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -2190,22 +2189,22 @@ text = """
                     <td style="color: #cc6600;;"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91249'">10/07 13:17</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92492'">16/07 15:45</td>
                     <td style="color: #cc6600;" title="00:00:00" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91249'">00:00:00</td>
-                                        <td style="color: #cc6600;" title="Ramal: Ramal 7005" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91249'">7005</td>
-                    <td style="color: #cc6600;" title="5567984772433" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91249'">5567984772433</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92492'">00:00:00</td>
+                                        <td style="color: #cc6600;" title="Ramal: Ramal 2810" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92492'">2810</td>
+                    <td style="color: #cc6600;" title="5511958040446" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92492'">5511958040446</td>
                     <td style="color: #cc6600;" title="Não Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91249'">Não Atendida</td>
-                    <td style="color: #cc6600;" title="1131000441_Campo" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91249'">1131000441_Campo</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92492'">Não Atendida</td>
+                    <td style="color: #cc6600;" title="1131000441LifeSP5642" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92492'">1131000441LifeSP5642</td>
                     <td style="color: #cc6600;" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91249'">Celular Local</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92492'">Celular Local</td>
                     <td style="color: #cc6600;" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91249'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92492'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_86" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -2215,49 +2214,48 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91248'">10/07 13:17</td>
-                    <td style="" title="00:01:13" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91248'">00:01:13</td>
-                                        <td style="" title="Ramal: ramal 1410" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91248'">1410</td>
-                    <td style="" title="5531996773423" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91248'">5531996773423</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92491'">16/07 15:45</td>
+                    <td style="" title="00:00:30" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92491'">00:00:30</td>
+                                        <td style="" title="Ramal: Ramal 2208" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92491'">2208</td>
+                    <td style="" title="Ramal: ramal 1602 (1602)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92491'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378740" title="Ramal: ramal 1602 (1602)" align="absmiddle" style="cursor: pointer;"> 1602</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91248'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5640" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91248'">1131000441LifeSP5640</td>
-                    <td style="" title="Celular Nacional" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91248'">Celular Nacional</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92491'">Atendida</td>
+                    <td style="" title="" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92491'"></td>
+                    <td style="" title="Interno" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92491'">Interno</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91248'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907101317031410553199677342315627754222114401562775423wav5d262e8923b4f');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783369" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907101317031410553199677342315627754222114401562775423wav5d262e8923b4f divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907101317031410553199677342315627754222114401562775423wav5d262e8923b4f">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-131703-1410-5531996773423-1562775422.211440-1562775423.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-131703-1410-5531996773423-1562775422.211440-1562775423.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907101317031410553199677342315627754222114401562775423wav5d262e8923b4f" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-131703-1410-5531996773423-1562775422.211440-1562775423.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783369" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-131703-1410-5531996773423-1562775422.211440-1562775423.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783369" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92491'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161545342208160215633027342398531563302734wav5d2f4434eef62');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378740" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161545342208160215633027342398531563302734wav5d2f4434eef62 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161545342208160215633027342398531563302734wav5d2f4434eef62">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-154534-2208-1602-1563302734.239853-1563302734.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-154534-2208-1602-1563302734.239853-1563302734.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161545342208160215633027342398531563302734wav5d2f4434eef62" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-154534-2208-1602-1563302734.239853-1563302734.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378740" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-154534-2208-1602-1563302734.239853-1563302734.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378740" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_87" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_87" value="ODc."
                                                       onclick="toggle_checkbox('87', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style=";"
+                    <td style="color: #cc6600;;"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91247'">10/07 13:16</td>
-                    <td style="" title="00:00:04" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91247'">00:00:04</td>
-                                        <td style="" title="Ramal: Ramal 7005" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91247'">7005</td>
-                    <td style="" title="5567984772433" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91247'">5567984772433</td>
-                    <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91247'">Atendida</td>
-                    <td style="" title="1131000441_Campo" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91247'">1131000441_Campo</td>
-                    <td style="" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91247'">Celular Local</td>
-                    <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91247'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190710131624700598477243315627753842114361562775384wav5d262e89256a7');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783369" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190710131624700598477243315627753842114361562775384wav5d262e89256a7 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190710131624700598477243315627753842114361562775384wav5d262e89256a7">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-131624-7005-984772433-1562775384.211436-1562775384.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-131624-7005-984772433-1562775384.211436-1562775384.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190710131624700598477243315627753842114361562775384wav5d262e89256a7" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-131624-7005-984772433-1562775384.211436-1562775384.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783369" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-131624-7005-984772433-1562775384.211436-1562775384.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783369" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92490'">16/07 15:42</td>
+                    <td style="color: #cc6600;" title="00:00:00" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92490'">00:00:00</td>
+                                        <td style="color: #cc6600;" title="Ramal: Ramal 2810" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92490'">2810</td>
+                    <td style="color: #cc6600;" title="5511984607572" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92490'">5511984607572</td>
+                    <td style="color: #cc6600;" title="Não Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92490'">Não Atendida</td>
+                    <td style="color: #cc6600;" title="1131000441LifeSP5642" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92490'">1131000441LifeSP5642</td>
+                    <td style="color: #cc6600;" title="Celular Local" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92490'">Celular Local</td>
+                    <td style="color: #cc6600;" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92490'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378740" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_88" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -2267,101 +2265,98 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91246'">10/07 13:13</td>
-                    <td style="" title="00:01:52" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91246'">00:01:52</td>
-                                        <td style="" title="Ramal: ramal 1409" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91246'">1409</td>
-                    <td style="" title="Ramal: Ramal 2813 (2813)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91246'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783369" title="Ramal: Ramal 2813 (2813)" align="absmiddle" style="cursor: pointer;"> 2813</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92489'">16/07 15:41</td>
+                    <td style="" title="00:01:25" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92489'">00:01:25</td>
+                                        <td style="" title="Ramal: ramal 2604" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92489'">2604</td>
+                    <td style="" title="5511991887593" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92489'">5511991887593</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91246'">Atendida</td>
-                    <td style="" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91246'"></td>
-                    <td style="" title="Interno" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91246'">Interno</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92489'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5651" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92489'">1131000441LifeSP5651</td>
+                    <td style="" title="Celular Local" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92489'">Celular Local</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91246'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907101313501409281315627751962114311562775230wav5d262e89275ea');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783369" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907101313501409281315627751962114311562775230wav5d262e89275ea divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907101313501409281315627751962114311562775230wav5d262e89275ea">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-131350-1409-2813-1562775196.211431-1562775230.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-131350-1409-2813-1562775196.211431-1562775230.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907101313501409281315627751962114311562775230wav5d262e89275ea" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-131350-1409-2813-1562775196.211431-1562775230.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783369" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-131350-1409-2813-1562775196.211431-1562775230.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783369" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92489'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378741" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190716154144260499188759315633025042398441563302504wav5d2f443505132');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378741" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190716154144260499188759315633025042398441563302504wav5d2f443505132 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190716154144260499188759315633025042398441563302504wav5d2f443505132">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-154144-2604-991887593-1563302504.239844-1563302504.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-154144-2604-991887593-1563302504.239844-1563302504.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190716154144260499188759315633025042398441563302504wav5d2f443505132" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-154144-2604-991887593-1563302504.239844-1563302504.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378741" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-154144-2604-991887593-1563302504.239844-1563302504.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378741" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_89" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_89" value="ODk."
                                                       onclick="toggle_checkbox('89', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style=";"
+                    <td style="color: #990000;;"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91245'">10/07 13:13</td>
-                    <td style="" title="00:02:22" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91245'">00:02:22</td>
-                                        <td style="" title="Ramal: ramal 1409" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91245'">1409</td>
-                    <td style="" title="Ramal: Ramal 2810 (2810)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91245'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783369" title="Ramal: Ramal 2810 (2810)" align="absmiddle" style="cursor: pointer;"> 2810</td>
-                    <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91245'">Atendida</td>
-                    <td style="" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91245'"></td>
-                    <td style="" title="Interno" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91245'">Interno</td>
-                    <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91245'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907101313171409281015627751962114311562775197wav5d262e8929526');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783369" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907101313171409281015627751962114311562775197wav5d262e8929526 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907101313171409281015627751962114311562775197wav5d262e8929526">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-131317-1409-2810-1562775196.211431-1562775197.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-131317-1409-2810-1562775196.211431-1562775197.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907101313171409281015627751962114311562775197wav5d262e8929526" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-131317-1409-2810-1562775196.211431-1562775197.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783369" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-131317-1409-2810-1562775196.211431-1562775197.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783369" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92488'">16/07 15:41</td>
+                    <td style="color: #990000;" title="00:00:00" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92488'">00:00:00</td>
+                                        <td style="color: #990000;" title="Ramal: ramal 1609" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92488'">1609</td>
+                    <td style="color: #990000;" title="Ramal: Ramal 2812 (2812)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92488'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378741" title="Ramal: Ramal 2812 (2812)" align="absmiddle" style="cursor: pointer;"> 2812</td>
+                    <td style="color: #990000;" title="Falhou" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92488'">Falhou</td>
+                    <td style="color: #990000;" title="" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92488'"></td>
+                    <td style="color: #990000;" title="Interno" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92488'">Interno</td>
+                    <td style="color: #990000;" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92488'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378741" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_90" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_90" value="OTA."
                                                       onclick="toggle_checkbox('90', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style=";"
+                    <td style="color: #990000;;"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91244'">10/07 13:12</td>
-                    <td style="" title="00:01:09" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91244'">00:01:09</td>
-                                        <td style="" title="Ramal: Ramal 2802" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91244'">2802</td>
-                    <td style="" title="Ramal: ramal 1410 (1410)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91244'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783369" title="Ramal: ramal 1410 (1410)" align="absmiddle" style="cursor: pointer;"> 1410</td>
-                    <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91244'">Atendida</td>
-                    <td style="" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91244'"></td>
-                    <td style="" title="Interno" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91244'">Interno</td>
-                    <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91244'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907101312092802141015627751292114271562775129wav5d262e892b462');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783369" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907101312092802141015627751292114271562775129wav5d262e892b462 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907101312092802141015627751292114271562775129wav5d262e892b462">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-131209-2802-1410-1562775129.211427-1562775129.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-131209-2802-1410-1562775129.211427-1562775129.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907101312092802141015627751292114271562775129wav5d262e892b462" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-131209-2802-1410-1562775129.211427-1562775129.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783369" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-131209-2802-1410-1562775129.211427-1562775129.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783369" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92487'">16/07 15:40</td>
+                    <td style="color: #990000;" title="00:00:00" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92487'">00:00:00</td>
+                                        <td style="color: #990000;" title="Ramal: ramal 1609" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92487'">1609</td>
+                    <td style="color: #990000;" title="Ramal: Ramal 2812 (2812)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92487'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378741" title="Ramal: Ramal 2812 (2812)" align="absmiddle" style="cursor: pointer;"> 2812</td>
+                    <td style="color: #990000;" title="Falhou" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92487'">Falhou</td>
+                    <td style="color: #990000;" title="" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92487'"></td>
+                    <td style="color: #990000;" title="Interno" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92487'">Interno</td>
+                    <td style="color: #990000;" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92487'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378741" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_91" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_91" value="OTE."
                                                       onclick="toggle_checkbox('91', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style=";"
+                    <td style="color: #cc6600;;"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91243'">10/07 13:06</td>
-                    <td style="" title="00:00:13" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91243'">00:00:13</td>
-                                        <td style="" title="Ramal: ramal 1410" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91243'">1410</td>
-                    <td style="" title="Ramal: Ramal 2804 (2804)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91243'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783369" title="Ramal: Ramal 2804 (2804)" align="absmiddle" style="cursor: pointer;"> 2804</td>
-                    <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91243'">Atendida</td>
-                    <td style="" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91243'"></td>
-                    <td style="" title="Interno" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91243'">Interno</td>
-                    <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91243'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907101306301410280415627747902114221562774790wav5d262e892d3aa');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783369" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907101306301410280415627747902114221562774790wav5d262e892d3aa divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907101306301410280415627747902114221562774790wav5d262e892d3aa">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-130630-1410-2804-1562774790.211422-1562774790.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-130630-1410-2804-1562774790.211422-1562774790.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907101306301410280415627747902114221562774790wav5d262e892d3aa" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-130630-1410-2804-1562774790.211422-1562774790.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783369" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-130630-1410-2804-1562774790.211422-1562774790.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783369" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92486'">16/07 15:40</td>
+                    <td style="color: #cc6600;" title="00:00:00" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92486'">00:00:00</td>
+                                        <td style="color: #cc6600;" title="Ramal: Ramal 2810" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92486'">2810</td>
+                    <td style="color: #cc6600;" title="5511989649897" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92486'">5511989649897</td>
+                    <td style="color: #cc6600;" title="Não Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92486'">Não Atendida</td>
+                    <td style="color: #cc6600;" title="1131000441LifeSP5642" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92486'">1131000441LifeSP5642</td>
+                    <td style="color: #cc6600;" title="Celular Local" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92486'">Celular Local</td>
+                    <td style="color: #cc6600;" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92486'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378741" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_92" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -2371,22 +2366,22 @@ text = """
                     <td style="color: #cc6600;;"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91242'">10/07 13:02</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92485'">16/07 15:39</td>
                     <td style="color: #cc6600;" title="00:00:00" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91242'">00:00:00</td>
-                                        <td style="color: #cc6600;" title="Ramal: Ramal 7004" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91242'">7004</td>
-                    <td style="color: #cc6600;" title="Ramal: ramal1401 (1401)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91242'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783369" title="Ramal: ramal1401 (1401)" align="absmiddle" style="cursor: pointer;"> 1401</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92485'">00:00:00</td>
+                                        <td style="color: #cc6600;" title="Ramal: Ramal 2810" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92485'">2810</td>
+                    <td style="color: #cc6600;" title="5511989679897" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92485'">5511989679897</td>
                     <td style="color: #cc6600;" title="Não Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91242'">Não Atendida</td>
-                    <td style="color: #cc6600;" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91242'"></td>
-                    <td style="color: #cc6600;" title="Interno" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91242'">Interno</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92485'">Não Atendida</td>
+                    <td style="color: #cc6600;" title="1131000441LifeSP5642" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92485'">1131000441LifeSP5642</td>
+                    <td style="color: #cc6600;" title="Celular Local" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92485'">Celular Local</td>
                     <td style="color: #cc6600;" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91242'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92485'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378741" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_93" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -2396,23 +2391,23 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91241'">10/07 12:56</td>
-                    <td style="" title="00:01:36" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91241'">00:01:36</td>
-                                        <td style="" title="Ramal: ramal 1410" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91241'">1410</td>
-                    <td style="" title="5521998715841" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91241'">5521998715841</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92484'">16/07 15:38</td>
+                    <td style="" title="00:00:12" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92484'">00:00:12</td>
+                                        <td style="" title="Ramal: Ramal 2810" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92484'">2810</td>
+                    <td style="" title="5511989649897" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92484'">5511989649897</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91241'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5640" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91241'">1131000441LifeSP5640</td>
-                    <td style="" title="Celular Nacional" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91241'">Celular Nacional</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92484'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5642" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92484'">1131000441LifeSP5642</td>
+                    <td style="" title="Celular Local" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92484'">Celular Local</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91241'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907101256031410552199871584115627741632114141562774163wav5d262e8930a56');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783369" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907101256031410552199871584115627741632114141562774163wav5d262e8930a56 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907101256031410552199871584115627741632114141562774163wav5d262e8930a56">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-125603-1410-5521998715841-1562774163.211414-1562774163.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-125603-1410-5521998715841-1562774163.211414-1562774163.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907101256031410552199871584115627741632114141562774163wav5d262e8930a56" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-125603-1410-5521998715841-1562774163.211414-1562774163.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783369" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-125603-1410-5521998715841-1562774163.211414-1562774163.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783369" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92484'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378741" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190716153858281098964989715633023372398261563302338wav5d2f443520e85');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378741" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190716153858281098964989715633023372398261563302338wav5d2f443520e85 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190716153858281098964989715633023372398261563302338wav5d2f443520e85">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-153858-2810-989649897-1563302337.239826-1563302338.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-153858-2810-989649897-1563302337.239826-1563302338.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190716153858281098964989715633023372398261563302338wav5d2f443520e85" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-153858-2810-989649897-1563302337.239826-1563302338.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378741" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-153858-2810-989649897-1563302337.239826-1563302338.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378741" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_94" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -2422,23 +2417,23 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91240'">10/07 12:47</td>
-                    <td style="" title="00:01:32" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91240'">00:01:32</td>
-                                        <td style="" title="Ramal: ramal 1410" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91240'">1410</td>
-                    <td style="" title="5511999012015" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91240'">5511999012015</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92483'">16/07 15:37</td>
+                    <td style="" title="00:01:20" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92483'">00:01:20</td>
+                                        <td style="" title="Ramal: ramal 2604" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92483'">2604</td>
+                    <td style="" title="5511972872792" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92483'">5511972872792</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91240'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5640" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91240'">1131000441LifeSP5640</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92483'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5651" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92483'">1131000441LifeSP5651</td>
                     <td style="" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91240'">Celular Local</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92483'">Celular Local</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91240'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190710124710141099901201515627736302114081562773630wav5d262e89325b2');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783369" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190710124710141099901201515627736302114081562773630wav5d262e89325b2 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190710124710141099901201515627736302114081562773630wav5d262e89325b2">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-124710-1410-999012015-1562773630.211408-1562773630.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-124710-1410-999012015-1562773630.211408-1562773630.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190710124710141099901201515627736302114081562773630wav5d262e89325b2" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-124710-1410-999012015-1562773630.211408-1562773630.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783369" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-124710-1410-999012015-1562773630.211408-1562773630.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783369" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92483'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378741" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190716153738260497287279215633022582398211563302258wav5d2f4435231ac');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378741" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190716153738260497287279215633022582398211563302258wav5d2f4435231ac divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190716153738260497287279215633022582398211563302258wav5d2f4435231ac">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-153738-2604-972872792-1563302258.239821-1563302258.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-153738-2604-972872792-1563302258.239821-1563302258.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190716153738260497287279215633022582398211563302258wav5d2f4435231ac" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-153738-2604-972872792-1563302258.239821-1563302258.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378741" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-153738-2604-972872792-1563302258.239821-1563302258.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378741" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_95" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -2448,23 +2443,23 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91239'">10/07 12:44</td>
-                    <td style="" title="00:00:43" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91239'">00:00:43</td>
-                                        <td style="" title="Ramal: ramal 1410" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91239'">1410</td>
-                    <td style="" title="Ramal: Ramal 2807 (2807)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91239'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783369" title="Ramal: Ramal 2807 (2807)" align="absmiddle" style="cursor: pointer;"> 2807</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92482'">16/07 15:36</td>
+                    <td style="" title="00:02:21" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92482'">00:02:21</td>
+                                        <td style="" title="Ramal: Ramal 2812" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92482'">2812</td>
+                    <td style="" title="Ramal: ramal 1609 (1609)" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92482'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1563378741" title="Ramal: ramal 1609 (1609)" align="absmiddle" style="cursor: pointer;"> 1609</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91239'">Atendida</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92482'">Atendida</td>
                     <td style="" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91239'"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92482'"></td>
                     <td style="" title="Interno" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91239'">Interno</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92482'">Interno</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91239'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907101244331410280715627734722114051562773473wav5d262e89344ed');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783369" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907101244331410280715627734722114051562773473wav5d262e89344ed divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907101244331410280715627734722114051562773473wav5d262e89344ed">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-124433-1410-2807-1562773472.211405-1562773473.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-124433-1410-2807-1562773472.211405-1562773473.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907101244331410280715627734722114051562773473wav5d262e89344ed" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-124433-1410-2807-1562773472.211405-1562773473.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783369" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-124433-1410-2807-1562773472.211405-1562773473.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783369" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92482'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378741" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161536562812160915633022152398181563302216wav5d2f443528598');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378741" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161536562812160915633022152398181563302216wav5d2f443528598 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161536562812160915633022152398181563302216wav5d2f443528598">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-153656-2812-1609-1563302215.239818-1563302216.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-153656-2812-1609-1563302215.239818-1563302216.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161536562812160915633022152398181563302216wav5d2f443528598" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-153656-2812-1609-1563302215.239818-1563302216.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378741" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-153656-2812-1609-1563302215.239818-1563302216.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378741" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_96" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -2474,23 +2469,23 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91238'">10/07 12:42</td>
-                    <td style="" title="00:00:48" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91238'">00:00:48</td>
-                                        <td style="" title="Ramal: ramal 2604" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91238'">2604</td>
-                    <td style="" title="5511968464449" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91238'">5511968464449</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92481'">16/07 15:36</td>
+                    <td style="" title="00:00:33" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92481'">00:00:33</td>
+                                        <td style="" title="Ramal: Ramal 2810" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92481'">2810</td>
+                    <td style="" title="5511985682532" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92481'">5511985682532</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91238'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5651" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91238'">1131000441LifeSP5651</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92481'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5642" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92481'">1131000441LifeSP5642</td>
                     <td style="" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91238'">Celular Local</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92481'">Celular Local</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91238'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190710124248260496846444915627733672114011562773368wav5d262e8936046');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783369" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190710124248260496846444915627733672114011562773368wav5d262e8936046 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190710124248260496846444915627733672114011562773368wav5d262e8936046">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-124248-2604-968464449-1562773367.211401-1562773368.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-124248-2604-968464449-1562773367.211401-1562773368.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190710124248260496846444915627733672114011562773368wav5d262e8936046" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-124248-2604-968464449-1562773367.211401-1562773368.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783369" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-124248-2604-968464449-1562773367.211401-1562773368.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783369" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92481'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378741" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190716153649281098568253215633022082398141563302209wav5d2f44352d000');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378741" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190716153649281098568253215633022082398141563302209wav5d2f44352d000 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190716153649281098568253215633022082398141563302209wav5d2f44352d000">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-153649-2810-985682532-1563302208.239814-1563302209.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-153649-2810-985682532-1563302208.239814-1563302209.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190716153649281098568253215633022082398141563302209wav5d2f44352d000" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-153649-2810-985682532-1563302208.239814-1563302209.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378741" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-153649-2810-985682532-1563302208.239814-1563302209.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378741" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_97" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -2500,22 +2495,22 @@ text = """
                     <td style="color: #cc6600;;"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91236'">10/07 12:42</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92478'">16/07 15:35</td>
                     <td style="color: #cc6600;" title="00:00:00" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91236'">00:00:00</td>
-                                        <td style="color: #cc6600;" title="Ramal: ramal 2604" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91236'">2604</td>
-                    <td style="color: #cc6600;" title="5511968464449" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91236'">5511968464449</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92478'">00:00:00</td>
+                                        <td style="color: #cc6600;" title="Ramal: Ramal 7003" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92478'">7003</td>
+                    <td style="color: #cc6600;" title="5567992334413" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92478'">5567992334413</td>
                     <td style="color: #cc6600;" title="Não Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91236'">Não Atendida</td>
-                    <td style="color: #cc6600;" title="1131000441LifeSP5651" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91236'">1131000441LifeSP5651</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92478'">Não Atendida</td>
+                    <td style="color: #cc6600;" title="1131000441_Campo" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92478'">1131000441_Campo</td>
                     <td style="color: #cc6600;" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91236'">Celular Local</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92478'">Celular Local</td>
                     <td style="color: #cc6600;" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91236'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92478'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378741" align="absmiddle"></td>
                                         </tbody>
                                         <tbody id="tr_98" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -2525,23 +2520,23 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91235'">10/07 12:36</td>
-                    <td style="" title="00:00:44" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91235'">00:00:44</td>
-                                        <td style="" title="Ramal: ramal1401" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91235'">1401</td>
-                    <td style="" title="Ramal: Ramal 2807 (2807)" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91235'"> <img src="/pbxip/themes/phone2b/images/bullet_exten_users.gif?1562783369" title="Ramal: Ramal 2807 (2807)" align="absmiddle" style="cursor: pointer;"> 2807</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92480'">16/07 15:35</td>
+                    <td style="" title="00:00:38" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92480'">00:00:38</td>
+                                        <td style="" title="Ramal: Ramal 2810" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92480'">2810</td>
+                    <td style="" title="5511981580308" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92480'">5511981580308</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91235'">Atendida</td>
-                    <td style="" title="" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91235'"></td>
-                    <td style="" title="Interno" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91235'">Interno</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92480'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5642" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92480'">1131000441LifeSP5642</td>
+                    <td style="" title="Celular Local" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92480'">Celular Local</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91235'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907101236341401280715627729942113931562772994wav5d262e89396fa');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783369" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907101236341401280715627729942113931562772994wav5d262e89396fa divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907101236341401280715627729942113931562772994wav5d262e89396fa">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-123634-1401-2807-1562772994.211393-1562772994.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-123634-1401-2807-1562772994.211393-1562772994.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907101236341401280715627729942113931562772994wav5d262e89396fa" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-123634-1401-2807-1562772994.211393-1562772994.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783369" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-123634-1401-2807-1562772994.211393-1562772994.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783369" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92480'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378741" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190716153522281098158030815633021212398061563302122wav5d2f443536ff8');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378741" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190716153522281098158030815633021212398061563302122wav5d2f443536ff8 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190716153522281098158030815633021212398061563302122wav5d2f443536ff8">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-153522-2810-981580308-1563302121.239806-1563302122.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-153522-2810-981580308-1563302121.239806-1563302122.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190716153522281098158030815633021212398061563302122wav5d2f443536ff8" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-153522-2810-981580308-1563302121.239806-1563302122.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378741" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-153522-2810-981580308-1563302121.239806-1563302122.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378741" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_99" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
@@ -2551,53 +2546,54 @@ text = """
                     <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91237'">10/07 12:32</td>
-                    <td style="" title="00:10:10" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91237'">00:10:10</td>
-                                        <td style="" title="Ramal: ramal 1410" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91237'">1410</td>
-                    <td style="" title="551129116445" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91237'">551129116445</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92479'">16/07 15:35</td>
+                    <td style="" title="00:01:31" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92479'">00:01:31</td>
+                                        <td style="" title="Ramal: ramal 2604" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92479'">2604</td>
+                    <td style="" title="5513992082112" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92479'">5513992082112</td>
                     <td style="" title="Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91237'">Atendida</td>
-                    <td style="" title="1131000441LifeSP5640" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91237'">1131000441LifeSP5640</td>
-                    <td style="" title="Fixo Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91237'">Fixo Local</td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92479'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5651" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92479'">1131000441LifeSP5651</td>
+                    <td style="" title="Celular Nacional" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92479'">Celular Nacional</td>
                     <td style="" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91237'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_2019071012325514102911644515627727742113881562772775wav5d262e893b253');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1562783369" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_2019071012325514102911644515627727742113881562772775wav5d262e893b253 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_2019071012325514102911644515627727742113881562772775wav5d262e893b253">
-                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-123255-1410-29116445-1562772774.211388-1562772775.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190710-123255-1410-29116445-1562772774.211388-1562772775.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_2019071012325514102911644515627727742113881562772775wav5d262e893b253" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190710-123255-1410-29116445-1562772774.211388-1562772775.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1562783369" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190710-123255-1410-29116445-1562772774.211388-1562772775.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1562783369" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92479'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378741" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_201907161535142604551399208211215633021142398021563302114wav5d2f44353ba62');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378741" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_201907161535142604551399208211215633021142398021563302114wav5d2f44353ba62 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_201907161535142604551399208211215633021142398021563302114wav5d2f44353ba62">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-153514-2604-5513992082112-1563302114.239802-1563302114.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-153514-2604-5513992082112-1563302114.239802-1563302114.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_201907161535142604551399208211215633021142398021563302114wav5d2f44353ba62" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-153514-2604-5513992082112-1563302114.239802-1563302114.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378741" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-153514-2604-5513992082112-1563302114.239802-1563302114.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378741" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                                         <tbody id="tr_100" class="malhado" onmouseover="on_hover_row(jQuery(this));">
                     <td style="display: none;"><input type="checkbox" class="checkbox" name="chk"
                                                       id="chk_100" value="MTAw"
                                                       onclick="toggle_checkbox('100', 'fifochkid', 'text', tdis.id);"/>
                     </td>
-                    <td style="color: #cc6600;;"
+                    <td style=";"
                         title="Ver detalhamento da ligação"
                         nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91233'">10/07 12:28</td>
-                    <td style="color: #cc6600;" title="00:00:00" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91233'">00:00:00</td>
-                                        <td style="color: #cc6600;" title="Ramal: ramal 1409" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91233'">1409</td>
-                    <td style="color: #cc6600;" title="5511999954966" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91233'">5511999954966</td>
-                    <td style="color: #cc6600;" title="Não Atendida" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91233'">Não Atendida</td>
-                    <td style="color: #cc6600;" title="1131000441LifeSP5633" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91233'">1131000441LifeSP5633</td>
-                    <td style="color: #cc6600;" title="Celular Local" nowrap
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91233'">Celular Local</td>
-                    <td style="color: #cc6600;" title="" nowrap align="right"
-                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=91233'"></td>
-                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1562783369" align="absmiddle"></td>
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92476'">16/07 15:33</td>
+                    <td style="" title="00:00:03" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92476'">00:00:03</td>
+                                        <td style="" title="Ramal: Ramal 2810" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92476'">2810</td>
+                    <td style="" title="5511970282816" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92476'">5511970282816</td>
+                    <td style="" title="Atendida" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92476'">Atendida</td>
+                    <td style="" title="1131000441LifeSP5642" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92476'">1131000441LifeSP5642</td>
+                    <td style="" title="Celular Local" nowrap
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92476'">Celular Local</td>
+                    <td style="" title="" nowrap align="right"
+                        ondblclick="document.location = '/pbxip/framework/container.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LmRldGFpbC5waHA.&id=92476'"></td>
+                                            <td style="text-align: center;"><img src="/pbxip/themes/phone2b/images/spacer.gif?1563378741" align="absmiddle"><a href="javascript:void(0);" onClick="showDiv('div_20190716153315281097028281615633019942397981563301995wav5d2f443540875');" ><img src="/pbxip/themes/phone2b/images/bullet_service_monitor_on.gif?1563378741" title="Controles de áudio" align="absmiddle" style="cursor: pointer;margin:0 2px;"></a><div class='div_20190716153315281097028281615633019942397981563301995wav5d2f443540875 divs_audio' style='display:none;'><div style='float:left;'><OBJECT classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" codebase="http://www.apple.com/qtactivex/qtplugin.cab" width="100" height="10px" id="div_20190716153315281097028281615633019942397981563301995wav5d2f443540875">
+                                    <PARAM name="src" value="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-153315-2810-970282816-1563301994.239798-1563301995.wav"><PARAM name="autoplay" value="false"><EMBED HEIGHT=20 WIDTH=100 AUTOPLAY="false" SRC="http://192.168.3.1/pbxip/core/includes/downloadaudio.php?file=/var/spool/asterisk/monitor/20190716-153315-2810-970282816-1563301994.239798-1563301995.wav" TYPE="video/quicktime" PLUGINSPAGE="www.apple.com/quicktime/download" EnableJavaScript="true" NAME="div_20190716153315281097028281615633019942397981563301995wav5d2f443540875" /></OBJECT></div><div style='float:left;'><a href="javascript:void(0);" onClick="downloadAudio('/var/spool/asterisk/monitor/20190716-153315-2810-970282816-1563301994.239798-1563301995.wav');"><img src="/pbxip/themes/phone2b/images/save.gif?1563378741" title="Salvar" alt="Salvar" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a><a href="javascript:void(0);" onClick="downloadAudioMp3('/var/spool/asterisk/monitor/20190716-153315-2810-970282816-1563301994.239798-1563301995.wav');"><img src="/pbxip/themes/pbxip/images/mp3-icon.png?1563378741" title="Salvar mp3" alt="Salvar mp3" align="absmiddle" style="cursor: pointer; margin-left:2px; margin-top:2px;"></a></div></div></td>
                                         </tbody>
                             <!--<thead>
     <td style="display: none;"></td>
     <td title="Total" nowrap><b>Total</b></td>
-    <td title="Total de duração: 7715" nowrap>7715</td>
+    <td title="Total de duração: 10412" nowrap>10412</td>
     <td colspan='5'></td>
     <td title="Total do custo: 0" align="right" nowrap>0</td>
         <td></td>
@@ -2619,27 +2615,27 @@ text = """
             </thead>
                             <tbody class="malhado" onmouseover="on_hover_row(jQuery(this));">
                 <td title="Entrante" nowrap>Entrante</td>
-                                        <td title="35" nowrap>35</td>
-                                               <td title="0" nowrap>0</td>
-                                                <td title="4" nowrap>4</td>
+                                        <td title="37" nowrap>37</td>
                                                 <td title="0" nowrap>0</td>
-                                        <td title="39" nowrap>39</td>
+                                                <td title="0" nowrap>0</td>
+                                                <td title="4" nowrap>4</td>
+                                        <td title="41" nowrap>41</td>
                 </tbody>
                                 <tbody class="malhado" onmouseover="on_hover_row(jQuery(this));">
                 <td title="Interno" nowrap>Interno</td>
-                                        <td title="65" nowrap>65</td>
+                                        <td title="68" nowrap>68</td>
                                                 <td title="0" nowrap>0</td>
-                                                <td title="11" nowrap>11</td>
-                                                <td title="1" nowrap>1</td>
-                                        <td title="77" nowrap>77</td>
+                                                <td title="15" nowrap>15</td>
+                                                <td title="6" nowrap>6</td>
+                                        <td title="89" nowrap>89</td>
                 </tbody>
                                 <tbody class="malhado" onmouseover="on_hover_row(jQuery(this));">
                 <td title="Saínte" nowrap>Saínte</td>
-                                        <td title="64" nowrap>64</td>
+                                        <td title="81" nowrap>81</td>
                                                 <td title="0" nowrap>0</td>
-                                                <td title="31" nowrap>31</td>
-                                                <td title="4" nowrap>4</td>
-                                        <td title="99" nowrap>99</td>
+                                                <td title="35" nowrap>35</td>
+                                                <td title="0" nowrap>0</td>
+                                        <td title="116" nowrap>116</td>
                 </tbody>
                         </table>
         <script type="text/javascript">
@@ -2692,8 +2688,7 @@ text = """
 
         audio {
             width: 50px
-        }
-    </style><script>doApplyConfig(0);</script>"""
+        }'''
 
 dx = re.findall(r'"[a-z]+[:.].*wav"', text)
 
@@ -2716,7 +2711,7 @@ async def fetch(url_list):
 
 #agr = asyncio.run(fetch(links_array))
 
-driver = webdriver.Chrome('chromedriver')
+driver = webdriver.Chrome('chromedriver.exe')
 driver.get("http://192.168.3.1/pbxip/framework/")
 
 for link in links_array:
