@@ -1,10 +1,7 @@
-import asyncio
-import pandas as pd
 import requests
-from bs4 import BeautifulSoup as bs
 import re
 from selenium import webdriver
-from aiohttp import ClientSession
+
 
 cookies = {
     'language': 'cHRfYnI.',
