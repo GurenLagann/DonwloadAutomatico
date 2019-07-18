@@ -54,12 +54,17 @@ for filename in os.listdir(path):
     extension = os.path.splitext(filename)[1]
     inList = False
     for ramal in name_array:
-        if n[2] == ramal :
+     #for ramal in name_array:
+        #if n[2] == ramal :
+        if n[2].__contains__(name_array):
             new_file_name = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+ein+".wav"
             inList = True
             break
-     #for ramal in name_array:
-        elif n[3] == ramal:
+        elif n[3].__contains__(name_array):
+            new_file_name = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+eout+".wav"
+            inList = True
+            break
+        elif n[2] & n[3].__contains__(name_array):
             new_file_name = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+eout+".wav"
             inList = True
             break
