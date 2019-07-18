@@ -50,6 +50,7 @@ name_array = ['1403',
     'e1409']
 
 path = input("Enter the directory path where you need to  rename: ")
+#path = os.path("C:\Users\wallace.nascimento.LFTM\Downloads")
 for filename in os.listdir(path):
     filename_without_ext = os.path.splitext(filename)[0]
     n = filename.split('-')
@@ -58,26 +59,47 @@ for filename in os.listdir(path):
     print(filename)
     for ramal in name_array:
      #for ramal in name_array:
-        if n[2] == ramal:
-            new_file_name = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+ein+".wav"
-            inList = True
-            break
-        elif n[3] == ramal:
-            new_file_name = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+eout+".wav"
-            inList = True
-            break
-        # elif n[2] & n[3] == ramal:
-        #     new_file_name = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+eout+".wav"
-        #     new_file_name2 = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+ein+".wav"
-        #     shutil.copyfile(path, os.path.join(path, new_file_name2))
-        #     inList = True
-        #     break
-    if inList == False :
-        new_file_name = filename  
-        os.remove(new_file_name)
+        tl = len(n)
+        if tl >= 4:
+            if n[2] == ramal:
+                new_file_name = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+ein+".wav"
+                inList = True
+                break
+            elif n[3] == ramal:
+                new_file_name = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+eout+".wav"
+                inList = True
+                break
+            
+            if inList == False :
+                new_file_name = filename
+                
+
+            # elif n[2] & n[3] == ramal:
+            #     new_file_name2 = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+ein+".wav"
+            #     new_file_name = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+eout+".wav"
+            #     shutil.copyfile(path, os.path.join(path, new_file_name2))
+            #     break
+            #     inList = True
+      
+
     print(new_file_name)
-        
+    print(os.path.exists(filename))
+
     os.rename(os.path.join(path, filename),
-              os.path.join(path, new_file_name))
-       
+        os.path.join(path, new_file_name))
     
+    # if os.path.exists(filename):
+    #     new_file_name = "DELET"
+    #     os.rename(os.path.join(path, filename),
+    #               os.path.join(path, new_file_name))
+        
+    # else:
+    #     os.rename(os.path.join(path, filename),
+    #             os.path.join(path, new_file_name))
+                    
+       
+# Pendencias: 
+#   1 - Apagar arquivos que não fazem parte do pacote que será enviado para XP
+#   2 - Resolver problemas de arquivos In e Out
+#   3 - Resolver problema do nome que atrapalham a função do if n[3] == ramal: 
+#   4 - Problemas com nomes iguais  
