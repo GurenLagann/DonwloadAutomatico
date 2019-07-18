@@ -1,9 +1,11 @@
 import os
+import shutil
 
 init = "GVXPISPLFT-"
 ein = "-in"
 eout = "-out"
-name_array = ['1404',
+name_array = ['1403',
+    '1404',
     '1408',
     '1416',
     '1414',
@@ -53,27 +55,29 @@ for filename in os.listdir(path):
     n = filename.split('-')
     extension = os.path.splitext(filename)[1]
     inList = False
+    print(filename)
     for ramal in name_array:
      #for ramal in name_array:
-        #if n[2] == ramal :
-        if n[2].__contains__(name_array):
+        if n[2] == ramal:
             new_file_name = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+ein+".wav"
             inList = True
             break
-        elif n[3].__contains__(name_array):
+        elif n[3] == ramal:
             new_file_name = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+eout+".wav"
             inList = True
             break
-        elif n[2] & n[3].__contains__(name_array):
-            new_file_name = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+eout+".wav"
-            inList = True
-            break
+        # elif n[2] & n[3] == ramal:
+        #     new_file_name = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+eout+".wav"
+        #     new_file_name2 = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+ein+".wav"
+        #     shutil.copyfile(path, os.path.join(path, new_file_name2))
+        #     inList = True
+        #     break
     if inList == False :
         new_file_name = filename  
-
+        os.remove(new_file_name)
     print(new_file_name)
         
-       
-    
     os.rename(os.path.join(path, filename),
               os.path.join(path, new_file_name))
+       
+    
