@@ -24,6 +24,8 @@ function callback(error, response, body) {
 
 request(options, callback);
 
-var dx = new RegExp("[a-z]+[:.].*wav", request);
-
-console.log(dx);
+function Search(){
+    var text = Text.parse(request)
+    var n = text.parse(/[a-z],[:.].*wav/g);
+    console.log(n)
+}
