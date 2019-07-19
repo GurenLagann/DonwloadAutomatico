@@ -54,25 +54,44 @@ for filename in os.listdir(path):
     filename_without_ext = os.path.splitext(filename)[0]
     n = filename.split('-')
     extension = os.path.splitext(filename)[1]
-    inList = False
     for ramal in name_array:
+        inList = False
     #for ramal in name_array:
         tl = len(n)
         if tl >= 4:
             if n[2] == ramal:
+                inList = True
                 new_file_name = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+ein+".wav"
                 os.rename(os.path.join(path, filename),
                         os.path.join(path, new_file_name))
+                os.remove(os.path.isfile(new_file_name))
                 print(new_file_name)
                 break
             elif n[3] == ramal:
+                inList = True
                 new_file_name = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+eout+".wav"
                 os.rename(os.path.join(path, filename),
                         os.path.join(path, new_file_name))
+                os.remove(os.path.isfile(new_file_name))
                 print(new_file_name)
                 break
 
-            
+            if inList == False:
+                print(filename)
+                try:
+                    os.remove(os.path.join(path, filename))
+                except:
+                    print("Nao sei oq aconteceu: ")
+
+        else:
+            try:
+                os.remove(os.path.join(path, filename))
+            except:
+                print("Nao sei oq aconteceu: ")
+
+
+
+    
         # elif n[2] & n[3] == ramal:
                 #    new_file_name2 = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+ein+".wav"
                 #     new_file_name = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+eout+".wav"
@@ -80,8 +99,6 @@ for filename in os.listdir(path):
                 #     break
                 #     inList = True
             
-            # if inList == False :
-                # new_file_name = filename
                 
 
 
