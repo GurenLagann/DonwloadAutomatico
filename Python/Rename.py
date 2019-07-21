@@ -1,9 +1,12 @@
 import os
 import shutil
 
+#Complementos para o nome do arquivo
 init = "GVXPISPLFT-"
 ein = "-in"
 eout = "-out"
+
+#Array de numeros que serão mantidos 
 name_array = ['1403',
     '1404',
     '1408',
@@ -50,44 +53,41 @@ name_array = ['1403',
     'e1409']
 
 path = "C:\\Users\\wallace.nascimento.LFTM\\Downloads"
+# For dos arquivos que serão renomeados
 for filename in os.listdir(path):
     filename_without_ext = os.path.splitext(filename)[0]
-    n = filename.split('-')
     extension = os.path.splitext(filename)[1]
+    #Separa o nome do arquivo em uma lista para o nome ser desmembrado e reorganizado em um novo nome
+    n = filename.split('-')
+    #For para verificar os arquivos que estão no nome_array para modificar o nome, os que não estão serão apagados    
     for ramal in name_array:
         inList = False
-    #for ramal in name_array:
+        #Verifica se a separação da lista n tem mais de 4 itens dentro dela
         tl = len(n)
         if tl >= 4:
+            
             if n[2] == ramal:
                 inList = True
                 new_file_name = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+ein+".wav"
-                os.rename(os.path.join(path, filename),
-                        os.path.join(path, new_file_name))
+                os.rename(os.path.join(path, filename),os.path.join(path, new_file_name))
                 os.remove(os.path.isfile(new_file_name))
                 print(new_file_name)
                 break
+            
             elif n[3] == ramal:
                 inList = True
                 new_file_name = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+eout+".wav"
-                os.rename(os.path.join(path, filename),
-                        os.path.join(path, new_file_name))
+                os.rename(os.path.join(path, filename),os.path.join(path, new_file_name))
                 os.remove(os.path.isfile(new_file_name))
                 print(new_file_name)
                 break
 
             if inList == False:
-                print(filename)
-                try:
-                    os.remove(os.path.join(path, filename))
-                except:
-                    print("Nao sei oq aconteceu: ")
+                print(os.remove(os.path.join(path, filename)))
 
         else:
-            try:
-                os.remove(os.path.join(path, filename))
-            except:
-                print("Nao sei oq aconteceu: ")
+            print(os.remove(os.path.join(path, filename)))
+
 
 
 
