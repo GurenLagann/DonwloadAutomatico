@@ -52,7 +52,7 @@ name_array = ['1403',
     'e1405',
     'e1409']
 
-path = "C:\\Users\\wallace.nascimento.LFTM\\Downloads"
+path = 'C:\\Users\\wallace.nascimento.LFTM\\Downloads'
 # For dos arquivos que serão renomeados
 for filename in os.listdir(path):
     filename_without_ext = os.path.splitext(filename)[0]
@@ -64,44 +64,49 @@ for filename in os.listdir(path):
         inList = False
         #Verifica se a separação da lista n tem mais de 4 itens dentro dela
         tl = len(n)
-        if tl >= 4:
-            
+        if tl >= 4:            
             if n[2] == ramal:
                 inList = True
-                new_file_name = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+ein+".wav"
-                os.rename(os.path.join(path, filename),os.path.join(path, new_file_name))
-                os.remove(os.path.isfile(new_file_name))
-                print(new_file_name)
+                new_file_name = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+ein+".wav"             
+                try:
+                    os.rename(os.path.join(path, filename),
+                        os.path.join(path, new_file_name))                
+                except:
+                    print("Socorro 01!" + filename)                    
+                print(filename)
                 break
             
             elif n[3] == ramal:
                 inList = True
-                new_file_name = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+eout+".wav"
-                os.rename(os.path.join(path, filename),os.path.join(path, new_file_name))
-                os.remove(os.path.isfile(new_file_name))
-                print(new_file_name)
+                new_file_name = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+eout+".wav"               
+                try:
+                    os.rename(os.path.join(path, filename),
+                        os.path.join(path, new_file_name))                   
+                except:
+                    print("Socorro 02!" + filename)
+                print(filename)
                 break
-
-            if inList == False:
-                print(os.remove(os.path.join(path, filename)))
-
+            
+            # if inList == False:
+            #     try:
+            #         print(os.remove(os.path.join(path, filename)))
+            #     except:
+            #         print("Porque Senhor, PQ!!!!!!!")
+        
         else:
-            print(os.remove(os.path.join(path, filename)))
-
-
-
-
-    
-        # elif n[2] & n[3] == ramal:
+            try:
+                print(os.remove(os.path.join(path, filename)))
+            except:
+                print("Porque Senhor, PQ!!!!!!!")
+            
+            
+            # elif n[2] & n[3] == ramal:
                 #    new_file_name2 = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+ein+".wav"
                 #     new_file_name = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+eout+".wav"
                 #     shutil.copyfile(path, os.path.join(path, new_file_name2))
                 #     break
                 #     inList = True
-            
-                
-
-
+                            
     # os.rename(os.path.join(path, filename),
     #     os.path.join(path, new_file_name))
 
@@ -120,4 +125,4 @@ for filename in os.listdir(path):
 #   1 - Apagar arquivos que não fazem parte do pacote que será enviado para XP
 #   2 - Resolver problemas de arquivos In e Out
 #   3 - Resolver problema do nome que atrapalham a função do if n[3] == ramal: 
-#   4 - Problemas com nomes iguais  
+#   4 - Problemas com nomes iguais
