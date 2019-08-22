@@ -52,7 +52,10 @@ name_array = ['1403',
     'e1405',
     'e1409']
 
-path = 'C:\\Users\\wallace.nascimento.LFTM\\Downloads'
+path = '/home/wallace/Downloads'
+path2 = 'smb://192.168.1.2/data/mp3/in'
+path3 = 'smb://192.168.1.2/data/mp3/out'
+
 # For dos arquivos que serão renomeados
 for filename in os.listdir(path):
     filename_without_ext = os.path.splitext(filename)[0]
@@ -70,7 +73,8 @@ for filename in os.listdir(path):
                 new_file_name = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+ein+".wav"             
                 try:
                     os.rename(os.path.join(path, filename),
-                        os.path.join(path, new_file_name))                
+                        os.path.join(path, new_file_name))
+                    #todo: shutil.move(path, path2)                
                 except:
                     print("Socorro 01!" + filename)                    
                 print(filename)
@@ -81,7 +85,8 @@ for filename in os.listdir(path):
                 new_file_name = init+n[0]+n[1]+"-"+n[2]+"-"+n[3]+eout+".wav"               
                 try:
                     os.rename(os.path.join(path, filename),
-                        os.path.join(path, new_file_name))                   
+                        os.path.join(path, new_file_name))
+                    # shutil(path, path3)                   
                 except:
                     print("Socorro 02!" + filename)
                 print(filename)
@@ -112,7 +117,7 @@ for filename in os.listdir(path):
 
     
     # if os.path.exists(filename):
-    #     new_file_name = "DELET"
+    #     new_file_name = "DELETE"
     #     os.rename(os.path.join(path, filename),
     #               os.path.join(path, new_file_name))
         
