@@ -4,8 +4,9 @@ from selenium import webdriver
 
 Sda = "21/08/2019"
 Eda = "21/08/2019"
+#driver = webdriver.Chrome('./chromedriver')
 
-phpsessid = '7cn6eunr6c28j6v4h795o8cap7'
+phpsessid = '8c3kttcb19fr3v6iq2j1vhkbc7'
 
 cookies = {
     'language': 'cHRfYnI.',
@@ -40,6 +41,7 @@ for page in range(1,3):
     # response = requests.get('http://192.168.3.1/pbxip/framework/container.ajax.php?token=MAIN/cmVwb3J0LmNhbGxzLmRldGFpbGVk|INCLUDE/aW5kZXgucmVwb3J0LnBocA..&where=0;start_filter|yes;calldate_day_start|19/08/2019;calldate_day_end|19/08/2019;calldate_time_start|00:00:00;calldate_time_end|23:59:59;src|;dst|;dcontext|;disposition|;disposition_colorize|1;disposition_icons|1;disposition_general|0;disposition_monitor|0;trunk|;branchname|;route|;var1|MQ..;var2|YWxs;var3|;var4|YToyOntzOjk6IklOU0VTU0lPTiI7czoxMDoicDJiX3BhaW5lbCI7czoxMzoiVVNFUl9VU0VSTkFNRSI7czo4OiJiV0Z6ZEdWeSI7fQ..&order=calldate&by=desc&page=1&limit=100&_=1566239217101', headers=headers, cookies=cookies)
 
 
+
     dx = re.findall(r'"[a-z]+[:.].*wav"', response.text)
  
     #print(dx)
@@ -51,7 +53,6 @@ for page in range(1,3):
 
     #print(l)
     # open it, go to a website, and get results
-    # driver = webdriver.Chrome('./chromedriver')
     # #driver.get("http://192.168.3.1/pbxip/framework/")
 
     # for link in links_array:
